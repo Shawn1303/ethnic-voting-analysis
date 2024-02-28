@@ -2,6 +2,7 @@ import './App.css';
 import 'leaflet/dist/leaflet.css';
 import StateMap from './map/StateMap';
 import HouseMemberTable from './house_member_table';
+import RacialBarPlots from './racial_ethnic_district_bar_plots';
 
 function App() {
 	return (<div>
@@ -9,8 +10,9 @@ function App() {
 			Menu
 		</div>
 		<div id = "display">
-			<StateMap/>
+			{/* <StateMap/> */}
 			{/* <HouseMemberTable ></HouseMemberTable> */}
+			<RacialBarPlots />
 		</div>
 	</div>);
 }
