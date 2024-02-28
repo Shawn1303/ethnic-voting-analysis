@@ -1,6 +1,6 @@
 import './App.css';
 import 'leaflet/dist/leaflet.css';
-import Map from './map/Map';
+import StateMap from './map/StateMap';
 
 function App() {
 	return (<div>
@@ -8,7 +8,7 @@ function App() {
 			Menu
 		</div>
 		<div id = "display">
-			<Map/>
+			<StateMap/>
 		</div>
 	</div>);
 }
