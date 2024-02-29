@@ -10,8 +10,8 @@ function App() {
 			Menu
 		</div>
 		<div id = "display">
-			{/* <StateMap/> */}
-			{/* <HouseMemberTable ></HouseMemberTable> */}
+			<StateMap/>
+			<HouseMemberTable/>
 			<RacialBarPlots />
 		</div>
 	</div>);

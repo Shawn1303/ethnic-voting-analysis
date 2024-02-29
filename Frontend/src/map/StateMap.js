@@ -15,6 +15,48 @@ class StateMap extends Component{
         
     }
 
+    color = ['red', 'green', 'blue', 'yellow', 'orange', 'grey'];
+
+    onDistClick = (event) =>{
+        console.log("this works");
+    }
+
+    onDistHover = (event) =>{
+        event.target.setStyle(
+            {
+                color: "black",
+                fillOpacity: 0.8
+            }
+        )
+    }
+    mouseLeave = (event) =>{
+        event.target.setStyle(
+            {
+                color: "blue",
+                fillOpacity: 0.3
+            }
+        )
+    }
+
+    onEachDist = (dist, layer) => {
+        console.log(dist.properties);
+        // layer.bindPopup(dist.properties.DISTRICT);
+        layer.options.fillColor = this.color[Math.floor(5*Math.random())];
+        layer.options.fillOpacity = 0.3;
+
+        layer.on(
+            {
+                click: this.onDistClick,
+                mouseover: this.onDistHover,
+                mouseout: this.mouseLeave
+            }
+        )
+    }
+
+    // stateStyle = {
+
+    // }
+
     render(){
         if(this.currentState === "maryland"){
             this.center = [39.045753, -76.641273];
@@ -24,12 +66,12 @@ class StateMap extends Component{
 
         return(
             <MapContainer center={this.center} zoom={this.zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12}>
-                <TileLayer
+                {/* <TileLayer
                     url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
                     attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                />
-                <GeoJSON color="blue" data={MarylandState}/>
-                <GeoJSON color="red" data={VirginiaState}/>
+                /> */}
+                <GeoJSON color="blue" data={MarylandState.features} onEachFeature={this.onEachDist}/>
+                <GeoJSON color="red" data={VirginiaState.features}/>
             </MapContainer>
         )
 
