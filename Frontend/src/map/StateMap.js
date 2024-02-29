@@ -44,7 +44,7 @@ class StateMap extends Component{
         // layer.options.fillOpacity = Math.random();
 
         const objId = dist.properties.OBJECTID;
-        const percent = mdPopulation[objId-1].White/mdPopulation[objId-1].Total;
+        const percent = mdPopulation[objId-1].Asian/mdPopulation[objId-1].Total;
         var distOpacity = 0;
         if(percent < .1){
             distOpacity = 0.1;
@@ -81,7 +81,7 @@ class StateMap extends Component{
         }
 
         return(
-            <MapContainer center={this.center} zoom={this.zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12}>
+            <MapContainer center={this.center} zoom={this.zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{display: "inline-block"}}>
                 {/* <TileLayer
                     url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
                     attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
