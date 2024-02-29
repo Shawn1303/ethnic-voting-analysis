@@ -3,6 +3,7 @@ import 'leaflet/dist/leaflet.css';
 import './statemap.css';
 import MarylandState from "../Data/District_Boundaries/md_state.json";
 import VirginiaState from "../Data/District_Boundaries/va_state.json";
+import mdPopulation from "../Data/District_Boundaries/md_dummy_data.json";
 import { Component } from 'react';
 
 class StateMap extends Component{
@@ -25,7 +26,6 @@ class StateMap extends Component{
         event.target.setStyle(
             {
                 color: "black",
-                fillOpacity: 0.8
             }
         )
     }
@@ -33,7 +33,6 @@ class StateMap extends Component{
         event.target.setStyle(
             {
                 color: "blue",
-                fillOpacity: 0.3
             }
         )
     }
@@ -41,8 +40,25 @@ class StateMap extends Component{
     onEachDist = (dist, layer) => {
         console.log(dist.properties);
         // layer.bindPopup(dist.properties.DISTRICT);
-        layer.options.fillColor = this.color[Math.floor(5*Math.random())];
-        layer.options.fillOpacity = 0.3;
+        // layer.options.fillColor = this.color[Math.floor(5*Math.random())];
+        // layer.options.fillOpacity = Math.random();
+
+        const objId = dist.properties.OBJECTID;
+        const percent = mdPopulation[objId-1].White/mdPopulation[objId-1].Total;
+        var distOpacity = 0;
+        if(percent < .1){
+            distOpacity = 0.1;
+        }else if(percent >= .1 && percent < .2){
+            distOpacity = 0.3;
+        }else if(percent >= .2 && percent < .3){
+            distOpacity = 0.5;
+        }else if(percent >= .3 && percent < .4){
+            distOpacity = 0.7;
+        }else{
+            distOpacity = 0.9;
+        }
+
+        layer.options.fillOpacity = distOpacity;
 
         layer.on(
             {
@@ -74,12 +90,6 @@ class StateMap extends Component{
                 <GeoJSON color="red" data={VirginiaState.features}/>
             </MapContainer>
         )
-
-    //     var Stadia_StamenTonerLite = L.tileLayer('', {
-	// minZoom: 0,
-	// maxZoom: 20,
-	// attribution: '&copy; 
-	// ext: 'png'
     }
     
 }
