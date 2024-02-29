@@ -1,7 +1,12 @@
 import './App.css';
 import 'leaflet/dist/leaflet.css';
 import StateMap from './map/StateMap';
-import HouseMemberTable from './house_member_table';
+import HouseMemberTable from './graphs/house_member_table';
+import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
+import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
+import Legend from './map/Legend';
+import legendItems from './map/LegendItems';
+
 
 function App() {
 	return (<div>
@@ -10,7 +15,10 @@ function App() {
 		</div>
 		<div id = "display">
 			<StateMap/>
-			{/* <HouseMemberTable ></HouseMemberTable> */}
+			<Legend legendItems={legendItems}/>
+			<HouseMemberTable/>
+			<RacialBarPlots />
+			<BoxWhiskerPlotsMCMC/>
 		</div>
 	</div>);
 }
