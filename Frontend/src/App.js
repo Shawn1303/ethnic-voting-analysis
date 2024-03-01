@@ -52,6 +52,8 @@ function App() {
 	const raceOptions = ["", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
   	const [selectedRace, setSelectedRace] = useState(raceOptions[0]);
 	const [selectedRace2, setSelectedRace2] = useState(raceOptions[0]);
+	const [showMar, setShowMar] = useState(false);
+	const [showVir, setShowVir] = useState(false);
 
 	return (<>
 		<Navbar>
@@ -82,6 +84,19 @@ function App() {
 					</select>
 				</div>
 				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
+				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue'}}>Welcome!
+				<br></br>
+Maryland’s voting districts are redrawn by different groups.
+<br></br>
+State Legislative Districts are decided by the Governor and a nine person advisory commission. These plans are then approved by the State Legislature. 
+If politicians can't agree on new state legislative lines within 45 days, the Governor's plan becomes law.
+<br></br>
+Explore the map to see how voting districts differ!
+<br></br>
+<span style={{color: 'red'}}>Click to close</span>
+</p> :
+<span style={{color: 'red'}}>Click to learn about Maryland's boundary decision process</span>}
+</a>}
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
@@ -102,10 +117,28 @@ function App() {
 					
 				</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
+				{virginiaData.map.show && <a href='#' onClick={() => {setShowVir(!showVir)}}>{showVir ? <p style={{color:'blue'}}>Welcome!
+				<br></br>
+Maryland’s voting districts are redrawn by different groups.
+<br></br>
+Virginia's voting districts were traditionally drawn by state politicians.
+However, as of November 3, 2020, Virginia residents voted to establish the Virginia Redistricting Commission for this task.
+<br></br>
+The Commission is currently developing maps for state legislative and U.S. House districts.
+Previously, the state legislature drew the maps, but now the Commission does so, subject to General Assembly approval.
+<br></br>
+If the Commission or the General Assembly fails to agree on redistricting plans, the Supreme Court of Virginia will establish the districts.
+<br></br>
+Explore the map to see how voting districts differ!
+<br></br>
+<span style={{color: 'red'}}>Click to close</span>
+</p> :
+<span style={{color: 'red'}}>Click to learn about Virginia's boundary decision process</span>}
+</a>}
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
 				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={2}/>}
-        <VotingPDensityPlots />
+        {/* <VotingPDensityPlots /> */}
 			</div>
 		</div>
 	</>);
