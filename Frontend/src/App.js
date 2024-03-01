@@ -177,6 +177,17 @@ Explore the map to see how voting districts differ!
 		(oneState ? (
 			<div id="onestate">
 				<div className='leftOneState'>
+					<div className='mapTitle'>
+						<h2>Maryland (Non pre-clearance)</h2>
+						{marylandData.map.show && <select
+							onChange={(e) => setSelectedRace(e.target.value)}
+							defaultValue={selectedRace}
+						>
+							{raceOptions.map((race, idx) => (
+							<option key={idx}>{race}</option>
+							))}
+						</select>}
+					</div>
 					<StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>
 					{/* <RacialBarPlots /> */}
 					<EthnicDistPieChart />
@@ -190,6 +201,17 @@ Explore the map to see how voting districts differ!
 			) : (
 			<div id="onestate">
 				<div className='leftOneState'>
+					<div className='mapTitle'>
+						<h2>Virginia (Pre-clearance)</h2>
+						{virginiaData.map.show && <select
+							onChange={(e) => setSelectedRace2(e.target.value)}
+							defaultValue={selectedRace2}
+						>
+							{raceOptions.map((race, idx) => (
+							<option key={idx}>{race}</option>
+							))}
+						</select>}
+					</div>
 					<StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>
 					{/* <RacialBarPlots /> */}
 					<EthnicDistPieChart />
