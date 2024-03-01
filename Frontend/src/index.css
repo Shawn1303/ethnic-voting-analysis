@@ -54,7 +54,8 @@ a {
 	background-color: var(--bg);
 	border-bottom: var(--border);
 	padding: 0 1rem;
-	position: relative; /* Ensure relative positioning */
+	width: 100%;
+	position: fixed; /* Ensure relative positioning */
 	z-index: 10000;
 }
 
