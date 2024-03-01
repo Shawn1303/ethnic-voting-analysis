@@ -155,11 +155,17 @@ export default function DropdownMenu(props) {
 						setPrevMenu={setPrevMenu}
 					>Box and Whiskers</DropdownItem>
 					<DropdownItem
-						goToMenu="barchart"
+						goToMenu="barplot"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Bar Chart</DropdownItem>
+					>Bar Plot</DropdownItem>
+					<DropdownItem
+						goToMenu="table"
+						prevMenu={activeMenu}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>Table</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -190,11 +196,17 @@ export default function DropdownMenu(props) {
 						setPrevMenu={setPrevMenu}
 					>Box and Whiskers</DropdownItem>
 					<DropdownItem
-						goToMenu="barchart"
+						goToMenu="barplot"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Bar Chart</DropdownItem>
+					>Bar Plot</DropdownItem>
+					<DropdownItem
+						goToMenu="table"
+						prevMenu={activeMenu}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>Table</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -218,6 +230,7 @@ export default function DropdownMenu(props) {
 						checkbox={true}
 						// put label name e.g. show
 						label={"show"}
+						field={"map"}
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
 					>Show Map</DropdownItem>
@@ -225,12 +238,14 @@ export default function DropdownMenu(props) {
 						checkbox={true}
 						// put label name e.g. legislative
 						label={"legislative"}
+						field={"map"}
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
 					>Legislative Districts</DropdownItem>
 					<DropdownItem
 						checkbox={true}
 						label={"precinct"}
+						field={"map"}
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
 					>Precinct Grouping</DropdownItem>
@@ -254,6 +269,8 @@ export default function DropdownMenu(props) {
 					>Back</DropdownItem>
 					<DropdownItem
 						checkbox={true}
+						label={"show"}
+						field={"boxandwhiskers"}
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
 					>Show Box and Whiskers Chart</DropdownItem>
@@ -261,7 +278,7 @@ export default function DropdownMenu(props) {
 			</CSSTransition>
 
 			<CSSTransition 
-			in={activeMenu === 'barchart'} 
+			in={activeMenu === 'barplot'} 
 			unmountOnExit 
 			timeout={500}
 			classNames={"menu-third"}
@@ -277,9 +294,36 @@ export default function DropdownMenu(props) {
 					>Back</DropdownItem>
 					<DropdownItem
 						checkbox={true}
+						label={"show"}
+						field={"barplot"}
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
-					>Show Bar Chart</DropdownItem>
+					>Show Bar Plot</DropdownItem>
+				</div>
+			</CSSTransition>
+
+			<CSSTransition 
+			in={activeMenu === 'table'} 
+			unmountOnExit 
+			timeout={500}
+			classNames={"menu-third"}
+			onEnter={calcHeight}
+			>
+				<div className='menu'>
+					<DropdownItem
+						goToMenu={prevMenu}
+						prevMenu={activeMenu}
+						leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>Back</DropdownItem>
+					<DropdownItem
+						checkbox={true}
+						label={"show"}
+						field={"table"}
+						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
+						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
+					>Show Table</DropdownItem>
 				</div>
 			</CSSTransition>
 		</div>
