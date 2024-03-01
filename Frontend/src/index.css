@@ -223,6 +223,7 @@ a {
 /* css for displaying data */
 
 #display {
+	padding-top: var(--nav-size);
 	display: flex;
 	height: 100%;
 	width: 100%;
