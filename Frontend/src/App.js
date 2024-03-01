@@ -68,6 +68,7 @@ function App() {
 			<HouseMemberTable/>
 			<RacialBarPlots />
 			<BoxWhiskerPlotsMCMC/>
+			<VotingPDensityPlots />
 		</div>
 	</>);
 }
