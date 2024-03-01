@@ -16,17 +16,17 @@ function App() {
 	const[marylandData, setMarylandData] = useState({
 		map: {
 			show: true,
-			legislative: false,
+			legislative: true,
 			precinct: true
 		},
 		boxandwhiskers: {
-			show: false
+			show: true
 		},
 		barplot: {
-			show: false
+			show: true
 		},
 		table: {
-			show: false
+			show: true
 		}
 	});
 
@@ -37,13 +37,13 @@ function App() {
 			precinct: true
 		},
 		boxandwhiskers: {
-			show: false
+			show: true
 		},
 		barplot: {
-			show: false
+			show: true
 		},
 		table: {
-			show: false
+			show: true
 		}
 	});
 
@@ -61,15 +61,21 @@ function App() {
 			</NavItem>
 		</Navbar>
 		<div id = 'display'>
-			{/* <div className='1'></div>
-			<div></div> */}
-			{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map}/>}
-			{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map}/>}
-			{/* <StateMap/> */}
-			<HouseMemberTable/>
-			<RacialBarPlots />
-			<BoxWhiskerPlotsMCMC/>
-			<VotingPDensityPlots />
+			<div className='statesdata'>
+				<div>Maryland</div>
+				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map}/>}
+				{marylandData.table.show && <HouseMemberTable/>}
+				{marylandData.barplot.show && <RacialBarPlots />}
+				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC/>}
+			</div>
+			<div className='statesdata'>
+				<div>Virginia</div>
+				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map}/>}
+				{virginiaData.table.show && <HouseMemberTable/>}
+				{virginiaData.barplot.show && <RacialBarPlots />}
+				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC/>}
+        <VotingPDensityPlots />
+			</div>
 		</div>
 	</>);
 }

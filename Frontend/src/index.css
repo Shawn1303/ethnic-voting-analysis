@@ -206,9 +206,15 @@ a {
 
 #display {
 	display: flex;
-	flex-direction: column;
 	height: 100%;
 	width: 100%;
+}
+
+.statesdata {
+	display: flex;
+	flex-direction: column;
+	width: calc(50% - 20px);
+	padding: 10px;
 }
 
 .leaflet-container {
