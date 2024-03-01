@@ -164,7 +164,7 @@ Explore the map to see how voting districts differ!
 				{virginiaData.pichart.show && <EthnicDistPieChart />}
         {/* <VotingPDensityPlots /> */}
 			</div>
-		</div>
+	}</div>
 	</>);
 }
 
