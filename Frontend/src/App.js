@@ -9,6 +9,7 @@ import StateMap from './map/StateMap';
 import HouseMemberTable from './graphs/house_member_table';
 import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
 import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
+import VotingPDensityPlots from './graphs/voting_probability_density_plots'
 
 
 function App() {
@@ -73,6 +74,7 @@ function App() {
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
 				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC/>}
+        <VotingPDensityPlots />
 			</div>
 		</div>
 	</>);
