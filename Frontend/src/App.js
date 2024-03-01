@@ -5,6 +5,12 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './navComponents/navbar';
 import NavItem from './navComponents/navitems';
 import DropdownMenu from './navComponents/dropdownmenu';
+import StateMap from './map/StateMap';
+import HouseMemberTable from './graphs/house_member_table';
+import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
+import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
+import Legend from './map/Legend';
+import legendItems from './map/LegendItems';
 
 function App() {
 	const[marylandData, setMarylandData] = useState({
@@ -49,6 +55,11 @@ function App() {
 			</NavItem>
 		</Navbar>
 		<div id = 'display'>
+			<StateMap/>
+			<Legend legendItems={legendItems}/>
+			<HouseMemberTable/>
+			<RacialBarPlots />
+			<BoxWhiskerPlotsMCMC/>
 		</div>
 	</>);
 }
