@@ -22,7 +22,7 @@ class StateMap extends Component{
     color = ['red', 'green', 'blue', 'yellow', 'orange', 'grey'];
 
     onDistClick = (event) =>{
-        console.log("this works");
+        // console.log("this works");
     }
 
     onDistHover = (event) =>{
@@ -41,7 +41,7 @@ class StateMap extends Component{
     }
 
     onEachDist = (dist, layer) => {
-        console.log(dist.properties);
+        // console.log(dist.properties);
         // layer.bindPopup(dist.properties.DISTRICT);
         // layer.options.fillColor = this.color[Math.floor(5*Math.random())];
         // layer.options.fillOpacity = Math.random();
@@ -97,8 +97,8 @@ class StateMap extends Component{
         }
 
         return(
-            <div style={{position:'relative'}}>
-                <MapContainer center={this.center} zoom={this.zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{display: "inline-block"}}>
+            <div style={{position:'relative', width: '100%', height: '500px'}}>
+                <MapContainer center={this.center} zoom={this.zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{ width: '100%', height: '100%' }}>
                     <TileLayer
                         style={{position: 'relative'}}
                         url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
@@ -109,7 +109,7 @@ class StateMap extends Component{
                     {this.currentState === "virginia" && <GeoJSON color="#03045e" data={VirginiaState.features} onEachFeature={this.onEachDist}/>}
 
                 </MapContainer>
-                <div style={{position:'absolute', bottom:0, right:0, zIndex:1000}}>
+                <div style={{position:'absolute', bottom: 0 , right: 0, zIndex:1000, backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px'}}>
                     <Legend legendItems={legendItems}/>
                 </div>
                 

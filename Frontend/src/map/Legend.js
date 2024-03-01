@@ -1,7 +1,7 @@
 import React from "react";
 
 const Legend = ({legendItems}) => {
-    console.log(legendItems);
+    // console.log(legendItems);
     return(
         <div
             style = {{
