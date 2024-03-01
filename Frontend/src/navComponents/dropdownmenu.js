@@ -153,25 +153,25 @@ export default function DropdownMenu(props) {
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Box and Whiskers</DropdownItem>
+					>Gerrymandering Analysis</DropdownItem>
 					<DropdownItem
 						goToMenu="barplot"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Bar Plot</DropdownItem>
+					>Ethnic/Racial Distribution In Districts</DropdownItem>
 					<DropdownItem
 						goToMenu="table"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Table</DropdownItem>
+					>State Assembly Representatives Info</DropdownItem>
 					<DropdownItem
 						goToMenu="pichart"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>State Assembly Ethnic Chart</DropdownItem>
+					>State Assembly Ethnic/Racial Chart</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -200,25 +200,25 @@ export default function DropdownMenu(props) {
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Box and Whiskers</DropdownItem>
+					>Gerrymandering Analysis</DropdownItem>
 					<DropdownItem
 						goToMenu="barplot"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Bar Plot</DropdownItem>
+					>Ethnic/Racial Distribution In Districts</DropdownItem>
 					<DropdownItem
 						goToMenu="table"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Table</DropdownItem>
+					>State Assembly Representatives Info</DropdownItem>
 					<DropdownItem
 						goToMenu="pichart"
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>State Assembly Ethnic Chart</DropdownItem>
+					>State Assembly Ethnic/Racial Chart</DropdownItem>
 				</div>
 			</CSSTransition>
 
