@@ -88,7 +88,7 @@ function App() {
 		<div id = 'display'>
 			{!allShowsFalse(marylandData) && <div className='statesdata'>
 				<div className='mapTitle'>
-					<h2>Maryland</h2>
+					<h2>Maryland (Non pre-clearance)</h2>
 					{marylandData.map.show && <select
 						onChange={(e) => setSelectedRace(e.target.value)}
 						defaultValue={selectedRace}
@@ -125,7 +125,7 @@ Explore the map to see how voting districts differ!
 			</div>}
 			{!allShowsFalse(virginiaData) && <div className='statesdata'>
 				<div className='mapTitle'>
-					<h2>Virginia</h2>
+					<h2>Virginia (Pre-clearance)</h2>
 					{virginiaData.map.show && <select
 						onChange={(e) => setSelectedRace2(e.target.value)}
 						defaultValue={selectedRace2}
