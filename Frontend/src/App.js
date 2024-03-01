@@ -69,14 +69,14 @@ function App() {
 				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map}/>}
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
-				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC/>}
+				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
 			</div>
 			<div className='statesdata'>
 				<div>Virginia</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map}/>}
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
-				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC/>}
+				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={2}/>}
         <VotingPDensityPlots />
 			</div>
 		</div>
