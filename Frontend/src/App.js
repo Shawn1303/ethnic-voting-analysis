@@ -74,11 +74,9 @@ function App() {
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
 		<div id = 'display' style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'block'}}>
-			{!allShowsFalse(marylandData) && <div className='statesdata' 
-				style={{width: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? ' calc(50% - 20px)' : '100%',
-						flexDirection: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'column' : 'row'
-					}}>
-				<div className='mapTitle' style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'inline-block'}}>
+			{!allShowsFalse(marylandData) && 
+			<div className='statesdata' style={{flexDirection: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'column' : 'row', width: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'calc(50%-20px)' : '100%'}}>
+				<div className='mapTitle'>
 					<h2>Maryland</h2>
 					{marylandData.map.show && <select
 						onChange={(e) => setSelectedRace(e.target.value)}
@@ -89,13 +87,12 @@ function App() {
 						))}
 					</select>}
 					{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
-
-					
 				</div>
-				<div style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'inline-block'}}>
-					{marylandData.table.show && <HouseMemberTable/>}
+				<div>
 					{marylandData.barplot.show && <RacialBarPlots />}
 					{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
+					{marylandData.table.show && <HouseMemberTable/>}
+					
 				</div>
 			
 				
