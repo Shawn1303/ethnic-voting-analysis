@@ -63,7 +63,7 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
     useEffect(() => {
         Object.keys(layerRefs).forEach(objId => {
             const layer = layerRefs[objId];
-            if(selectedRace === ""){
+            if(selectedRace === "Select a race/ethnicity"){
                 layer.setStyle({
                     fillColor: "bluegray",
                     fillOpacity: 0.3,
@@ -115,7 +115,7 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
                     {selectedState === "virginia" && <GeoJSON color="#03045e" data={VirginiaState.features} onEachFeature={onEachDist}/>}
 
                 </MapContainer>
-                {selectedRace !== "" &&<div style={{position:'absolute', bottom: 0 , right: 0, zIndex:1000, backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px'}}>
+                {selectedRace !== "Select a race/ethnicity" &&<div style={{position:'absolute', bottom: 0 , right: 0, zIndex:1000, backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px'}}>
                     <Legend legendItems={legendItems}/>
                 </div>}
                 

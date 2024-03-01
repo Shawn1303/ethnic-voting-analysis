@@ -58,7 +58,7 @@ function App() {
 		},
 	});
 
-	const raceOptions = ["", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
+	const raceOptions = ["Select a race/ethnicity", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
   	const [selectedRace, setSelectedRace] = useState(raceOptions[0]);
 	const [selectedRace2, setSelectedRace2] = useState(raceOptions[0]);
 	const [showMar, setShowMar] = useState(false);
