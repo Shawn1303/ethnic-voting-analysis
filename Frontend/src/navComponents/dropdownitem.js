@@ -11,11 +11,12 @@ export default function DropdownItem(props) {
 	// }, [props.data, props.setData]);
 
 	const handleCheckboxChange = () => {
+		// console.log(props.data);
 		props.setData(prevState => ({
 		  ...prevState,
-		  map: {
-			...prevState.map,
-			[props.label]: !prevState.map[props.label]
+		  [props.field]: {
+			...prevState[props.field],
+			[props.label]: !prevState[props.field][props.label]
 		  }
 		}));
 		// updateData(prevState => ({
@@ -26,16 +27,18 @@ export default function DropdownItem(props) {
 		// 		[props.label]: !(data.map[props.label])
 		// 	}
 		// }));
-	  };
+	};
+
+	// console.log(props);
 
 	let item;
 	if(props.checkbox) {
-		console.log(props.data.map);
+		// console.log(props);
 		item =
 		<a href='#' className='menu-item'>
 			{/* put in props.label for each checkbox item */}
 			<input type='checkbox' 
-			checked={props.data.map[props.label]}
+			checked={props.data[props.field][props.label]}
 			// check={data.map[props.label]}
 			onChange={handleCheckboxChange}
 			// onChange={() => {

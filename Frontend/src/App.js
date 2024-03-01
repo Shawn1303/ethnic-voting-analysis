@@ -21,7 +21,10 @@ function App() {
 		boxandwhiskers: {
 			show: false
 		},
-		barchart: {
+		barplot: {
+			show: false
+		},
+		table: {
 			show: false
 		}
 	});
@@ -35,7 +38,10 @@ function App() {
 		boxandwhiskers: {
 			show: false
 		},
-		barchart: {
+		barplot: {
+			show: false
+		},
+		table: {
 			show: false
 		}
 	});

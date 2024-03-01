@@ -12,6 +12,7 @@ const StateMap = ({selectedState, mapOptions }) => {
     
     var center, zoom;
 
+
     const onDistClick = (event) =>{
         // console.log("this works");
     }
@@ -74,27 +75,27 @@ const StateMap = ({selectedState, mapOptions }) => {
         center = [37.4316, -78.6569];
         zoom = 7;
     }
+  
+        return(
+            <div style={{position:'relative', width: '100%', height: '500px'}}>
+                <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{ width: '100%', height: '100%' }}>
+                    <TileLayer
+                        style={{position: 'relative'}}
+                        url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
+                        // attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    >
+                    </TileLayer>
+                    {selectedState === "maryland" && <GeoJSON color="#03045e" data={MarylandState.features} onEachFeature={onEachDist}/>}
+                    {selectedState === "virginia" && <GeoJSON color="#03045e" data={VirginiaState.features} onEachFeature={onEachDist}/>}
 
-    return(
-        <div style={{position:'relative', width:'50%', height: '70vh', display:'inline-block'}}>
-            <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{display: "inline-block"}}>
-                <TileLayer
-                    style={{position: 'relative'}}
-                    url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
-                    // attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                >
-                </TileLayer>
-                {selectedState === "maryland" && <GeoJSON color="#03045e" data={MarylandState.features} onEachFeature={onEachDist}/>}
-                {selectedState === "virginia" && <GeoJSON color="#03045e" data={VirginiaState.features} onEachFeature={onEachDist}/>}
-
-            </MapContainer>
-            <div style={{position:'absolute', bottom:0, right:0, zIndex:10000}}>
-                <Legend legendItems={legendItems} />
+                </MapContainer>
+                <div style={{position:'absolute', bottom: 0 , right: 0, zIndex:1000, backgroundColor: 'rgba(255, 255, 255, 0.8)', padding: '10px', borderRadius: '5px'}}>
+                    <Legend legendItems={legendItems}/>
+                </div>
+                
             </div>
-            
-
-        </div>
-    )
-
+        )
+    }
+    
 }
 export default StateMap;

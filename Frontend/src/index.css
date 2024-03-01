@@ -37,6 +37,8 @@ a {
 	background-color: var(--bg);
 	border-bottom: var(--border);
 	padding: 0 1rem;
+	position: relative; /* Ensure relative positioning */
+	z-index: 10000;
 }
 
 .navbar-nav {
@@ -200,3 +202,17 @@ a {
 	transition: all var(--speed) ease;
 }
 
+/* css for displaying data */
+
+#display {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	width: 100%;
+}
+
+.leaflet-container {
+    width: 100%;
+    height: 100%;
+    color: rgb(151, 151, 151);
+}
