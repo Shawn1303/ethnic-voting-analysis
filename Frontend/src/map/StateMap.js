@@ -96,6 +96,4 @@ const StateMap = ({selectedState, mapOptions }) => {
             </div>
         )
     }
-    
-}
 export default StateMap;
