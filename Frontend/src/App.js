@@ -82,7 +82,7 @@ function App() {
 					setVirginiaData={setVirginiaData}
 				></DropdownMenu>
 			</NavItem>
-			<div id='title'>Pre-clearance state vs Non pre-clearance state</div>
+			<div id='title'>Non-clearance state vs Pre-clearance state</div>
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
 		<div id = 'display'>
