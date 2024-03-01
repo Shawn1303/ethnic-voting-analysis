@@ -9,8 +9,7 @@ import StateMap from './map/StateMap';
 import HouseMemberTable from './graphs/house_member_table';
 import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
 import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
-// import Legend from './map/Legend';
-// import legendItems from './map/LegendItems';
+
 
 function App() {
 	const[marylandData, setMarylandData] = useState({
@@ -61,8 +60,11 @@ function App() {
 			</NavItem>
 		</Navbar>
 		<div id = 'display'>
-			<StateMap/>
-			{/* <Legend legendItems={legendItems}/> */}
+			{/* <div className='1'></div>
+			<div></div> */}
+			{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map}/>}
+			{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map}/>}
+			{/* <StateMap/> */}
 			<HouseMemberTable/>
 			<RacialBarPlots />
 			<BoxWhiskerPlotsMCMC/>
