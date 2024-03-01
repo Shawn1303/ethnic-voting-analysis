@@ -1,89 +1,81 @@
-import React from 'react';
-import {VictoryChart,VictoryBoxPlot,VictoryAxis, VictoryScatter, VictoryLegend} from 'victory';
+import React, { useEffect, useState} from 'react';
+import {VictoryChart,VictoryBoxPlot,VictoryAxis, VictoryScatter, VictoryLegend, VictoryLabel} from 'victory';
 
-const BoxWhiskerPlotsMCMC = () => {
-  const generateRandomNumbers = (start) =>
-  Array.from({ length: 10 }, (_, i) => Math.random() * 0.35 + start);
+const BoxWhiskerPlotsMCMC = ({num_district}) => {
+  const [data,setData] = useState(null)
+  const [enaScatterData,setEnaScatterData] = useState(null)
+  const [princetonScatterData,setPrincetonScatterData] = useState(null)
+  const [democraticScatterData, setDemocraticScatterData] = useState(null)
+  // assume input is sorted by median of y lists
+  useEffect(()=> {
+    if (num_district == 1){
+      setData([
+        { x: 1, y: [ 0.1, 0.2, 0.3, 0.5 ] },
+        { x: 2, y: [ 0.3, 0.2, 0.8, 0.1 ] },
+        { x: 3, y: [ 0.1, 0.3, 0.2, 0.4 ] },
+        { x: 4, y: [ 0.3, 0.5, 0.5, 0.2 ] },
+        { x: 5, y: [ 0.5, 0.3, 0.4, 0.7 ] },
+        { x: 6, y: [ 0.2, 0.8, 0.6, 0.5 ] }
+      ])
+      setEnaScatterData([{x: 1, y: 0.1},{x: 2, y: 0.3},{x: 3, y: 0.29},{x: 4, y: 0.6},{x: 5, y: 0.55},{x: 6, y:  0.78}])
+      setPrincetonScatterData([{x:1, y: 0.3},{x:2,y:0.4},{x:3,y:0.34},{x:4,y:0.4},{x:5,y:0.31},{x:6,y:0.5}])
+      setDemocraticScatterData([{x: 1,y: 0.2},{x: 2,y: 0.3},{x: 3,y: 0.30},{x: 4,y: 0.5},{x: 5,y: 0.49},{x: 6,y:0.7}])
+    } else {
+      setData([  
+        { x: 1, y: [ 0.25, 0.22, 0.1, 0.8 ] },
+        { x: 2, y: [ 0.2, 0.15, 0.35, 0.57 ] },
+        { x: 3, y: [ 0.6, 0.1, 0.22, 0.35 ] },
+        { x: 4, y: [ 0.1, 0.4, 0.5, 0.3 ] },
+        { x: 5, y: [ 0.3, 0.4, 0.5, 0.1 ] },
+        { x: 6, y: [ 0.5, 0.6, 0.7, 0.55 ] }
+      ])
+      setEnaScatterData([{x: 1, y: 0.3},{x: 2, y: 0.1},{x: 3, y: 0.4},{x: 4, y: 0.5},{x: 5, y: 0.6},{x: 6, y:  0.9}])
+      setPrincetonScatterData([{x:1,y:0.2},{x:2,y:0.15},{x:3,y:0.3},{x:4,y:0.55},{x:5,y:0.7},{x:6,y:0.3}])
+      setDemocraticScatterData([{x: 1,y: 0.23},{x: 2,y: 0.3},{x: 3,y: 0.40},{x: 4,y: 0.57},{x: 5,y: 0.7},{x: 6,y: 0.6}])
+    }
+  },[num_district])
 
-  const dataArray = Array.from({ length: 47 }, (_, i) => ({
-    x: i + 1,
-    y: generateRandomNumbers(Math.random() * 0.3 + i * 0.010),
-  }));
-  
-  // Calculate quartiles for box plot data
-  const q1 = dataArray.map(item => Math.min(...item.y));
-  const q3 = dataArray.map(item => Math.max(...item.y));
-  
-  const randomEnactedData = Array.from({ length: 47 }, (_, i) => ({
-    x: i + 1,
-    y: Math.random() * (q3[i] - q1[i]) + q1[i],
-  }));
-  
-  const randomPrincetonData = Array.from({ length: 47 }, (_, i) => ({
-    x: i + 1,
-    y: Math.random() * (q3[i] - q1[i]) + q1[i],
-  }));
-  
-  const randomDemocraticData = Array.from({ length: 47 }, (_, i) => ({
-    x: i + 1,
-    y: Math.random() * (q3[i] - q1[i]) + q1[i],
-  }));
-    
-    const legendData = [
-      { name: 'Box Plot', symbol: { type: 'square', fill: 'black' } },
-      { name: 'Enacted', symbol: { type: 'circle', fill: 'red' } },
-      { name: 'Princeton', symbol: { type: 'circle', fill: 'orange' } },
-      { name: 'Democratic', symbol: { type: 'circle', fill: 'blue' } },
-
-    ];
+  const legendData = [
+    // { name: 'Box Plot', symbol: { fill: 'blue' } },
+    { name: 'Enacted', symbol: { fill: 'red' } },
+    {name: 'Princeton', symbol: { fill: 'yellow'}},
+    {name: "Democratic", symbol: {fill:"blue"}}
+  ];
 
   return (
-    <div style={{ height: "50vh"}}>
-      <VictoryChart height={300} width={1000} domainPadding={{ x: 10 }} title="Box Plot of Minority Group Percentages">
-        <VictoryAxis // Horizontal (x) axis
-          label="District" // Label for the x-axis
-          scale={{ x: "ordinal" }}
-          tickValues={dataArray.map(item => item.x)}
-          tickFormat={dataArray.map(item => `${item.x}`)} // Customize the labels as needed
+    <div style={{ width: '100%' }}>
+      <VictoryChart title="Box Plot of Minority Group Percentages" >
+        <VictoryLabel
+          text="ReCom Ensemble"
+          x={250} y={20} textAnchor="middle" style={{ fontSize: 18 }}
         />
-        <VictoryAxis
-          dependentAxis
-          tickValues={[0, 0.2, 0.4, 0.6, 0.8, 1.0]} // Add your desired tick values
-          tickFormat={tick => `${tick.toFixed(1)}`} // Customize the tick format
-        />
-        <VictoryBoxPlot
-          boxWidth={7}
-          data = {dataArray}
-          style={{
-            min: { stroke: "black", strokeWidth: 0.5, fill: "white" },
-            max: { stroke: "black", strokeWidth: 0.5 },
-            q1: { stroke: "black", strokeWidth: 0.5, fill: "white" },
-            q3: { stroke: "black",fill: "white", strokeWidth: 0.5},
-            median: { stroke: "black", strokeWidth: 0.5 },
-          }}
-        />
-        <VictoryScatter
-          data={randomEnactedData}
-          style={{ data: { fill: "red" } }}
-          size={2}
-        />
-        <VictoryScatter
-          data={randomPrincetonData}
-          style={{ data: { fill: "orange" } }}
-          size={2}
-        />
-        <VictoryScatter
-          data={randomDemocraticData}
-          style={{ data: { fill: "blue" } }}
-          size={2}
-        />
-
+        <VictoryAxis label="District" tickValues={data ? data.map((entry, index) => index + 1) : []}/>
+        <VictoryAxis dependentAxis orientation="left" />
+        <VictoryBoxPlot data={data} domain={{ x: [0, data?.length ? data.length + 1 : 1], y: [0, 1] }}/>
+        {enaScatterData && (
+          <VictoryScatter
+            data={enaScatterData}
+            style={{ data: { fill: 'red' } }} // Customize the style as needed
+          />
+        )}
+        {princetonScatterData && (
+          <VictoryScatter
+            data = {princetonScatterData}
+            style = {{data: { fill: 'yellow'}}}
+          />
+        )}
+        {democraticScatterData && (
+          <VictoryScatter
+            data = {democraticScatterData}
+            style = {{data: {fill: 'blue'}}}
+          />
+        )}
         <VictoryLegend
-          x={750}
-          y={10}
+          x={100} // Adjust the x-coordinate for better positioning
+          y={25} // Adjust the y-coordinate for better positioning
           orientation="horizontal"
-          gutter={10}
           data={legendData}
+          border={{ stroke: 'black', strokeWidth: 1 }} // Add border to the legend
         />
       </VictoryChart>
     </div>
