@@ -166,6 +166,12 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Table</DropdownItem>
+					<DropdownItem
+						goToMenu="pichart"
+						prevMenu={activeMenu}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>State Assembly Ethnic Chart</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -207,6 +213,12 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Table</DropdownItem>
+					<DropdownItem
+						goToMenu="pichart"
+						prevMenu={activeMenu}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>State Assembly Ethnic Chart</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -324,6 +336,31 @@ export default function DropdownMenu(props) {
 						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
 						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
 					>Show Table</DropdownItem>
+				</div>
+			</CSSTransition>
+
+			<CSSTransition 
+			in={activeMenu === 'pichart'} 
+			unmountOnExit 
+			timeout={500}
+			classNames={"menu-third"}
+			onEnter={calcHeight}
+			>
+				<div className='menu'>
+					<DropdownItem
+						goToMenu={prevMenu}
+						prevMenu={activeMenu}
+						leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>Back</DropdownItem>
+					<DropdownItem
+						checkbox={true}
+						label={"show"}
+						field={"pichart"}
+						data={mainMenu === "maryland" ? props.marylandData : props.virginiaData}
+						setData={mainMenu === "maryland" ? props.setMarylandData : props.setVirginiaData}
+					>Show Pi Chart</DropdownItem>
 				</div>
 			</CSSTransition>
 		</div>

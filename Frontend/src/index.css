@@ -44,6 +44,11 @@ a {
 	padding: 5px;
 }
 
+.caption {
+	border: solid 1px #242526;
+	margin: 5px;
+}
+
 .navbar {
 	height: var(--nav-size);
 	background-color: var(--bg);
