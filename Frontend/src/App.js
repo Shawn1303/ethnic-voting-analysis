@@ -63,6 +63,8 @@ function App() {
 	const [selectedRace2, setSelectedRace2] = useState(raceOptions[0]);
 	const [showMar, setShowMar] = useState(false);
 	const [showVir, setShowVir] = useState(false);
+	const [showOneState, setShowOneState] = useState(false);
+	const [oneState, setOneState] = useState(true);
 
 	const allShowsFalse = (data) => {
 		return Object.values(data).every(item => 
@@ -80,11 +82,16 @@ function App() {
 					setMarylandData={setMarylandData}
 					virginiaData={virginiaData}
 					setVirginiaData={setVirginiaData}
+					setShowOneState={setShowOneState}
+					showOneState={showOneState}
+					setOneState={setOneState}
+					oneState={oneState}
 				></DropdownMenu>
 			</NavItem>
 			<div id='title'>Non-clearance state vs Pre-clearance state</div>
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
+		{!showOneState ? (
 		<div id = 'display'>
 			{!allShowsFalse(marylandData) && <div className='statesdata'>
 				<div className='mapTitle'>
@@ -164,8 +171,39 @@ Explore the map to see how voting districts differ!
 				{virginiaData.pichart.show && <EthnicDistPieChart />}
         {/* <VotingPDensityPlots /> */}
 			</div>
-	}</div>
-	</>);
+	}
+	</div> ) :
+	(
+		(oneState ? (
+			<div id="onestate">
+				<div className='leftOneState'>
+					<StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>
+					{/* <RacialBarPlots /> */}
+					<EthnicDistPieChart />
+				</div>
+				<div className='rightOneState'>
+					<BoxWhiskerPlotsMCMC num_district={1}/>
+					{/* <EthnicDistPieChart /> */}
+					<RacialBarPlots />
+				</div>
+			</div>
+			) : (
+			<div id="onestate">
+				<div className='leftOneState'>
+					<StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>
+					{/* <RacialBarPlots /> */}
+					<EthnicDistPieChart />
+				</div>
+				<div className='rightOneState'>
+					<BoxWhiskerPlotsMCMC num_district={2}/>
+					{/* <EthnicDistPieChart /> */}
+					<RacialBarPlots />
+				</div>
+			</div>
+			))
+	)}
+	</>
+	);
 }
 
 // function Navbar(props) {

@@ -55,6 +55,26 @@ export default function DropdownItem(props) {
 			/>
 			{props.children}
 		</a>
+	} else if(props.changeShowState) {
+		item =
+		<a href='#' className='menu-item'>
+			{/* put in props.label for each checkbox item */}
+			<input type='checkbox' 
+			checked={props.showOneState}
+			onChange={() => props.setShowOneState(!props.showOneState)}
+			/>
+			{props.children}
+		</a>
+	} else if(props.changeOneState) {
+		item =
+		<a href='#' className='menu-item'>
+			{/* put in props.label for each checkbox item */}
+			<input type='checkbox' 
+			checked={props.oneState}
+			onChange={() => props.setOneState(!props.oneState)}
+			/>
+			{props.children}
+		</a>
 	} else {
 		item = <a href='#' className='menu-item' onClick={() => {
 			if(props.goToMenu) props.setActiveMenu(props.goToMenu);

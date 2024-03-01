@@ -30,17 +30,11 @@ export default function EthnicDistPieChart() {
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))
         }
-		<Label
+	  <Label
           value="Racial/Ethnic Distribution Within State Assembly"
-          position='outside'
+          position='center'
           fill="brown"
           fontSize={12}
-        />
-        <Label
-          value="Hover to see distributions!"
-          position='centerTop'
-          fill='black'
-          fontSize={10}
         />
       </Pie>
       <Tooltip />

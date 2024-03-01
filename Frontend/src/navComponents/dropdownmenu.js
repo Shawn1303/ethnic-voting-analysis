@@ -97,6 +97,39 @@ export default function DropdownMenu(props) {
 						mainMenu="virginia"
 						setMainMenu={setMainMenu}
 					>Virginia</DropdownItem>
+					<DropdownItem
+						goToMenu="onestate"
+						prevMenu={activeMenu}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>OneState</DropdownItem>
+				</div>
+			</CSSTransition>
+
+			<CSSTransition 
+			in={activeMenu === 'onestate'} 
+			unmountOnExit 
+			timeout={500}
+			classNames={prevMenu === 'main' ? 'menu-secondary-left' : 'menu-secondary-right'}
+			onEnter={calcHeight}
+			>
+				<div className='menu'>
+					<DropdownItem
+						goToMenu="main"
+						leftIcon={<FontAwesomeIcon icon={faArrowLeft} />}
+						setActiveMenu={setActiveMenu}
+						setPrevMenu={setPrevMenu}
+					>Back</DropdownItem>
+					<DropdownItem
+						setShowOneState={props.setShowOneState}
+						showOneState={props.showOneState}
+						changeShowState={true}
+					>Show one state</DropdownItem>
+					<DropdownItem
+						setOneState={props.setOneState}
+						oneState={props.oneState}
+						changeOneState={true}
+					>True for Maryland else Virginia</DropdownItem>
 				</div>
 			</CSSTransition>
 
