@@ -17,8 +17,8 @@ function App() {
 	const[marylandData, setMarylandData] = useState({
 		map: {
 			show: true,
-			legislative: true,
-			precinct: true
+			legislative: false,
+			precinct: false
 		},
 		boxandwhiskers: {
 			show: true
@@ -33,24 +33,30 @@ function App() {
 
 	const[virginiaData, setVirginiaData] = useState({
 		map: {
-			show: true,
-			legislative: true,
-			precinct: true
+			show: false,
+			legislative: false,
+			precinct: false
 		},
 		boxandwhiskers: {
-			show: true
+			show: false
 		},
 		barplot: {
-			show: true
+			show: false
 		},
 		table: {
-			show: true
+			show: false
 		}
 	});
 
 	const raceOptions = ["", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
   	const [selectedRace, setSelectedRace] = useState(raceOptions[0]);
 	const [selectedRace2, setSelectedRace2] = useState(raceOptions[0]);
+
+	const allShowsFalse = (data) => {
+		return Object.values(data).every(item => 
+		  typeof item === 'object' && 'show' in item ? !item.show : true
+		);
+	};
 
 	return (<>
 		<Navbar>
@@ -67,43 +73,52 @@ function App() {
 			<div id='title'>Pre-clearance state vs Non pre-clearance state</div>
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
-		<div id = 'display'>
-			<div className='statesdata'>
-				<div>
-					Maryland
-					<select
+		<div id = 'display' style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'block'}}>
+			{!allShowsFalse(marylandData) && <div className='statesdata' 
+				style={{width: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? ' calc(50% - 20px)' : '100%',
+						flexDirection: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'column' : 'row'
+					}}>
+				<div className='mapTitle' style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'inline-block'}}>
+					<h2>Maryland</h2>
+					{marylandData.map.show && <select
 						onChange={(e) => setSelectedRace(e.target.value)}
 						defaultValue={selectedRace}
 					>
 						{raceOptions.map((race, idx) => (
 						<option key={idx}>{race}</option>
 						))}
-					</select>
+					</select>}
+					{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
+
+					
 				</div>
-				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
-				{marylandData.table.show && <HouseMemberTable/>}
-				{marylandData.barplot.show && <RacialBarPlots />}
-				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
-			</div>
-			<div className='statesdata'>
-				<div>
-					Virginia
-					<select
+				<div style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'inline-block'}}>
+					{marylandData.table.show && <HouseMemberTable/>}
+					{marylandData.barplot.show && <RacialBarPlots />}
+					{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
+				</div>
+			
+				
+			</div>}
+			{!allShowsFalse(virginiaData) && <div className='statesdata'>
+				<div className='mapTitle'>
+					<h2>Virginia</h2>
+					{virginiaData.map.show && <select
 						onChange={(e) => setSelectedRace2(e.target.value)}
 						defaultValue={selectedRace2}
 					>
 						{raceOptions.map((race, idx) => (
 						<option key={idx}>{race}</option>
 						))}
-					</select>
+					</select>}
 					
 				</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
 				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={2}/>}
-        <VotingPDensityPlots />
-			</div>
+        		<VotingPDensityPlots />
+			</div>}
 		</div>
 	</>);
 }

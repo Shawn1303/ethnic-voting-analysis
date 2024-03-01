@@ -83,7 +83,7 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
 
             }
             
-    });
+        });
     }, [selectedRace, selectedState, layerRefs]);
 
     const determineFillColor = (percent) => {
@@ -105,9 +105,8 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
   
         return(
             <div style={{position:'relative', width: '100%', height: '500px'}}>
-                <MapContainer center={center} zoom={zoom} scrollWheelZoom={true} minZoom={7} maxZoom={12} style={{ width: '100%', height: '100%' }}>
+                <MapContainer center={center} zoom={zoom} scrollWheelZoom={false} minZoom={7} maxZoom={12} style={{ width: '100%', height: '100%' }}>
                     <TileLayer
-                        style={{position: 'relative'}}
                         url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
                         // attribution='&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://www.stamen.com/" target="_blank">Stamen Design</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     >
