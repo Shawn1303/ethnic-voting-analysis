@@ -38,7 +38,7 @@ const BoxWhiskerPlotsMCMC = () => {
     ];
 
   return (
-    <div style={{ height: "50vh" }}>
+    <div style={{ height: "50vh"}}>
       <VictoryChart height={300} width={1000} domainPadding={{ x: 10 }} title="Box Plot of Minority Group Percentages">
         <VictoryAxis // Horizontal (x) axis
           label="District" // Label for the x-axis

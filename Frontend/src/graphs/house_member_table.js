@@ -106,7 +106,7 @@ export default function HouseMemberTable() {
     { field: 'gender', headerName: 'Gender', width: 100 },
     { field: 'minority_status', headerName: 'Minority Status', width: 150 },
   ]
-  return <div style={{ height: 400, width: '100%' }}>
+  return <div style={{ height: 500, width: '100%' }}>
     <DataGrid rows={rows} columns={columns} pageSize={10} />
   </div>
 
