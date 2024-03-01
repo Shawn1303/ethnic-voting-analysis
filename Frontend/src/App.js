@@ -102,25 +102,25 @@ function App() {
 				<br/>
 				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue', border: '3px dotted darkblue', backgroundColor: '#e8f4f8'}}>Welcome!
 				<br/><br/>
-Maryland’s voting districts are redrawn by different groups.
-<br/><br/>
-State Legislative Districts are decided by the Governor and a nine person advisory commission. These plans are then approved by the State Legislature. 
-If politicians can't agree on new state legislative lines within 45 days, the Governor's plan becomes law.
-<br/><br/>
-Explore the map to see how voting districts differ!
-<br/><br/>
-<span style={{ color: 'darkblue', fontWeight: isHoveredM ? 'bold' : 'normal' }}
-        onMouseEnter={() => setIsHoveredM(true)}
-        onMouseLeave={() => setIsHoveredM(false)}>Click to close</span>
-</p> :
-<span style={{ color: 'darkblue', border: '2px solid darkblue', backgroundColor: '#e8f4f8', fontWeight: isHoveredM ? 'bold' : 'normal' }}
-        onMouseEnter={() => setIsHoveredM(true)}
-        onMouseLeave={() => setIsHoveredM(false)}>Click to learn about Maryland's boundary decision process</span>}
-</a>}
+					Maryland’s voting districts are redrawn by different groups.
+					<br/><br/>
+					State Legislative Districts are decided by the Governor and a nine person advisory commission. These plans are then approved by the State Legislature. 
+					If politicians can't agree on new state legislative lines within 45 days, the Governor's plan becomes law.
+					<br/><br/>
+					Explore the map to see how voting districts differ!
+					<br/><br/>
+					<span style={{ color: 'darkblue', fontWeight: isHoveredM ? 'bold' : 'normal' }}
+							onMouseEnter={() => setIsHoveredM(true)}
+							onMouseLeave={() => setIsHoveredM(false)}>Click to close</span>
+					</p> :
+					<span style={{ color: 'darkblue', border: '2px solid darkblue', backgroundColor: '#e8f4f8', fontWeight: isHoveredM ? 'bold' : 'normal' }}
+							onMouseEnter={() => setIsHoveredM(true)}
+							onMouseLeave={() => setIsHoveredM(false)}>Click to learn about Maryland's boundary decision process</span>}
+					</a>}
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
-        {marylandData.pichart.show && <EthnicDistPieChart />}
+        		{marylandData.pichart.show && <EthnicDistPieChart />}
 
 			</div>}
 			{!allShowsFalse(virginiaData) && <div className='statesdata'>

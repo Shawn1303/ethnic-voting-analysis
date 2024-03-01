@@ -18,7 +18,7 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
   
 
     const onDistClick = (event) =>{
-        // console.log("this works");
+        
     }
 
     const onDistHover = (event) =>{
@@ -40,6 +40,8 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
         
         var percent = 0;
         const objId = dist.properties.OBJECTID || dist.properties.ID;
+
+        layer.bindPopup(`${objId}`);
         // if(selectedState === "maryland"){
         //     percent = mdPopulation[objId-1]["American Indian and Alaska Native"]/mdPopulation[objId-1].Total;
         // }else if (selectedState === "virginia"){
@@ -50,7 +52,6 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
 
         // layer.options.fillColor = determineFillColor(percent);
         // layer.options.fillOpacity = 1;
-
         layer.on(
             {
                 click: onDistClick,
@@ -58,6 +59,8 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
                 mouseout: mouseLeave
             }
         )
+
+        
     }
 
     useEffect(() => {
@@ -97,7 +100,7 @@ const StateMap = ({selectedState, mapOptions, selectedRace }) => {
 
     if(selectedState === "maryland"){
         center = [38.845753, -76.941273];
-        zoom = 8;
+        zoom = 7;
     }else if(selectedState === "virginia"){
         center = [37.4316, -78.6569];
         zoom = 7;
