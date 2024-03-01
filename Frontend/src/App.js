@@ -64,6 +64,12 @@ function App() {
 	const [showMar, setShowMar] = useState(false);
 	const [showVir, setShowVir] = useState(false);
 
+	const allShowsFalse = (data) => {
+		return Object.values(data).every(item => 
+		  typeof item === 'object' && 'show' in item ? !item.show : true
+		);
+	};
+
 	return (<>
 		<Navbar>
 			{/* 1 nav item: menu */}
@@ -80,17 +86,17 @@ function App() {
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
 		<div id = 'display'>
-			<div className='statesdata'>
-				<div>
-					Maryland
-					<select
+			{!allShowsFalse(marylandData) && <div className='statesdata'>
+				<div className='mapTitle'>
+					<h2>Maryland</h2>
+					{marylandData.map.show && <select
 						onChange={(e) => setSelectedRace(e.target.value)}
 						defaultValue={selectedRace}
 					>
 						{raceOptions.map((race, idx) => (
 						<option key={idx}>{race}</option>
 						))}
-					</select>
+					</select>}
 				</div>
 				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
 				<br/>
@@ -114,19 +120,20 @@ Explore the map to see how voting districts differ!
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
-				{marylandData.pichart.show && <EthnicDistPieChart />}
-			</div>
-			<div className='statesdata'>
-				<div>
-					Virginia
-					<select
+        {marylandData.pichart.show && <EthnicDistPieChart />}
+
+			</div>}
+			{!allShowsFalse(virginiaData) && <div className='statesdata'>
+				<div className='mapTitle'>
+					<h2>Virginia</h2>
+					{virginiaData.map.show && <select
 						onChange={(e) => setSelectedRace2(e.target.value)}
 						defaultValue={selectedRace2}
 					>
 						{raceOptions.map((race, idx) => (
 						<option key={idx}>{race}</option>
 						))}
-					</select>
+					</select>}
 					
 				</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
