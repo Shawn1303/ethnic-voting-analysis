@@ -94,7 +94,7 @@ function App() {
 				</div>
 				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
 				<br/>
-				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue', border: '2px dotted darkblue',}}>Welcome!
+				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue', border: '3px dotted darkblue', backgroundColor: '#e8f4f8'}}>Welcome!
 				<br/><br/>
 Maryland’s voting districts are redrawn by different groups.
 <br/><br/>
@@ -107,7 +107,7 @@ Explore the map to see how voting districts differ!
         onMouseEnter={() => setIsHoveredM(true)}
         onMouseLeave={() => setIsHoveredM(false)}>Click to close</span>
 </p> :
-<span style={{ color: 'darkblue', border: '2px solid darkblue', fontWeight: isHoveredM ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', border: '2px solid darkblue', backgroundColor: '#e8f4f8', fontWeight: isHoveredM ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredM(true)}
         onMouseLeave={() => setIsHoveredM(false)}>Click to learn about Maryland's boundary decision process</span>}
 </a>}
@@ -131,7 +131,7 @@ Explore the map to see how voting districts differ!
 				</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
 				<br/>
-				{virginiaData.map.show && <a href='#' onClick={() => {setShowVir(!showVir)}}>{showVir ? <p style={{color:'blue', border: '2px dotted darkblue',}}>Welcome!
+				{virginiaData.map.show && <a href='#' onClick={() => {setShowVir(!showVir)}}>{showVir ? <p style={{color:'blue', border: '3px dotted darkblue', backgroundColor: '#e8f4f8'}}>Welcome!
 <br/><br/>
 Virginia's voting districts were traditionally drawn by state politicians.
 However, as of November 3, 2020, Virginia residents voted to establish the Virginia Redistricting Commission for this task.
@@ -147,7 +147,7 @@ Explore the map to see how voting districts differ!
         onMouseEnter={() => setIsHoveredV(true)}
         onMouseLeave={() => setIsHoveredV(false)}>Click to close</span>
 </p> :
-<span style={{ color: 'darkblue', border: '2px solid darkblue', fontWeight: isHoveredV ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', border: '2px solid darkblue', backgroundColor: '#e8f4f8', fontWeight: isHoveredV ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredV(true)}
         onMouseLeave={() => setIsHoveredV(false)}>Click to learn about Virginia's boundary decision process</span>}
 </a>}
