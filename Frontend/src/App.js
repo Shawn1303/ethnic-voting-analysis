@@ -4,8 +4,8 @@ import StateMap from './map/StateMap';
 import HouseMemberTable from './graphs/house_member_table';
 import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
 import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
-import Legend from './map/Legend';
-import legendItems from './map/LegendItems';
+// import Legend from './map/Legend';
+// import legendItems from './map/LegendItems';
 
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 		</div>
 		<div id = "display">
 			<StateMap/>
-			<Legend legendItems={legendItems}/>
+			{/* <Legend legendItems={legendItems}/> */}
 			<HouseMemberTable/>
 			<RacialBarPlots />
 			<BoxWhiskerPlotsMCMC/>
