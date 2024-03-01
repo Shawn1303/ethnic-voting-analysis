@@ -49,6 +49,10 @@ function App() {
 		}
 	});
 
+	const raceOptions = ["", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
+  	const [selectedRace, setSelectedRace] = useState(raceOptions[0]);
+	const [selectedRace2, setSelectedRace2] = useState(raceOptions[0]);
+
 	return (<>
 		<Navbar>
 			{/* 1 nav item: menu */}
@@ -66,9 +70,18 @@ function App() {
 		</Navbar>
 		<div id = 'display'>
 			<div className='statesdata'>
-				<div>Maryland</div>
-				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map}/>}
-				{marylandData.map.show && <div className='caption'>The republican did it.</div>}
+				<div>
+					Maryland
+					<select
+						onChange={(e) => setSelectedRace(e.target.value)}
+						defaultValue={selectedRace}
+					>
+						{raceOptions.map((race, idx) => (
+						<option key={idx}>{race}</option>
+						))}
+					</select>
+				</div>
+				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
@@ -76,8 +89,19 @@ function App() {
 				<EthnicDistPieChart />
 			</div>
 			<div className='statesdata'>
-				<div>Virginia</div>
-				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map}/>}
+				<div>
+					Virginia
+					<select
+						onChange={(e) => setSelectedRace2(e.target.value)}
+						defaultValue={selectedRace2}
+					>
+						{raceOptions.map((race, idx) => (
+						<option key={idx}>{race}</option>
+						))}
+					</select>
+					
+				</div>
+				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
 				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={2}/>}
