@@ -180,7 +180,7 @@ export default function DropdownMenu(props) {
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Map</DropdownItem>
+					>Maryland Map</DropdownItem>
 					<DropdownItem
 						goToMenu="boxandwhiskers"
 						prevMenu={activeMenu}
@@ -227,7 +227,7 @@ export default function DropdownMenu(props) {
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>Map</DropdownItem>
+					>Virginia Map</DropdownItem>
 					<DropdownItem
 						goToMenu="boxandwhiskers"
 						prevMenu={activeMenu}
@@ -312,6 +312,7 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Back</DropdownItem>
+					<span style={{color: 'gray'}}>A graph of box and whisker plots for ethnicity group percentages using a 10,000-plan ensemble for each state. This is used for MCMC Analysis to demonstrate racial gerrymandering.</span>
 					<DropdownItem
 						checkbox={true}
 						label={"show"}
@@ -337,6 +338,11 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Back</DropdownItem>
+					<span style={{color: 'gray'}}>A bar-plot showing the distributions of ethnicities within each individual district.</span>
+					<br/><br/>
+					<span style={{color: 'white'}}>TO INTERACT:</span>
+					<br/>
+					<span style={{color: 'white'}}>Hover over a section to see the exact values for distributions within a district.</span>
 					<DropdownItem
 						checkbox={true}
 						label={"show"}
@@ -362,6 +368,13 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Back</DropdownItem>
+					<span style={{color: 'gray'}}>A table showing the demographics of the state assembly representatives.</span>
+					<br/><br/>
+					<span style={{color: 'white'}}>TO INTERACT:</span>
+					<br/>
+					<span style={{color: 'white'}}>Scroll vertically to view the different representatives. Scroll horizontally to view the different fields.</span>
+					<br/><br/>
+					<span style={{color: 'white'}}>Click on a field to change how representatives are sorted. Further filtering is possible by clicking the triple dots to the right of each field name.</span>
 					<DropdownItem
 						checkbox={true}
 						label={"show"}
@@ -387,6 +400,11 @@ export default function DropdownMenu(props) {
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
 					>Back</DropdownItem>
+					<span style={{color: 'gray'}}>A Pi-Chart that shows the distributions of ethnicities among the state assembly representatives.</span>
+					<br/><br/>
+					<span style={{color: 'white'}}>TO INTERACT:</span>
+					<br/>
+					<span style={{color: 'white'}}>Hover over a section to see the percentage of the corresponding ethnicity.</span>
 					<DropdownItem
 						checkbox={true}
 						label={"show"}
