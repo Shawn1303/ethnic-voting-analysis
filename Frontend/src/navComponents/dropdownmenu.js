@@ -129,14 +129,13 @@ export default function DropdownMenu(props) {
 					<br/><br/>
 					<span style={{color: 'white'}}>TO INTERACT:</span>
 					<br/>
-					<span style={{color: 'white'}}>Check the box below to view Maryland. Uncheck the box to view Virginia.</span>
-					<br/><br/>
-					<span style={{color: 'red'}}>Note that while single state analysis is turned on, changing the Virginia and Maryland tabs will not affect the display.</span>
+					<span style={{color: 'white'}}>Check the box below to view Maryland. Uncheck the box to view Virginia. The above box must be checked.</span>
 					<DropdownItem
 						setOneState={props.setOneState}
 						oneState={props.oneState}
 						changeOneState={true}
 					>True for Maryland else Virginia</DropdownItem>
+					<span style={{color: 'red'}}>Note that while single state analysis is turned on, changing the Virginia and Maryland tabs will not affect the display.</span>
 				</div>
 			</CSSTransition>
 
