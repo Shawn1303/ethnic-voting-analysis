@@ -29,7 +29,10 @@ function App() {
 		},
 		table: {
 			show: true
-		}
+		},
+		pichart: {
+			show: true
+		},
 	});
 
 	const[virginiaData, setVirginiaData] = useState({
@@ -46,7 +49,10 @@ function App() {
 		},
 		table: {
 			show: true
-		}
+		},
+		pichart: {
+			show: true
+		},
 	});
 
 	const raceOptions = ["", "American Indian and Alaska Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian and Other Pacific Islander", "White", "Other Race"];
@@ -100,8 +106,7 @@ Explore the map to see how voting districts differ!
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
-				<EthnicDistPieChart />
-				<EthnicDistPieChart />
+				{marylandData.pichart.show && <EthnicDistPieChart />}
 			</div>
 			<div className='statesdata'>
 				<div>
@@ -138,6 +143,7 @@ Explore the map to see how voting districts differ!
 				{virginiaData.table.show && <HouseMemberTable/>}
 				{virginiaData.barplot.show && <RacialBarPlots />}
 				{virginiaData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={2}/>}
+				{virginiaData.pichart.show && <EthnicDistPieChart />}
         {/* <VotingPDensityPlots /> */}
 			</div>
 		</div>

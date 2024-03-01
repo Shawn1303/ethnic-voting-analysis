@@ -1,12 +1,13 @@
+import { faBold } from '@fortawesome/free-solid-svg-icons';
 import React from 'react';
 import { PieChart, Pie, Cell, Legend, Tooltip, Label } from 'recharts';
 
 export default function EthnicDistPieChart() {
 	const data = [
-		{ name: 'Category A', value: 400 },
-		{ name: 'Category B', value: 300 },
-		{ name: 'Category C', value: 300 },
-		{ name: 'Category D', value: 200 },
+		{ name: 'Asian', value: 0.1 },
+		{ name: 'Black', value: 0.2 },
+		{ name: 'Hispanic', value: 0.25 },
+		{ name: 'White', value: 0.45 },
 	];
 
 	const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042']; // Define an array of colors
@@ -30,14 +31,20 @@ export default function EthnicDistPieChart() {
           ))
         }
 		<Label
-          value="Test"
-          position='center'
-          fill="#ff1d24"
-          fontSize={20}
+          value="Racial/Ethnic Distribution Within State Assembly"
+          position='outside'
+          fill="brown"
+          fontSize={12}
+        />
+        <Label
+          value="Hover to see distributions!"
+          position='centerTop'
+          fill='black'
+          fontSize={10}
         />
       </Pie>
       <Tooltip />
-      <Legend />
+      <Legend width={700} style={{width: 400}}/>
     </PieChart>
 	</div>
 	);
