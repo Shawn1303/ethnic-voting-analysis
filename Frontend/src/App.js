@@ -10,6 +10,7 @@ import HouseMemberTable from './graphs/house_member_table';
 import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
 import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
 import VotingPDensityPlots from './graphs/voting_probability_density_plots'
+import AstrosLogo from './image/astros_logo.png'
 
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
 					setVirginiaData={setVirginiaData}
 				></DropdownMenu>
 			</NavItem>
+			<div id='title'>Pre-clearance state vs Non pre-clearance state</div>
+			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
 		<div id = 'display'>
 			<div className='statesdata'>
