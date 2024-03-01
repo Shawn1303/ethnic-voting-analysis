@@ -25,16 +25,16 @@ function App() {
 			precinct: true
 		},
 		boxandwhiskers: {
-			show: true
+			show: false
 		},
 		barplot: {
-			show: true
+			show: false
 		},
 		table: {
-			show: true
+			show: false
 		},
 		pichart: {
-			show: true
+			show: false
 		},
 	});
 
@@ -45,16 +45,16 @@ function App() {
 			precinct: true
 		},
 		boxandwhiskers: {
-			show: true
+			show: false
 		},
 		barplot: {
-			show: true
+			show: false
 		},
 		table: {
-			show: true
+			show: false
 		},
 		pichart: {
-			show: true
+			show: false
 		},
 	});
 
@@ -93,7 +93,8 @@ function App() {
 					</select>
 				</div>
 				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
-				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue'}}>Welcome!
+				<br/>
+				{marylandData.map.show && <a href='#' onClick={() => {setShowMar(!showMar)}}>{showMar ? <p style={{color:'blue', border: '2px dotted darkblue',}}>Welcome!
 				<br/><br/>
 Maryland’s voting districts are redrawn by different groups.
 <br/><br/>
@@ -102,11 +103,11 @@ If politicians can't agree on new state legislative lines within 45 days, the Go
 <br/><br/>
 Explore the map to see how voting districts differ!
 <br/><br/>
-<span style={{ color: 'red', fontWeight: isHoveredM ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', fontWeight: isHoveredM ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredM(true)}
         onMouseLeave={() => setIsHoveredM(false)}>Click to close</span>
 </p> :
-<span style={{ color: 'red', fontWeight: isHoveredM ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', border: '2px solid darkblue', fontWeight: isHoveredM ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredM(true)}
         onMouseLeave={() => setIsHoveredM(false)}>Click to learn about Maryland's boundary decision process</span>}
 </a>}
@@ -129,7 +130,8 @@ Explore the map to see how voting districts differ!
 					
 				</div>
 				{virginiaData.map.show && <StateMap selectedState = "virginia" mapOptions = {virginiaData.map} selectedRace = {selectedRace2}/>}
-				{virginiaData.map.show && <a href='#' onClick={() => {setShowVir(!showVir)}}>{showVir ? <p style={{color:'blue'}}>Welcome!
+				<br/>
+				{virginiaData.map.show && <a href='#' onClick={() => {setShowVir(!showVir)}}>{showVir ? <p style={{color:'blue', border: '2px dotted darkblue',}}>Welcome!
 <br/><br/>
 Virginia's voting districts were traditionally drawn by state politicians.
 However, as of November 3, 2020, Virginia residents voted to establish the Virginia Redistricting Commission for this task.
@@ -141,11 +143,11 @@ If the Commission or the General Assembly fails to agree on redistricting plans,
 <br/><br/>
 Explore the map to see how voting districts differ!
 <br/><br/>
-<span style={{ color: 'red', fontWeight: isHoveredV ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', fontWeight: isHoveredV ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredV(true)}
         onMouseLeave={() => setIsHoveredV(false)}>Click to close</span>
 </p> :
-<span style={{ color: 'red', fontWeight: isHoveredV ? 'bold' : 'normal' }}
+<span style={{ color: 'darkblue', border: '2px solid darkblue', fontWeight: isHoveredV ? 'bold' : 'normal' }}
         onMouseEnter={() => setIsHoveredV(true)}
         onMouseLeave={() => setIsHoveredV(false)}>Click to learn about Virginia's boundary decision process</span>}
 </a>}
