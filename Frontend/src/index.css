@@ -217,15 +217,15 @@ a {
 /* css for displaying data */
 
 #display {
-	/* display: flex; */
+	display: flex;
 	height: 100%;
 	width: 100%;
 }
 
 .statesdata {
 	display: flex;
-	/* flex-direction: column; */
-	/* width: calc(50% - 20px); */
+	flex-direction: column;
+	width: calc(50% - 20px);
 	padding: 10px;
 }
 
@@ -237,11 +237,9 @@ a {
 
 .mapTitle {
 	text-align: center;
-	/* width: calc(50% - 20px); */
 }
 
 .mapTitle h2{
 	display: inline-block;
 	margin-right: 20px;
-	
 }

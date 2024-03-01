@@ -17,8 +17,8 @@ function App() {
 	const[marylandData, setMarylandData] = useState({
 		map: {
 			show: true,
-			legislative: false,
-			precinct: false
+			legislative: true,
+			precinct: true
 		},
 		boxandwhiskers: {
 			show: true
@@ -33,18 +33,18 @@ function App() {
 
 	const[virginiaData, setVirginiaData] = useState({
 		map: {
-			show: false,
-			legislative: false,
-			precinct: false
+			show: true,
+			legislative: true,
+			precinct: true
 		},
 		boxandwhiskers: {
-			show: false
+			show: true
 		},
 		barplot: {
-			show: false
+			show: true
 		},
 		table: {
-			show: false
+			show: true
 		}
 	});
 
@@ -73,9 +73,8 @@ function App() {
 			<div id='title'>Pre-clearance state vs Non pre-clearance state</div>
 			<img id='astroslogo' src={AstrosLogo} />
 		</Navbar>
-		<div id = 'display' style={{display: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'flex' : 'block'}}>
-			{!allShowsFalse(marylandData) && 
-			<div className='statesdata' style={{flexDirection: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'column' : 'row', width: (allShowsFalse(marylandData) && allShowsFalse(virginiaData)) ? 'calc(50%-20px)' : '100%'}}>
+		<div id = 'display'>
+			{!allShowsFalse(marylandData) && <div className='statesdata'>
 				<div className='mapTitle'>
 					<h2>Maryland</h2>
 					{marylandData.map.show && <select
@@ -86,16 +85,11 @@ function App() {
 						<option key={idx}>{race}</option>
 						))}
 					</select>}
-					{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
 				</div>
-				<div>
-					{marylandData.barplot.show && <RacialBarPlots />}
-					{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
-					{marylandData.table.show && <HouseMemberTable/>}
-					
-				</div>
-			
-				
+				{marylandData.map.show && <StateMap selectedState = "maryland" mapOptions = {marylandData.map} selectedRace = {selectedRace}/>}
+				{marylandData.table.show && <HouseMemberTable/>}
+				{marylandData.barplot.show && <RacialBarPlots />}
+				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
 			</div>}
 			{!allShowsFalse(virginiaData) && <div className='statesdata'>
 				<div className='mapTitle'>
