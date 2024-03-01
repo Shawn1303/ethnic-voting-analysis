@@ -102,7 +102,7 @@ export default function DropdownMenu(props) {
 						prevMenu={activeMenu}
 						setActiveMenu={setActiveMenu}
 						setPrevMenu={setPrevMenu}
-					>OneState</DropdownItem>
+					>Single State Analysis</DropdownItem>
 				</div>
 			</CSSTransition>
 
@@ -124,7 +124,14 @@ export default function DropdownMenu(props) {
 						setShowOneState={props.setShowOneState}
 						showOneState={props.showOneState}
 						changeShowState={true}
-					>Show one state</DropdownItem>
+					>Show one state only</DropdownItem>
+					<span style={{color: 'gray'}}>Shows the map, gerrymandering analysis, ethnic distribution in districts, and ethnic distribution in state assembly of a single state.</span>
+					<br/><br/>
+					<span style={{color: 'white'}}>TO INTERACT:</span>
+					<br/>
+					<span style={{color: 'white'}}>Check the box below to view Maryland. Uncheck the box to view Virginia.</span>
+					<br/><br/>
+					<span style={{color: 'red'}}>Note that while single state analysis is turned on, changing the Virginia and Maryland tabs will not affect the display.</span>
 					<DropdownItem
 						setOneState={props.setOneState}
 						oneState={props.oneState}
