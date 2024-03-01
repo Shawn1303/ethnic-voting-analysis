@@ -248,3 +248,19 @@ a {
 	display: inline-block;
 	margin-right: 20px;
 }
+
+#onestate {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.leftOneState {
+	flex: 1;
+	height: 1vh;
+}
+
+.rightOneState {
+	flex: 1;
+	height: 1vh;
+}
