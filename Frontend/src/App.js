@@ -11,6 +11,7 @@ import RacialBarPlots from './graphs/racial_ethnic_district_bar_plots';
 import BoxWhiskerPlotsMCMC from './graphs/box_whisker_plots_MCMC';
 import VotingPDensityPlots from './graphs/voting_probability_density_plots'
 import AstrosLogo from './image/astros_logo.png'
+import EthnicDistPieChart from './graphs/ethnic_distribution_pie_chart';
 
 
 function App() {
@@ -84,6 +85,8 @@ function App() {
 				{marylandData.table.show && <HouseMemberTable/>}
 				{marylandData.barplot.show && <RacialBarPlots />}
 				{marylandData.boxandwhiskers.show && <BoxWhiskerPlotsMCMC num_district={1} />}
+				<EthnicDistPieChart />
+				<EthnicDistPieChart />
 			</div>
 			<div className='statesdata'>
 				<div>
