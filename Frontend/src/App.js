@@ -25,10 +25,14 @@ function App() {
 	const [errorResp, setErrorResp] = useState(null);
 	const [data, setData] = useState(null);
 
+	const axiosInst = axios.create({
+		baseURL: 'http://localhost:8080',
+	})
+
 	const handleChange = (event) => {
 		setState(event.target.value);
-		axios
-			.get("http://localhost:8080/users")
+		axiosInst
+			.get("/marylandStateDistrict")
 			.then((response) => {
 				setData(response.data);
 				console.log(response.data);
