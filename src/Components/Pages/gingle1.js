@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 
-import MDDistrictPlan from "../../Data/District_Boundaries/md_state.json";
-import VADistrictPlan from "../../Data/District_Boundaries/va_state.json";
-
 export default function Gingle1(props) {
 	const center = [39.5, -98];
 
