@@ -19,9 +19,14 @@ function App() {
 	};
 
 	async function loadDistrictPlan(state) {
-		const result = await axios.get(`http://localhost:8080/${state}DistrictPlan`);
-		setDistrictplan(result.data[0]);
-		console.log(result);
+		try {
+			const result = await axios.get(`http://localhost:8080/${state}DistrictPlan`);
+			setDistrictplan(result.data[0]);
+			console.log(result);
+		} catch(error) {
+			alert(`Error fetching GeoJSON:${error}`);
+		}
+		
 	}
 
 	useEffect(() => {
