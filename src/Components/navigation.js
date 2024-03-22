@@ -14,8 +14,10 @@ export default function Navigation(props) {
 		}
 	};
 	const handleClose = (page) => {
-	  setAnchorEl(null);
-	  props.setPage(page);
+		setAnchorEl(null);
+		if(page){
+			props.setPage(page);
+		}
 	};
   
 	return (
@@ -33,7 +35,7 @@ export default function Navigation(props) {
 		  id="menu"
 		  anchorEl={anchorEl}
 		  open={open}
-		  onClose={handleClose}
+		  onClose={() => handleClose(props.page)}
 		  MenuListProps={{
 			'aria-labelledby': 'menu-button',
 		  }}

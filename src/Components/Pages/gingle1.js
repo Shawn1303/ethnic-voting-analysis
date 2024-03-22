@@ -1,25 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import axios from 'axios';
 
 import MDDistrictPlan from "../../Data/District_Boundaries/md_state.json";
 import VADistrictPlan from "../../Data/District_Boundaries/va_state.json";
 
 export default function Gingle1(props) {
 	const center = [39.5, -98];
-	const [districtplan, setDistrictplan] = useState(null);
-
-	async function loadDistrictPlan(state) {
-		const result = await axios.get();
-		setDistrictplan(result.data);
-	}
-
-	// useEffect(() => {
-		// if(props.state) {
-	// 	(async () => await loadDistrictPlan(props.state))();
-		// }
-	// }, [props.state]);
 
 	return(
 		<MapContainer 
@@ -33,7 +20,7 @@ export default function Gingle1(props) {
 			</TileLayer>
 			<StateFeature 
 			state={props.state} 
-			// districtplan={districtplan}
+			districtplan={props.districtplan}
 			/>
 		</MapContainer>
 	)
@@ -58,10 +45,10 @@ function StateFeature(props) {
 
 	return (
 		<>
-			{props.state === "md" && <GeoJSON color="#03045e" data={MDDistrictPlan.features} />}
-			{props.state === "va" && <GeoJSON color="#03045e" data={VADistrictPlan.features} />}
+			{/* {props.state === "md" && <GeoJSON color="#03045e" data={MDDistrictPlan.features} />}
+			{props.state === "va" && <GeoJSON color="#03045e" data={VADistrictPlan.features} />} */}
 
-			{/* {props.districtplan && <GeoJSON color="#03045e" data={props.districtplan.features} />} */}
+			{props.districtplan && <GeoJSON color="#03045e" data={props.districtplan.features} />}
 		</>
 	);
 }

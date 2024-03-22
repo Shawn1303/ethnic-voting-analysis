@@ -1,9 +1,10 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import axios from 'axios';
 
 import Navigation from "./Components/navigation";
 import Gingle1 from './Components/Pages/gingle1';
@@ -11,15 +12,28 @@ import Gingle1 from './Components/Pages/gingle1';
 function App() {
 	const [page, setPage] = useState("gingle1");
 	const [state, setState] = useState('');
+	const [districtplan, setDistrictplan] = useState(null);
 
 	const handleStateChange = (event) => {
 		setState(event.target.value);
 	};
 
+	async function loadDistrictPlan(state) {
+		const result = await axios.get(`http://localhost:8080/${state}DistrictPlan`);
+		setDistrictplan(result.data[0]);
+		console.log(result);
+	}
+
+	useEffect(() => {
+		if(state) {
+			(async () => await loadDistrictPlan(state))();
+		}
+	}, [state]);
+
 	let pageHTML;
 	switch(page) {
 		case "gingle1":
-			pageHTML = <Gingle1 state={state}/>
+			pageHTML = <Gingle1 state={state} districtplan={districtplan} page={page}/>
 			break;
 		case "gingle2":
 			pageHTML = <></>
