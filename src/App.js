@@ -21,7 +21,7 @@ function App() {
 	async function loadDistrictPlan(state) {
 		try {
 			const result = await axios.get(`http://localhost:8080/${state}DistrictPlan`);
-			setDistrictplan(result.data[0]);
+			setDistrictplan(result.data);
 			console.log(result);
 		} catch(error) {
 			alert(`Error fetching GeoJSON:${error}`);
