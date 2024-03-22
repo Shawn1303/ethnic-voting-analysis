@@ -27,6 +27,8 @@ function App() {
 	useEffect(() => {
 		if(state) {
 			(async () => await loadDistrictPlan(state))();
+		} else {
+			setDistrictplan(null)
 		}
 	}, [state]);
 
