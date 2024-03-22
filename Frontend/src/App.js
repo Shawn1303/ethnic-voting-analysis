@@ -32,7 +32,7 @@ function App() {
 	const handleChange = (event) => {
 		setState(event.target.value);
 		axiosInst
-			.get("/marylandStateDistrict")
+			.get("/marylandDistrictPlan")
 			.then((response) => {
 				setData(response.data);
 				console.log(response.data);
