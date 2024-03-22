@@ -18,12 +18,25 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 // import VotingPDensityPlots from './graphs/voting_probability_density_plots'
 // import AstrosLogo from './image/astros_logo.png'
 // import EthnicDistPieChart from './graphs/ethnic_distribution_pie_chart';
+import axios from 'axios';
 
 function App() {
 	const [state, setState] = useState('');
+	const [errorResp, setErrorResp] = useState(null);
+	const [data, setData] = useState(null);
 
 	const handleChange = (event) => {
 		setState(event.target.value);
+		axios
+			.get("http://localhost:8080/users")
+			.then((response) => {
+				setData(response.data);
+				console.log(response.data);
+			})
+			.catch((err) => {
+				console.log(err);
+				setErrorResp(err);
+			})
 	};
 	return (<>
 		<Box sx={{ maxWidth:500 }}>
@@ -44,6 +57,15 @@ function App() {
 		</Box>
 		
 		<Map selectedState={state}></Map>
+		<div>
+			{data ? //If data returned properly show data
+				<div>
+					Server responded!
+				</div>
+				: errorResp ? //Else show error if it exists
+				<div>Error: {errorResp.message}</div> : <div></div>
+			}
+		</div>
 	</>);
 }
 
