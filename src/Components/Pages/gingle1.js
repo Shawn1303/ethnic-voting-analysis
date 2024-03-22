@@ -16,7 +16,9 @@ export default function Gingle1(props) {
 	}
 
 	// useEffect(() => {
-	// 	(async () => await loadDistrictPlan())();
+		// if(props.state) {
+	// 	(async () => await loadDistrictPlan(props.state))();
+		// }
 	// }, [props.state]);
 
 	return(
