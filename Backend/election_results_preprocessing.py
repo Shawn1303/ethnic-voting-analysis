@@ -28,7 +28,8 @@ for county in all_counties:
   county_df=df[df['LocalityCode']==county]
   all_precincts=np.unique(county_df['PrecinctId'])
   for precinct in all_precincts:
-    unique_id=(county,precinct) # precinct identifier
+    # use -1 to denote provisional
+    unique_id=(int(county),int(precinct) if precinct.isdigit() else -1) # precinct identifier
     precinct_df=county_df[county_df['PrecinctId']==precinct]
 
     total_dem_votes=0
@@ -43,16 +44,18 @@ for county in all_counties:
         total_rep_votes += row['TOTAL_VOTES']
       else:
         total_other += row['TOTAL_VOTES']
+      precinct_name=row['PrecinctName']
     # print("Precinct {} has total_dem: {} total_rep: {}".format(unique_id,total_dem_votes,total_rep_votes))
     # write to result
     result_json[str(unique_id)] = {
+      "precinct_name": precinct_name,
       "votes_for_dem_cand": total_dem_votes,
       "votes_for_rep_cand": total_rep_votes,
       "votes_for_other_cand":total_other,
       "votes_total": total_dem_votes + total_rep_votes + total_other
     }
 
-# pprint.pprint(result_json)
+pprint.pprint(result_json)
 
 output_file=os.path.join("Data", "va_precinct_election_results_revised.json")
 if not os.path.exists(output_file):
