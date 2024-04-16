@@ -79,5 +79,40 @@ pprint.pprint(VA_Precinct_Boundary_Data)
 
 '''
 
-# merge with election results data
+# merge Virginia_Result_Data with election results data
+VA_Election_Results_Data = None
+with open(r'Data\va_precinct_election_results_revised.json','r') as file:
+  VA_Election_Results_Data=json.load(file)
 
+
+# create deep copy of election results data
+election_results_deep_copy = copy.deepcopy(VA_Election_Results_Data)
+
+i=0
+for unique_id,election_results in election_results_deep_copy.items():
+  match = re.findall(r'\((\d+),\s*(\d+)\)',unique_id)
+  if len(match) == 0:
+    print("error detected with match",unique_id)
+    continue
+  match = match[0]
+  county_fips_code_1, vtd_id_1 = int(match[0]),int(match[1])
+  # print(county_fips_code_1,vtd_id_1)
+  # lookup precinct entry in 
+  key = str((county_fips_code_1,vtd_id_1))
+  precinct_entry = Virginia_Result_Data.get(key)
+  if precinct_entry:
+    print("found!!")
+    Virginia_Result_Data.get(key)['Election_Data'] = election_results
+    del VA_Election_Results_Data[unique_id]
+  else:
+    print("Precinct not found...",key)
+
+print("Election results still has ... to be dealt with", len(VA_Election_Results_Data))
+
+print("Done...")
+
+
+
+# write json to file
+with open("Data/Virgina_Result_Data", "w") as json_file:
+  json.dump(Virginia_Result_Data,json_file,indent=4)
