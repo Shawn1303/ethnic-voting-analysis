@@ -63,13 +63,13 @@ for item in Virginia_Result_Data['features']:
     count_missing_demographic_info+=1
     # fill with NA
     item['properties']['Demographic_Data'] = {
-      "European": None,
-      "Hispanic": None,
-      "AfricanAmerican": None,
-      "SouthEastAsian": None,
-      "Other": None,
-      "Unknown": None,
-      "Total": None
+      "European": 0,
+      "Hispanic": 0,
+      "AfricanAmerican": 0,
+      "SouthEastAsian": 0,
+      "Other": 0,
+      "Unknown": 0,
+      "Total": 0
     }
 
 print("Results from adding demographic information")
@@ -82,7 +82,7 @@ print("After filling in missing dem data")
 for item in Virginia_Result_Data['features']:
   props=item['properties']
   assert 'Demographic_Data' in props
-print("Successful insertion of null values")
+print("Successful insertion of 0 values")
 
 
 
@@ -137,14 +137,14 @@ for item in Virginia_Result_Data['features']:
   else:
     failed_election_additions +=1
     item['properties']['Election_Data'] = {
-      "precinct_name": None,
-      "district_id": None,
-      "votes_for_dem_cand": None,
-      "votes_for_rep_cand": None,
-      "votes_for_other_cand": None,
-      "votes_total": None
+      "precinct_name": 0,
+      "district_id": 0,
+      "votes_for_dem_cand": 0,
+      "votes_for_rep_cand": 0,
+      "votes_for_other_cand": 0,
+      "votes_total": 0
     }
-print("Successful additions: {}\n, Failed additions (flled with null): {}".format(
+print("Successful additions: {}\n, Failed additions (flled with 0): {}".format(
   successful_election_additions, failed_election_additions))
 
 
