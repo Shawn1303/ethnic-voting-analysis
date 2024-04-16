@@ -42,5 +42,5 @@ for district in all_districts: # each assembly district race
   #   break
 
 pprint.pprint(virginia_election_data)
-with open('Data/virginia_election_data.json', 'w') as json_file:
-    json.dump(virginia_election_data, json_file, indent=4)
+# with open('Data/virginia_election_data.json', 'w') as json_file:
+#     json.dump(virginia_election_data, json_file, indent=4)

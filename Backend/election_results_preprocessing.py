@@ -32,6 +32,10 @@ for county in all_counties:
     unique_id=(int(county),int(precinct) if precinct.isdigit() else -1) # precinct identifier
     precinct_df=county_df[county_df['PrecinctId']==precinct]
 
+    '''testing'''
+    district_ids=[]
+    '''end testing'''
+
     total_dem_votes=0
     total_rep_votes=0
     total_other=0
@@ -45,10 +49,17 @@ for county in all_counties:
       else:
         total_other += row['TOTAL_VOTES']
       precinct_name=row['PrecinctName']
+
+      '''testing'''
+      if row['DistrictId'] not in district_ids:
+        district_ids.append(row['DistrictId'])
+      '''end testing'''
+    # print("district id ",unique_id,district_ids)
     # print("Precinct {} has total_dem: {} total_rep: {}".format(unique_id,total_dem_votes,total_rep_votes))
     # write to result
     result_json[str(unique_id)] = {
       "precinct_name": precinct_name,
+      "district_id": district_ids[0], # handle duplicate entries later
       "votes_for_dem_cand": total_dem_votes,
       "votes_for_rep_cand": total_rep_votes,
       "votes_for_other_cand":total_other,
@@ -57,7 +68,7 @@ for county in all_counties:
 
 pprint.pprint(result_json)
 
-output_file=os.path.join("Data", "va_precinct_election_results_revised.json")
+output_file=os.path.join("Data", "va_precinct_election_results.json")
 if not os.path.exists(output_file):
   # Write the result_json dictionary to the JSON file
   with open(output_file, 'w') as json_file:

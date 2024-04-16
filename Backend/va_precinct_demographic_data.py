@@ -16,11 +16,12 @@ here - https://simple.wikipedia.org/wiki/List_of_counties_in_Virginia
 (95 counties and 38 independent cities in VA) = total 133
 
 Columns:
-eth1_eur  - European
-eth1_hisp - Hispanic and Portuguese
-eth1_aa   - Likely African-American
-eth1_esa  - East and South Asian
-eth1_oth  - Other
+eth1_eur  		Count of voters in the following broad ethnicity category, defined by L2: European
+eth1_hisp 		Count of voters in the following broad ethnicity category, defined by L2: Hispanic and Portuguese
+eth1_aa   		Count of voters in the following broad ethnicity category, defined by L2: Likely African-American
+eth1_esa  		Count of voters in the following broad ethnicity category, defined by L2: East and South Asian
+eth1_oth  		Count of voters in the following broad ethnicity category, defined by L2: Other
+eth1_unk  		Count of voters with unknown (null) broad ethnicity category
 '''
 
 all_counties_fips_va = np.unique(df['COUNTYFP'])
@@ -28,7 +29,7 @@ all_counties_fips_va = np.unique(df['COUNTYFP'])
 
 
 
-race_columns = ["eth1_eur", "eth1_hisp", "eth1_aa", "eth1_esa", "eth1_oth"]
+race_columns = ["eth1_eur", "eth1_hisp", "eth1_aa", "eth1_esa", "eth1_oth", "eth1_unk"]
 
 va_demographics_data={}
 
@@ -48,8 +49,11 @@ for fip_code in all_counties_fips_va:
       "Hispanic": int(temp['eth1_hisp']),
       "AfricanAmerican": int(temp['eth1_aa']),
       "SouthEastAsian": int(temp['eth1_esa']),
-      "Other":int(temp['eth1_oth'])
+      "Other":int(temp['eth1_oth']),
+      "Unknown": int(temp['eth1_unk'])
     }
+    temp_sum = sum(demographics.values())
+    demographics['Total'] = temp_sum
     
     # add to result
     va_demographics_data[str(precinct_identifier)] = demographics
@@ -57,6 +61,8 @@ for fip_code in all_counties_fips_va:
 # pprint.pprint(va_demographics_data)
 assert df.shape[0] == len(va_demographics_data) # check num precincts = 2463 total for va
 # print(len(va_demographics_data), " total num precincts detected")
+
+pprint.pprint(va_demographics_data)
 
 json_file_path = "va_demographics_data.json"
 # Check if the JSON file already exists
