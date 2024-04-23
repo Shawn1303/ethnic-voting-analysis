@@ -4,6 +4,7 @@ import SelectState from './Page1Components/SelectState';
 import SelectOutline from './Page1Components/SelectOutline';
 import EnsembleSummary from './Page1Components/EnsembleSummary';
 import StateAssemblyTable from './Page1Components/StateAssemblyTable';
+import StateDataSummary from './Page1Components/StateDataSummary';
 
 
 export default function Gingles1(props) {
@@ -20,8 +21,7 @@ export default function Gingles1(props) {
 		
 		<div style={{width: '48%', display: 'inline-block', verticalAlign: 'top', padding: '5px', margin: '0 5px'}}>
 			<EnsembleSummary state = {props.state}></EnsembleSummary>
-			
-			<StateAssemblyTable state = {props.state}></StateAssemblyTable>
+			<StateDataSummary state = {props.state}></StateDataSummary>
 			<StateAssemblyTable state = {props.state}></StateAssemblyTable>
 		</div>	
 	</>)

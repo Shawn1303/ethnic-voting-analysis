@@ -19,7 +19,7 @@ export default function StateAssemblyTable(props) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<TableContainer component={Paper} style={{margin: '0 auto', border:'2px solid black', borderRadius: '5px'}}>
+		<TableContainer component={Paper} style={{margin: '1% auto', border:'2px solid black', borderRadius: '5px'}}>
 			<Table aria-label="collapsible table">
 				<TableHead>
 					<TableRow>
