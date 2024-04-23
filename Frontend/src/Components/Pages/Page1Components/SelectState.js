@@ -8,7 +8,7 @@ export default function SelectState(props) {
 
     const handleStateChange = (event) => {
 		props.setState(event.target.value);
-        props.setMapOutline('DistrictPlan')
+        props.setMapOutline('districtPlan')
 	};
 
     return(
