@@ -4,5 +4,5 @@ import com.example.server.model.StateDistrictPlan;
 // import java.util.List;
 
 public interface StateDistrictPlanRepository extends MongoRepository<StateDistrictPlan, String> {
-    StateDistrictPlan findByName(String name);
+    StateDistrictPlan findByState(String state);
 }

@@ -1,11 +1,10 @@
 package com.example.server.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.server.repository.StateDistrictPlanRepository;
@@ -17,10 +16,11 @@ public class StateDistrictPlanController {
     @Autowired
     StateDistrictPlanRepository stateDistrict;
 
-    @GetMapping("/mdDistrictPlan") //@GetMapping("/districtPlan") 3
+    @GetMapping("/districtPlan") 
     @Cacheable("stateDistrictPlan")
-    public StateDistrictPlan getAllStateDistrictPlans() //getDistrictPlan(state) 4
+    public StateDistrictPlan getStateDistrictPlan(@RequestParam String state) 
     {
-        return stateDistrict.findByName("MarylandDistrictPlan"); //findByName(state) 7
+        System.out.println(state);
+        return stateDistrict.findByState(state); //findByName(state) 7
     }
 }
