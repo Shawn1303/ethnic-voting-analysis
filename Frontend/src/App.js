@@ -9,14 +9,14 @@ import Gingles1 from './Components/Pages/gingles1';
 function App() {
 	const [page, setPage] = useState("gingles1");
 	const [state, setState] = useState('');
-	const [mapOutline, setMapOutline] = useState('DistrictPlan');
+	const [mapOutline, setMapOutline] = useState('districtPlan');
 	const [districtplan, setDistrictplan] = useState(null);
 
 	async function loadDistrictPlan(state) {
 		try {
-			console.log(mapOutline)
-			const result = await axios.get(`http://localhost:8080/${state}${mapOutline}`);
-			setDistrictplan(result.data[0]);
+			console.log(mapOutline);
+			const result = await axios.get(`http://localhost:8080/${mapOutline}?state=${state}`);
+			setDistrictplan(result.data);
 			console.log(result);
 		} catch(error) {
 			alert(`Error fetching GeoJSON:${error}`);
