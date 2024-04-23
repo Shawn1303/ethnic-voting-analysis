@@ -13,5 +13,4 @@
 # Run front end in new terminal
 - cd `frontend`
 - run `npm install`
-- run `npm install @mui/icons-material`
 - run `npm start`
