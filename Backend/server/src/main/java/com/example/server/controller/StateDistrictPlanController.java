@@ -21,6 +21,6 @@ public class StateDistrictPlanController {
     public StateDistrictPlan getStateDistrictPlan(@RequestParam String state) 
     {
         System.out.println(state);
-        return stateDistrict.findByState(state); //findByName(state) 7
+        return stateDistrict.findByState(state); 
     }
 }
