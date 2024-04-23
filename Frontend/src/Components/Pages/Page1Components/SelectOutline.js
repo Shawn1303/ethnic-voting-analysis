@@ -13,11 +13,11 @@ export default function SelectOutline(props) {
       <RadioGroup
         row
         name="select-outline-radio-buttons-group"
-        defaultValue="DistrictPlan"
+        defaultValue="districtPlan"
         onChange={handleChange}
       >
-        <FormControlLabel value="DistrictPlan" control={<Radio />} label="Default District Plan"/>
-        <FormControlLabel value="HeatMap" control={<Radio />} label="Heatmap" />
+        <FormControlLabel value="districtPlan" control={<Radio />} label="Default District Plan"/>
+        <FormControlLabel value="heatMap" control={<Radio />} label="Heatmap" />
       </RadioGroup>
     </FormControl>
   );
