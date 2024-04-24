@@ -1,12 +1,11 @@
 package com.example.server.model;
-import java.util.Set;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "test")
+@Document(collection = "DistrictGeoJSON")
 public class DistrictGeoJSON { //This is the GeoJSON format for ONE district
     private String type;
     private Object geometry;
-    private Object properties;
+    private Properties properties;
     private String state;
     
     public String getState() {
@@ -30,7 +29,7 @@ public class DistrictGeoJSON { //This is the GeoJSON format for ONE district
     public Object getProperties() {
         return properties;
     }
-    public void setProperties(Object properties) {
+    public void setProperties(Properties properties) {
         this.properties = properties;
     }
     @Override

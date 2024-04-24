@@ -32,12 +32,13 @@ public class StateDistrictPlanController {
     @Autowired
     GeoJSONDocRepository geoJsonRepo;
 
-    @GetMapping("/test")
-    @Cacheable("test")
+    @GetMapping("/districtPlan")
+    @Cacheable("stateDistrictPlan")
     public ResponseEntity<String> getStateDistrictPlanTest(@RequestParam String state) 
     {
         try {
             List<DistrictGeoJSON> districts = geoJsonRepo.findByState(state); 
+            //List<DistrictGeoJSON> districts = geoJsonRepo.findByPropertiesDistrictN(43);
 
             GeoJSONDoc geoJsonDoc = new GeoJSONDoc();
             geoJsonDoc.setType("FeatureCollection");

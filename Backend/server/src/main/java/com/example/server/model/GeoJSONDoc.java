@@ -4,7 +4,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "test")
+@Document(collection = "DistrictGeoJSON")
 public class GeoJSONDoc { 
     //This is the GEOJson Format that contains ALL districts. 
     //It is written to in the StateDistrictPlanController
