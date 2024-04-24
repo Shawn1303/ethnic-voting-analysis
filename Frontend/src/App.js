@@ -49,7 +49,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Navigation setPage={setPage} />
+			<Navigation setPage={setPage} state={state} setState={setState} mapOutline={mapOutline} setMapOutline={setMapOutline}/>
 			{pageHTML}
 		</div>
 	);

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import SelectState from './Pages/Page1Components/SelectState';
+import SelectOutline from './Pages/Page1Components/SelectOutline';
 
 export default function Navigation(props) {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -21,30 +23,34 @@ export default function Navigation(props) {
 	};
   
 	return (
-	  <div className='navbar'>
-		<Button
-		  id="menu-button"
-		  aria-controls={open ? 'menu' : undefined}
-		  aria-haspopup="true"
-		  aria-expanded={open ? 'true' : undefined}
-		  onClick={handleClick}
-		>
-		  Dashboard
-		</Button>
-		<Menu
-		  id="menu"
-		  anchorEl={anchorEl}
-		  open={open}
-		  onClose={() => handleClose(props.page)}
-		  MenuListProps={{
-			'aria-labelledby': 'menu-button',
-		  }}
-		>
-		  <MenuItem onClick={() => handleClose("gingles1")}>Gingles 1</MenuItem>
-		  <MenuItem onClick={() => handleClose("gingles2")}>Gingles 2</MenuItem>
-		  <MenuItem onClick={() => handleClose("gingles3")}>Gingles 3</MenuItem>
-		  <MenuItem onClick={() => handleClose("compare")}>Compare States</MenuItem>
-		</Menu>
-	  </div>
+		<div className='navbar'>
+			<Button
+				id="menu-button"
+				aria-controls={open ? 'menu' : undefined}
+				aria-haspopup="true"
+				aria-expanded={open ? 'true' : undefined}
+				onClick={handleClick}
+			>
+				Dashboard
+			</Button>
+			<Menu
+				id="menu"
+				anchorEl={anchorEl}
+				open={open}
+				onClose={() => handleClose(props.page)}
+				MenuListProps={{
+					'aria-labelledby': 'menu-button',
+				}}
+			>
+				<MenuItem onClick={() => handleClose("gingles1")}>Gingles 1</MenuItem>
+				<MenuItem onClick={() => handleClose("gingles2")}>Gingles 2</MenuItem>
+				<MenuItem onClick={() => handleClose("gingles3")}>Gingles 3</MenuItem>
+				<MenuItem onClick={() => handleClose("compare")}>Compare States</MenuItem>
+			</Menu>
+			<SelectState state = {props.state} setState = {props.setState} setMapOutline = {props.setMapOutline}/>
+			{
+				props.state && <SelectOutline mapOutline = {props.mapOutline} setMapOutline = {props.setMapOutline}/>
+			}
+		</div>
 	);
   }

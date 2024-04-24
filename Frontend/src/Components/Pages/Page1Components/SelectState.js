@@ -12,14 +12,15 @@ export default function SelectState(props) {
 	};
 
     return(
-        <FormControl fullWidth style={{ margin: '5px 0', borderRadius: '5px' }}>
-            <InputLabel id='select-map-label'>Select a State</InputLabel>
+        <FormControl fullWidth style={{ width: '10%', margin: '10px 10px', borderRadius: '5px'}}>
+            <InputLabel style={{color: 'gray'}}>Select a State</InputLabel>
             <Select
                 labelId='select-map'
                 id='select-map-dropdown'
                 value={props.state}
                 label="Select a state"
                 onChange={handleStateChange}
+                sx={{ backgroundColor:'white' }}
             >
                 <MenuItem value={''}>None</MenuItem>
                 <MenuItem value={'md'}>Maryland</MenuItem>
@@ -27,4 +28,5 @@ export default function SelectState(props) {
             </Select>
         </FormControl>
     )
+
 }
