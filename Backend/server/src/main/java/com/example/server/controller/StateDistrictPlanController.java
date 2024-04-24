@@ -18,17 +18,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class StateDistrictPlanController {
-    // @Autowired
-    // StateDistrictPlanRepository stateDistrict;
-
-    // @GetMapping("/districtPlan") 
-    // @Cacheable("stateDistrictPlan")
-    // public StateDistrictPlan getStateDistrictPlan(@RequestParam String state) 
-    // {
-    //     System.out.println(state);
-    //     return stateDistrict.findByState(state); 
-    // }
-
     @Autowired
     GeoJSONDocRepository geoJsonRepo;
 

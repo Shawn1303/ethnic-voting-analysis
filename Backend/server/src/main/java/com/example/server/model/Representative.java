@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Representatives")
 public class Representative {
-    private int districtN; //probably change to state because of md district ids
+    private String districtID; //probably change to state because of md district ids
     private String name;
     private Party party;
     private Race race;
@@ -25,11 +25,11 @@ public class Representative {
     public void setUrl(URL url) {
         this.url = url;
     }
-    public int getDistrictN() {
-        return districtN;
+    public String getDistrictID() {
+        return districtID;
     }
-    public void setDistrictN(int districtN) {
-        this.districtN = districtN;
+    public void setDistrictN(String districtID) {
+        this.districtID = districtID;
     }
     public String getName() {
         return name;
@@ -55,10 +55,10 @@ public class Representative {
     public void setVoteMargin(float voteMargin) {
         this.voteMargin = voteMargin;
     }
-    
+
     @Override
     public String toString() {
-        return "Representative [districtN=" + districtN + ", name=" + name + ", party=" + party + ", race=" + race
+        return "Representative [districtID=" + districtID + ", name=" + name + ", party=" + party + ", race=" + race
                 + ", voteMargin=" + voteMargin + ", url=" + url + ", state=" + state + "]";
     }
     
