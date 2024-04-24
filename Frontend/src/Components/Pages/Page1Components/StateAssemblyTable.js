@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -16,36 +17,15 @@ import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Avatar from '@mui/material/Avatar';
 import { Container } from '@mui/material';
 
-function createData(districtN, rep, party, race, vm, url) {
-	return {districtN, rep, party, race, vm, url};
-}
-
-const rows = [
-	createData('1', 'John Doe', 'REP', 'WHITE', 80, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Patrick-Hope.jpg'),
-	createData('2', 'Jane Smith', 'DEM', 'HISPANIC', 75, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Patrick-Hope.jpg'),
-	createData('3', 'Michael Johnson', 'REP', 'BLACK', 65, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Patrick-Hope.jpg'),
-	createData('4', 'Emily Davis', 'IND', 'ASIAN', 90, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Patrick-Hope.jpg'),
-	createData('5', 'Chris Brown', 'DEM', 'WHITE', 88, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Patrick-Hope.jpg'),
-	createData('6', 'Patricia Taylor', 'REP', 'MIXED', 70, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alfonso_Lopez_20230523_085935.jpg'),
-	createData('7', 'Robert Wilson', 'DEM', 'BLACK', 55, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alfonso_Lopez_20230523_085935.jpg'),
-	createData('8', 'Linda Martinez', 'IND', 'HISPANIC', 95, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alfonso_Lopez_20230523_085935.jpg'),
-	createData('9', 'David Anderson', 'REP', 'ASIAN', 60, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Alfonso_Lopez_20230523_085935.jpg'),
-	createData('10', 'Jessica Thomas', 'DEM', 'WHITE', 85, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-	createData('11', 'Paul Moore', 'REP', 'BLACK', 78, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-	createData('12', 'Sarah White', 'IND', 'MIXED', 82, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-	createData('13', 'James Harris', 'DEM', 'WHITE', 75, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-	createData('14', 'Laura Martin', 'REP', 'ASIAN', 69, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-	createData('15', 'Ryan Garcia', 'DEM', 'HISPANIC', 74, 'https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_BennettParker_20230521_074946.jpg'),
-];
-
 export default function StateAssemblyTable(props) {
 	const [open, setOpen] = useState(false);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);	
+	const [stateAssemblyData, setStateAssemblyData] = useState(null);
 	const columns = [
-		{ id: 'districtN', label: 'District Number', minWidth: 80 },
+		{ id: 'districtID', label: 'District ID', minWidth: 80 },
 		{
-			id: 'rep',
+			id: 'name',
 			label: 'Representative',
 			minWidth: 200,
 			format: (value, row) => (
@@ -58,9 +38,9 @@ export default function StateAssemblyTable(props) {
 		{ id: 'party', label: 'Party', minWidth: 60 },
 		{ id: 'race', label: 'Race', minWidth: 50 },
 		{
-		  id: 'vm',
+		  id: 'voteMargin',
 		  label: 'Voting Margin',
-		  minWidth: 170,
+		  minWidth: 80,
 		  align: 'right',
 		  format: (value) => `${value}%`,
 		}
@@ -74,6 +54,24 @@ export default function StateAssemblyTable(props) {
 		setRowsPerPage(+event.target.value);
 		setPage(0);
 	};
+
+	async function getStateAssemblyData(state) {
+		try {
+			const result = await axios.get(`http://localhost:8080/stateAssemblyTable?state=${state}`);
+			console.log(result.data)
+			setStateAssemblyData(result.data);
+		} catch(error) {
+			alert(`Error fetching GeoJSON:${error}`);
+		}
+	}
+
+	useEffect(() => {
+		if(props.state) {
+			(async () => await getStateAssemblyData(props.state))();
+		} else {
+			setStateAssemblyData(null)
+		}
+	}, [props.state]);
 
 	return (
 		<Container className='data-container'>
@@ -89,9 +87,7 @@ export default function StateAssemblyTable(props) {
 			</Box>
 			
 			<Collapse in={open} timeout='auto' unmountOnExit>
-				{props.state === ''? (
-					<p>No state selected</p> 
-				):(
+				{stateAssemblyData ? (
 					<Paper sx={{ width: '100%', overflow: 'hidden' }}>
 						<TableContainer sx={{ maxHeight: 300 }}>
 							<Table stickyHeader aria-label="sticky table">
@@ -109,16 +105,16 @@ export default function StateAssemblyTable(props) {
 									</TableRow>
 								</TableHead>
 								<TableBody>
-									{rows
+									{stateAssemblyData
 									.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-									.map((row) => {
+									.map((district) => {
 										return (
-											<TableRow key={row.districtN} hover role="checkbox" tabIndex={-1}>
+											<TableRow key={district.districtN} hover role="checkbox" tabIndex={-1}>
 												{columns.map((column) => {
-													const value = row[column.id];
+													const value = district[column.id];
 													return (
 														<TableCell key={column.id} align={column.align}>
-															{column.format ? column.format(row[column.id], row) : row[column.id]}
+															{column.format ? column.format(district[column.id], district) : district[column.id]}
 														</TableCell>
 													);
 												})}
@@ -131,13 +127,16 @@ export default function StateAssemblyTable(props) {
 						<TablePagination
 							rowsPerPageOptions={[10, 25, 100]}
 							component="div"
-							count={rows.length}
+							count={stateAssemblyData.length}
 							rowsPerPage={rowsPerPage}
 							page={page}
 							onPageChange={handleChangePage}
 							onRowsPerPageChange={handleChangeRowsPerPage}
 						/>
 					</Paper>
+					
+				):(
+					<p>No state selected</p> 
 				)}
 			</Collapse>
 		</Container>

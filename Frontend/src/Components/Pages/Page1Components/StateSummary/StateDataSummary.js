@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import { Box, Container, Grid } from '@mui/material';
+import RacialDistributionBar from './RacialDistributionBar';
 
 
 export default function StateDataSummary(props) {
@@ -29,11 +30,12 @@ export default function StateDataSummary(props) {
 						<p>No state selected</p> 
 					):(
 						<Grid container spacing={2} justifyContent='space-around'>
-                            <Grid item xs={5}>  
+                            <Grid item xs={4}>  
                                 <b>State Population:</b> some number
                             </Grid>
-                            <Grid item xs={7}>
-                                <b>Population of Each Significant Racial/Ethnic Group:</b> a pie chart? <br/>
+                            <Grid item xs={8}>
+                                <b>Population of Each Significant Racial/Ethnic Group:</b>
+								<RacialDistributionBar/>
                             </Grid>
 							<Grid item xs={12}>
                                 <b>State Voter Distribution:</b> some graph? <br/>

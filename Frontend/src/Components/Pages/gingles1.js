@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StateMap from './Page1Components/StateMap';
 import EnsembleSummary from './Page1Components/EnsembleSummary';
 import StateAssemblyTable from './Page1Components/StateAssemblyTable';
-import StateDataSummary from './Page1Components/StateDataSummary';
+import StateDataSummary from './Page1Components/StateSummary/StateDataSummary';
 import { Box, Grid } from '@mui/material';
 
 
