@@ -1,8 +1,5 @@
 import { useState, useEffect } from 'react'
-import Box from '@mui/material/Box';
-
 import axios from 'axios';
-
 import Navigation from "./Components/navigation";
 import Gingles1 from './Components/Pages/gingles1';
 
