@@ -40,3 +40,9 @@ code {
 	color: aliceblue;
 	font-size: 20px;
 }
+
+.data-container {
+	margin: 0 auto 1%;
+	border: 2px solid black;
+	border-radius: 5px;
+}

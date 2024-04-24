@@ -20,19 +20,19 @@ export default function StateAssemblyTable(props) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Container style={{margin: '0 auto 1%', border:'2px solid black', borderRadius: '5px'}}>
-			<Box display="flex" justifyContent="space-between">
-				<Typography variant='h4' style={{fontWeight: 'bold'}}>State Assembly Table</Typography>
+		<Container className='data-container'>
+			<Box display='flex' justifyContent='space-between'>
 				<IconButton
-					aria-label="expand row"
-					size="large"
+					aria-label='expand row'
+					size='large'
 					onClick={() => setOpen(!open)}
 				>
 					{open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 				</IconButton>
+				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>State Assembly Table</Typography>
 			</Box>
 			
-			<Collapse in={open} timeout="auto" unmountOnExit>
+			<Collapse in={open} timeout='auto' unmountOnExit>
 				{
 					props.state === ''? (
 						<p>No state selected</p> 
@@ -50,13 +50,13 @@ export default function StateAssemblyTable(props) {
 }
 
 {/* <TableContainer component={Paper} style={{margin: '1% auto', border:'2px solid black', borderRadius: '5px'}}>
-			<Table aria-label="collapsible table">
+			<Table aria-label='collapsible table'>
 				<TableHead>
 					<TableRow>
 						<TableCell>
 							<IconButton
-								aria-label="expand row"
-								size="large"
+								aria-label='expand row'
+								size='large'
 								onClick={() => setOpen(!open)}
 							>
 								{open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
@@ -66,7 +66,7 @@ export default function StateAssemblyTable(props) {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					<Collapse in={open} timeout="auto" unmountOnExit>
+					<Collapse in={open} timeout='auto' unmountOnExit>
 					{props.state === ''? <p>No state selected</p> : props.state}
 					</Collapse>
 				</TableBody>

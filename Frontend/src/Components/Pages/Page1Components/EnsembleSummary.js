@@ -11,19 +11,19 @@ export default function EnsembleSummary(props) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Container style={{margin: '0 auto 1%', border:'2px solid black', borderRadius: '5px'}}>
-			<Box display="flex" justifyContent="space-between">
-				<Typography variant='h4' style={{fontWeight: 'bold'}}>Ensemble Summary</Typography>
+		<Container className='data-container'>
+			<Box display='flex' justifyContent='space-between'>
 				<IconButton
-					aria-label="expand row"
-					size="large"
+					aria-label='expand row'
+					size='large'
 					onClick={() => setOpen(!open)}
 				>
 					{open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 				</IconButton>
+				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>Ensemble Summary</Typography>
 			</Box>
 			
-			<Collapse in={open} timeout="auto" unmountOnExit>
+			<Collapse in={open} timeout='auto' unmountOnExit>
 				{
 					props.state === ''? (
 						<p>No state selected</p> 

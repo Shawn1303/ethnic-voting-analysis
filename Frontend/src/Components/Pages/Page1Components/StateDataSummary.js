@@ -11,24 +11,24 @@ export default function StateDataSummary(props) {
 	const [open, setOpen] = useState(false);
 
 	return (
-		<Container style={{margin: '1% auto', border:'2px solid black', borderRadius: '5px'}}>
-			<Box display="flex" justifyContent="space-between">
-				<Typography variant='h4' style={{fontWeight: 'bold'}}>State Data Summary</Typography>
+		<Container className='data-container'>
+			<Box display='flex' justifyContent='space-between'>
 				<IconButton
-					aria-label="expand row"
-					size="large"
+					aria-label='expand row'
+					size='large'
 					onClick={() => setOpen(!open)}
 				>
 					{open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 				</IconButton>
+				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>State Data Summary</Typography>
 			</Box>
 			
-			<Collapse in={open} timeout="auto" unmountOnExit>
+			<Collapse in={open} timeout='auto' unmountOnExit>
 				{
 					props.state === ''? (
 						<p>No state selected</p> 
 					):(
-						<Grid container spacing={2} justifyContent="space-around">
+						<Grid container spacing={2} justifyContent='space-around'>
                             <Grid item xs={5}>  
                                 <b>State Population:</b> some number <br/>
                                 <b>State Total Population:</b> some number
@@ -46,42 +46,6 @@ export default function StateDataSummary(props) {
 					)
 				}
 			</Collapse>
-			
 		</Container>
 	);
 }
-
-// import * as React from 'react';
-// import { styled } from '@mui/material/styles';
-// import Box from '@mui/material/Box';
-// import Paper from '@mui/material/Paper';
-// import Grid from '@mui/material/Grid';
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-// }));
-
-// export default function BasicGrid() {
-//   return (
-//     <Box sx={{ flexGrow: 1 }}>
-//       <Grid container spacing={2}>
-//         <Grid item xs={8}>
-//           <Item>xs=8</Item>
-//         </Grid>
-//         <Grid item xs={4}>
-//           <Item>xs=4</Item>
-//         </Grid>
-//         <Grid item xs={4}>
-//           <Item>xs=4</Item>
-//         </Grid>
-//         <Grid item xs={8}>
-//           <Item>xs=8</Item>
-//         </Grid>
-//       </Grid>
-//     </Box>
-//   );
-// }
