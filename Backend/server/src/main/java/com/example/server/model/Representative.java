@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "Representatives")
 public class Representative {
-    private String districtID; //probably change to state because of md district ids
+    private String districtID;
     private String name;
     private Party party;
     private Race race;
