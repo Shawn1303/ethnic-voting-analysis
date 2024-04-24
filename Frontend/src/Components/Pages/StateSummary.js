@@ -6,7 +6,7 @@ import StateDataSummary from './Page1Components/StateSummary/StateDataSummary';
 import { Box, Grid } from '@mui/material';
 
 
-export default function Gingles1(props) {
+export default function StateSummary(props) {
 	return(
 		<Box margin={'10px 1%'}>
 			<Grid container spacing={2}>

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 import Navigation from "./Components/navigation";
-import Gingles1 from './Components/Pages/gingles1';
+import StateSummary from './Components/Pages/StateSummary';
 
 function App() {
-	const [page, setPage] = useState("gingles1");
+	const [page, setPage] = useState("stateSummary");
 	const [state, setState] = useState('');
 	const [mapOutline, setMapOutline] = useState('districtPlan');
 	const [districtplan, setDistrictplan] = useState(null);
@@ -30,13 +30,13 @@ function App() {
 
 	let pageHTML;
 	switch(page) {
-		case "gingles1":
-			pageHTML = <Gingles1 state={state} setState={setState} districtplan={districtplan} mapOutline={mapOutline} setMapOutline={setMapOutline} page={page}/>
+		case "stateSummary":
+			pageHTML = <StateSummary state={state} setState={setState} districtplan={districtplan} mapOutline={mapOutline} setMapOutline={setMapOutline} page={page}/>
 			break;
-		case "gingles2":
+		case "ginglesTests":
 			pageHTML = <></>
 			break;
-		case "gingles3":
+		case "ei":
 			pageHTML = <></>
 			break;
 		case "compare":

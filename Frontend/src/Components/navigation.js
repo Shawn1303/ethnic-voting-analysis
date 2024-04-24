@@ -42,9 +42,9 @@ export default function Navigation(props) {
 					'aria-labelledby': 'menu-button',
 				}}
 			>
-				<MenuItem onClick={() => handleClose("gingles1")}>Gingles 1</MenuItem>
-				<MenuItem onClick={() => handleClose("gingles2")}>Gingles 2</MenuItem>
-				<MenuItem onClick={() => handleClose("gingles3")}>Gingles 3</MenuItem>
+				<MenuItem onClick={() => handleClose("stateSummary")}>State Summary</MenuItem>
+				<MenuItem onClick={() => handleClose("ginglesTests")}>Gingles Tests</MenuItem>
+				<MenuItem onClick={() => handleClose("ei")}>Ecological Inference</MenuItem>
 				<MenuItem onClick={() => handleClose("compare")}>Compare States</MenuItem>
 			</Menu>
 			<SelectState state = {props.state} setState = {props.setState} setMapOutline = {props.setMapOutline}/>
