@@ -8,4 +8,5 @@ import com.example.server.model.DistrictGeoJSON;
 
 public interface GeoJSONDocRepository extends MongoRepository<DistrictGeoJSON, String> {
     List<DistrictGeoJSON> findByState (String state);
+    //List<DistrictGeoJSON> findByPropertiesDistrictN(int districtN);
 }
