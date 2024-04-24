@@ -21,8 +21,7 @@ export default function EnsembleSummary(props) {
 					{open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
 				</IconButton>
 				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>Ensemble Summary</Typography>
-			</Box>
-			
+			</Box>	
 			<Collapse in={open} timeout='auto' unmountOnExit>
 				{
 					props.state === ''? (
@@ -35,9 +34,7 @@ export default function EnsembleSummary(props) {
 						</p>
 					)
 				}
-				
 			</Collapse>
-			
 		</Container>
 	);
 }

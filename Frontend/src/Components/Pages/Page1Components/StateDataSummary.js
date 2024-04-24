@@ -30,8 +30,7 @@ export default function StateDataSummary(props) {
 					):(
 						<Grid container spacing={2} justifyContent='space-around'>
                             <Grid item xs={5}>  
-                                <b>State Population:</b> some number <br/>
-                                <b>State Total Population:</b> some number
+                                <b>State Population:</b> some number
                             </Grid>
                             <Grid item xs={7}>
                                 <b>Population of Each Significant Racial/Ethnic Group:</b> a pie chart? <br/>
