@@ -1,10 +1,9 @@
 package com.example.server.controller;
 
-import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +20,7 @@ public class RepresentativeController {
 
     @GetMapping("/stateAssemblyTable")
     @Cacheable("stateAssemblyTable")
-    public List<Representative> getStateAssemblyTableList(@RequestParam String state) {
+    public Set<Representative> getStateAssemblyTableList(@RequestParam String state) {
         return repRepo.findByState(state);
     }
 }
