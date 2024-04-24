@@ -6,10 +6,9 @@ export default function StateMap(props) {
 	const center = [39.5, -98];
 	return(
 		<MapContainer 
-		center={center} 
-		zoom={3} 
-		// scrollWheelZoom={false}
-		style={{ width: '100%', height: '50vh'}}>
+			center={center} 
+			zoom={3} 
+			style={{ width: '100%', height: '80vh'}}>
 			<TileLayer
 				url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
 			>
