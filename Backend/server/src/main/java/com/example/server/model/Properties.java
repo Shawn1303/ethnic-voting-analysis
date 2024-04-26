@@ -11,7 +11,7 @@ public class Properties {
     }
 
     public void setDistrictN(int districtN) {
-        districtN = districtN;
+        this.districtN = districtN;
     }
 
     @Override

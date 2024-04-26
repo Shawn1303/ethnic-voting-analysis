@@ -31,14 +31,14 @@ export default function StateDataSummary(props) {
 					):(
 						<Grid container spacing={2} justifyContent='space-around'>
                             <Grid item xs={4}>  
-                                <b>State Population:</b> some number
+                                <b>State Population:</b> 6 mil
                             </Grid>
                             <Grid item xs={8}>
                                 <b>Population of Each Significant Racial/Ethnic Group:</b>
 								<RacialDistributionBar/>
                             </Grid>
 							<Grid item xs={12}>
-                                <b>State Voter Distribution:</b> some graph? <br/>
+                                <b>State Voter Distribution:</b> bar graph <br/>
                             </Grid>
                             <Grid item xs={12}>
                                 <b>Summary of State Representatives:</b> two bar graphs(one party one racial) <br/>

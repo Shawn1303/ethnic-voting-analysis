@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
 export default function StateMap(props) {
-	const center = [39.5, -98];
+	const center = [39.5, -98]; // center of US
 	return(
 		<MapContainer 
 			center={center} 
