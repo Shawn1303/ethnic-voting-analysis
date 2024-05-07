@@ -1,0 +1,25 @@
+//Split this into 2 files probably
+{
+    "virginia": {
+        "districts": {
+            "districtNo": String,
+            "stateDistrictMap": {
+                "type": "Feature",
+                "properties": {
+                  //
+                },
+                "geometry": {
+                    "type": "MultiPolygon",
+                
+                }
+            }
+            "representatives": [StateAssemblyMember]+,
+            "precincts": [Precinct]+
+            ...
+        }
+    },
+
+    "maryland": {
+        ...
+    }
+}
