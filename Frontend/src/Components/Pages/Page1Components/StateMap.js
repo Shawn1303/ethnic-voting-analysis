@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, useMap, GeoJSON } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+// import va_map from '../../../Data'
 
 export default function StateMap(props) {
 	const center = [39.5, -98];
@@ -11,7 +12,7 @@ export default function StateMap(props) {
 			zoom={3} 
 			style={{ width: '100%', height: '80vh'}}>
 			<TileLayer
-				url="https://tiles.stadiamaps.com/tiles/stamen_toner_lite/{z}/{x}/{y}{r}.png"
+				url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 			>
 			</TileLayer>
 			<StateFeature 
@@ -60,7 +61,7 @@ function StateFeature(props) {
 			lastClickedArea.clicked = false;
 		}
         event.target.setStyle({
-            color: "#D6492A",
+            color: "#E57200",
         })
 		event.target.clicked = true;
 		lastClickedArea = event.target;
