@@ -5,22 +5,22 @@ const data = [
   {
     name: 'WHITE',
     rep: 70,
-    pop: 100000,
+    pop: 2279,
   },
   {
     name: 'BLACK',
     rep: 25,
-    pop: 20000,
+    pop: 2,
   },
   {
     name: 'ASIAN',
     rep: 3,
-    pop: 5000,
+    pop: 10,
   },
   {
     name: 'HISPANICLATINO',
     rep: 2,
-    pop: 3000,
+    pop: 42,
   }
 ];
 
@@ -29,25 +29,21 @@ export default class RacialDistributionBar extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="90%">
+      <ResponsiveContainer width="100%" height="95%">
         <BarChart
           width={500}
           height={300}
           data={data}
-          margin={{
-            top: 5,
-            right: 30,
-            left: 20,
-            bottom: 5,
-          }}
+          margin={{top: 5, right: 30, left: 20, bottom: 5}} 
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
+          <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
           <Tooltip />
           <Legend />
-          <Bar dataKey="rep" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-          <Bar dataKey="pop" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+          <Bar yAxisId="left" dataKey="rep" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar yAxisId="right" dataKey="pop" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
         </BarChart>
       </ResponsiveContainer>
     );
