@@ -3,16 +3,15 @@ import { useMap } from "react-leaflet";
 import L from "leaflet";
 import "../../../index.css";
 
-const popPerc = [0, 2, 5, 10, 20, 30, 40];
+const popPerc = [0, 5, 10, 20, 30, 40];
 
 function getColor(d) {
-    return  d > 40 ? "#0b5394" : 
-            d > 30 ? "#23649e" : 
-            d > 20 ? "#3b75a9" : 
-            d > 10 ? "#6c97be" : 
-            d > 5 ? "#6c97be" : 
-            d > 2 ? "#9dbad4" :  
-                    "#cedce9";
+    return  d > 40 ? "#000094" : 
+            d > 30 ? "#11349e" : 
+            d > 20 ? "#33559e" : 
+            d > 10 ? "#5977aa" : 
+            d > 5 ? "#7799be" : 
+					"#9dbad4";
 };
 // #0b5394
 // #23649e

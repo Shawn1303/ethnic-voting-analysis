@@ -17,67 +17,43 @@ export default function StateMap(props) {
 				url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 			>
 			</TileLayer>
-			{/* <GeoJSON data={va.features} /> */}
-			<StateFeature state={props.state} districtplan={props.districtplan} mapOutline={props.mapOutline} race={props.race}	/>
+			<StateFeature 
+				state={props.state} 
+				districtplan={props.districtplan} 
+				mapOutline={props.mapOutline} 
+				race={props.race}	
+				district={props.district}
+				setDistrict={props.setDistrict}
+			/>
 			{ props.mapOutline !== 'districtPlan' ? <Legend /> : null}
 		</MapContainer>
 	)
 }
 
 function getColor(d) {
-    return  d > 40 ? "#0b5394" : 
-            d > 30 ? "#23649e" : 
-            d > 20 ? "#3b75a9" : 
-            d > 10 ? "#6c97be" : 
-            d > 5 ? "#6c97be" : 
-            d > 2 ? "#9dbad4" :  
-                    "#cedce9";
+    return  d > 40 ? "#000094" : 
+            d > 30 ? "#11349e" : 
+            d > 20 ? "#33559e" : 
+            d > 10 ? "#5977aa" : 
+            d > 5 ? "#7799be" : 
+					"#9dbad4";
 };
 
 function StateFeature(props) {
 	const map = useMap();
 	
-	let lastClickedArea = useRef(null);
 	const onClick = useCallback((event) => {
-		if (lastClickedArea.current && lastClickedArea.current !== event.target) {
-			if (lastClickedArea.current.setStyle) {
-				lastClickedArea.current.setStyle({
-					color: "#002147",
-				});
-			}
-			lastClickedArea.current.clicked = false;
+		if(props.district !== event.target.feature.properties.districtN){
+			props.setDistrict(event.target.feature.properties.districtN);
+			// console.log('worked');
 		}
-		if (event.target) {
-			event.target.setStyle({
-				color: "#E57200",
-			});
-			event.target.clicked = true;
-			lastClickedArea.current = event.target;
-		}
-	}, []);
+	}, [props.district, props.setDistrict]);
 	
-	const mouseHover = useCallback((event) => {
-		if (event.target && !event.target.clicked) {
-			event.target.setStyle({
-				color: "#E57200",
-			});
-		}
-	}, []);
-	
-	const mouseLeave = useCallback((event) => {
-		if (event.target && !event.target.clicked) {
-			event.target.setStyle({
-				color: "#002147",
-			});
-		}
-	}, []);
 	const onEachArea = useCallback((area, layer) => {
 		layer.on({
-			// mouseover: mouseHover,
-			// mouseout: mouseLeave,
 			click: onClick
 		});
-	}, [mouseHover, mouseLeave, onClick]);
+	}, [onClick]);
 	
 	
 	useEffect(() => {
@@ -86,7 +62,7 @@ function StateFeature(props) {
             center = [38.845753, -77.241273];
             zoom = 8;
         } else if (props.state === "va") {
-            center = [37.4316, -78.6569];
+            center = [37.9316, -79.2569];
             zoom = 7;
         } else {
             center = [39.5, -98]; // Default center
@@ -94,16 +70,42 @@ function StateFeature(props) {
         }
         map.setView(center, zoom);
 
-        if (props.districtplan) {
+        if (props.districtplan && props.mapOutline !== 'districtPlan') {
             const geoJsonLayer = L.geoJSON(props.districtplan.features, {
             	onEachFeature: onEachArea,
 				style: (feature) => {
+					// let style = { color: "#002147", weight: 1}
+					let percentage = 0;
 					if (props.mapOutline === 'heatMap' || props.mapOutline === 'heatMapD') {
-						const percentage = feature.properties[props.race]/feature.properties[`registered_voters_total`]; // Assuming props.selectedRace is the key for the race
-						return {color: getColor(percentage*100)};
-					} else {
-						return { color: "#002147" }; // Default color
+						percentage = feature.properties[props.race]/feature.properties[`registered_voters_total`] * 100; 
 					}
+					let style = {
+						color: getColor(percentage), // Base color from heatmap
+						weight: percentage < 20 ? 3 : 2
+					};
+
+					if(feature.properties.DISTRICTN == props.district){
+						style = { color: "#E57200", weight: 5 };
+					} 
+
+					return style;
+				}
+            }).addTo(map);
+
+            return () => {
+                map.removeLayer(geoJsonLayer);
+            };
+        } else if (props.districtplan && props.mapOutline === 'districtPlan') {
+            const geoJsonLayer = L.geoJSON(props.districtplan.features, {
+            	onEachFeature: onEachArea,
+				style: (feature) => {
+					let style = { color: "#002147", weight: 1}
+
+					if(feature.properties.districtN == props.district){
+						style = { color: "#E57200", weight: 5 };
+					} 
+
+					return style;
 				}
             }).addTo(map);
 
@@ -111,7 +113,7 @@ function StateFeature(props) {
                 map.removeLayer(geoJsonLayer);
             };
         }
-    }, [props.districtplan, props.mapOutline, props.race, props.state, map, onEachArea]);
+    }, [props.districtplan, props.mapOutline, props.race, props.state, props.district, map, onEachArea]);
 
 	return null;
 }

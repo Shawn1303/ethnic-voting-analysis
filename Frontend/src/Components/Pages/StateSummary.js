@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StateMap from './Page1Components/StateMap';
 import EnsembleSummary from './Page1Components/EnsembleSummary';
 import StateAssemblyTable from './Page1Components/StateAssemblyTable';
@@ -7,15 +7,24 @@ import { Box, Grid } from '@mui/material';
 
 
 export default function StateSummary(props) {
+	const [district, setDistrict] = useState('');
+	// console.log(district);
 	return(
 		<Box margin={'10px 1%'}>
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
-					<StateMap state = {props.state} districtplan={props.districtplan} mapOutline={props.mapOutline} race={props.race}/>
+					<StateMap 
+						state = {props.state} 
+						districtplan={props.districtplan} 
+						mapOutline={props.mapOutline} 
+						race={props.race} 
+						district={district} 
+						setDistrict={setDistrict}
+					/>
 				</Grid>
 				<Grid item xs={6} style={{maxHeight: '85vh', overflowY: 'auto'}}>
 					<StateDataSummary state = {props.state}></StateDataSummary>
-					<StateAssemblyTable state = {props.state}></StateAssemblyTable>
+					<StateAssemblyTable state = {props.state} district={district} setDistrict={setDistrict}/>
 					<EnsembleSummary state = {props.state}></EnsembleSummary>
 				</Grid>	
 			</Grid>

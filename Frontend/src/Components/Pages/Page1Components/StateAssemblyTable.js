@@ -35,6 +35,10 @@ export default function StateAssemblyTable(props) {
 		setOpenModal(false);
 		setSelectedImageUrl('');
 	};
+
+	const handleSelectDistrict = (row) => {
+		props.setDistrict(row.districtID);
+	}
 	
 
 	const style = {
@@ -158,7 +162,15 @@ export default function StateAssemblyTable(props) {
 									.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 									.map((district) => {
 										return (
-											<TableRow key={district.districtN} hover role="checkbox" tabIndex={-1}>
+											<TableRow 
+												key={district.districtID} 
+												hover role="checkbox" 
+												tabIndex={-1}
+												onClick={() => handleSelectDistrict(district)}
+                                            	style={{
+                                                	backgroundColor: props.district === district.districtID ? '#f0f0f0' : 'white'
+                                            	}}
+												>
 												{columns.map((column) => {
 													const value = district[column.id];
 													return (
