@@ -6,6 +6,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import { Box, Container, Grid } from '@mui/material';
 import RacialDistributionBar from './RacialDistributionBar';
+import PartyDistributionBar from './PartyDistributionBar';
 
 
 export default function StateDataSummary(props) {
@@ -24,7 +25,7 @@ export default function StateDataSummary(props) {
 				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>State Data Summary</Typography>
 			</Box>
 			
-			<Collapse in={open} timeout='auto' unmountOnExit>
+			<Collapse in={open} timeout='auto' unmountOnExit style={{maxHeight: '60vh', overflowY: 'auto'}}>
 				{
 					props.state === ''? (
 						<p>No state selected</p> 
@@ -33,15 +34,13 @@ export default function StateDataSummary(props) {
                             <Grid item xs={4}>  
                                 <b>State Population:</b> 6 mil
                             </Grid>
-                            <Grid item xs={8}>
+                            <Grid item xs={12}>
                                 <b>Population of Each Significant Racial/Ethnic Group:</b>
 								<RacialDistributionBar/>
                             </Grid>
 							<Grid item xs={12}>
-                                <b>State Voter Distribution:</b> bar graph <br/>
-                            </Grid>
-                            <Grid item xs={12}>
-                                <b>Summary of State Representatives:</b> two bar graphs(one party one racial) <br/>
+                                <b>State Voter Distribution:</b>
+								<PartyDistributionBar/>
                             </Grid>
 						</Grid>
 					)

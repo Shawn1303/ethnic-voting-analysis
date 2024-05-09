@@ -3,24 +3,24 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 
 const data = [
   {
-    name: 'WHITE',
-    rep: 70,
-    pop: 2279,
+    name: 'White',
+    Representative: 70,
+    Population: 2279,
   },
   {
-    name: 'BLACK',
-    rep: 25,
-    pop: 2,
+    name: 'Black/African American',
+    Representative: 25,
+    Population: 2,
   },
   {
-    name: 'ASIAN',
-    rep: 3,
-    pop: 10,
+    name: 'Asian',
+    Representative: 3,
+    Population: 10,
   },
   {
-    name: 'HISPANICLATINO',
-    rep: 2,
-    pop: 42,
+    name: 'Hispanic/Latino',
+    Representative: 2,
+    Population: 42,
   }
 ];
 
@@ -29,12 +29,12 @@ export default class RacialDistributionBar extends PureComponent {
 
   render() {
     return (
-      <ResponsiveContainer width="100%" height="95%">
+      <ResponsiveContainer width="95%" height="93%">
         <BarChart
           width={500}
           height={300}
           data={data}
-          margin={{top: 5, right: 30, left: 20, bottom: 5}} 
+          margin={{top: 5, right: 30, left: 30, bottom: 5}} 
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="name" />
@@ -42,8 +42,8 @@ export default class RacialDistributionBar extends PureComponent {
           <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
           <Tooltip />
           <Legend />
-          <Bar yAxisId="left" dataKey="rep" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
-          <Bar yAxisId="right" dataKey="pop" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
+          <Bar yAxisId="left" dataKey="Representative" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+          <Bar yAxisId="right" dataKey="Population" fill="#82ca9d" activeBar={<Rectangle fill="gold" stroke="purple" />} />
         </BarChart>
       </ResponsiveContainer>
     );

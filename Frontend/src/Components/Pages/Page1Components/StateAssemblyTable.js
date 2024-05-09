@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Image } from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -16,34 +16,83 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
 import Avatar from '@mui/material/Avatar';
 import { Container } from '@mui/material';
+import Modal from '@mui/material/Modal';
 
 export default function StateAssemblyTable(props) {
 	const [open, setOpen] = useState(false);
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(10);	
 	const [stateAssemblyData, setStateAssemblyData] = useState(null);
+
+	const [openModal, setOpenModal] = useState(false);
+	const [selectedImageUrl, setSelectedImageUrl] = useState('');
+	const handleOpenModal = (imageUrl) => {
+		setSelectedImageUrl(imageUrl);
+		setOpenModal(true);
+	};
+	  
+	const handleCloseModal = () => {
+		setOpenModal(false);
+		setSelectedImageUrl('');
+	};
+	
+
+	const style = {
+		position: 'absolute',
+		top: '50%',
+		left: '50%',
+		transform: 'translate(-50%, -50%)',
+		width: 400,
+		bgcolor: 'background.paper',
+		border: '2px solid #000',
+		boxShadow: 24,
+		p: 4,
+	  };
+	
+	const raceFormatter = (value) => {
+		const raceMap = {
+		  WHITE: 'White',
+		  ASIAN: 'Asian',
+		  BLACK: 'Black/African American',
+		  HISPANICLATINO: 'Hispanic/Latino'
+		};
+		return raceMap[value] || value;
+	};
+
 	const columns = [
 		{ id: 'districtID', label: 'District ID', minWidth: 80 },
 		{
 			id: 'name',
 			label: 'Representative',
-			minWidth: 200,
-			format: (value, row) => (
-				<div style={{ display: 'flex', alignItems: 'center' }}>
-					<Avatar alt={value} src={row.url} style={{ marginRight: 10 }} />
-					{value}
-				</div>
-			)
+			minWidth: 120,
 		},
-		{ id: 'party', label: 'Party', minWidth: 60 },
-		{ id: 'race', label: 'Race', minWidth: 50 },
+		{ 
+			id: 'party', 
+			label: 'Party', 
+			minWidth: 60 ,
+			format: (value) => value === 'REP' ? 'Republic' : 'Democratic'
+		},
+		{ 
+			id: 'race', 
+			label: 'Race', 
+			minWidth: 50 ,
+			format: raceFormatter
+		},
 		{
-		  id: 'voteMargin',
-		  label: 'Voting Margin',
-		  minWidth: 80,
-		  align: 'right',
-		  format: (value) => `${value}%`,
-		}
+			id: 'voteMargin',
+			label: 'Voting Margin',
+			minWidth: 80,
+			align: 'right',
+			format: (value) => `${value}%`,
+		},
+		{
+			id: 'image',
+			label: 'Image',
+			minWidth: 15,
+			format: (value, row) => (
+				<a href='#' onClick={()=>handleOpenModal(row.url)}>Image</a>
+			)
+		  }
 	];
 
 	const handleChangePage = (event, newPage) => {
@@ -58,7 +107,7 @@ export default function StateAssemblyTable(props) {
 	async function getStateAssemblyData(state) {
 		try {
 			const result = await axios.get(`http://localhost:8080/stateAssemblyTable?state=${state}`);
-			console.log(result.data)
+			// console.log(result.data)
 			setStateAssemblyData(result.data);
 		} catch(error) {
 			alert(`Error fetching GeoJSON:${error}`);
@@ -133,6 +182,12 @@ export default function StateAssemblyTable(props) {
 							onPageChange={handleChangePage}
 							onRowsPerPageChange={handleChangeRowsPerPage}
 						/>
+						<Modal
+							open={openModal}
+							onClose={handleCloseModal}
+						>
+							<img src={selectedImageUrl}/>
+						</Modal>
 					</Paper>
 					
 				):(

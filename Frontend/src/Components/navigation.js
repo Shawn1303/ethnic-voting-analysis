@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import SelectState from './Pages/Page1Components/SelectState';
-import SelectOutline from './Pages/Page1Components/SelectOutline';
+import SelectState from './Pages/Page1Components/Selection/SelectState';
+import SelectOutline from './Pages/Page1Components/Selection/SelectOutline';
+import SelectRace from './Pages/Page1Components/Selection/SelectRace';
 
 export default function Navigation(props) {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -45,12 +46,17 @@ export default function Navigation(props) {
 				<MenuItem onClick={() => handleClose("stateSummary")}>State Summary</MenuItem>
 				<MenuItem onClick={() => handleClose("ginglesTests")}>Gingles Tests</MenuItem>
 				<MenuItem onClick={() => handleClose("ei")}>Ecological Inference</MenuItem>
+				<MenuItem onClick={() => handleClose("ensemble")}>Ensemble </MenuItem>
 				<MenuItem onClick={() => handleClose("compare")}>Compare States</MenuItem>
 			</Menu>
 			<SelectState state = {props.state} setState = {props.setState} setMapOutline = {props.setMapOutline}/>
 			{
-				props.state && <SelectOutline mapOutline = {props.mapOutline} setMapOutline = {props.setMapOutline}/>
+				props.state && <SelectOutline mapOutline = {props.mapOutline} setMapOutline = {props.setMapOutline} setRace = {props.setRace}/>
 			}
+			{
+				props.mapOutline !== 'districtPlan' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+			}
+			
 		</div>
 	);
   }
