@@ -22,7 +22,7 @@ export default function Ensemble(props) {
                     <EnsembleSummary state = {props.state}/>
 				</Grid>	
                 <Grid item xs={12} style={{height: '40vh', overflowY: 'auto'}}>
-                    <Boxplot data={data} width={700} height={400} />
+                    <Boxplot data={data} width={1500} height={300} />
 				</Grid>	
 			</Grid>
 		</Box>

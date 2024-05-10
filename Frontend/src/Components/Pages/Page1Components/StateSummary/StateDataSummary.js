@@ -10,7 +10,7 @@ import PartyDistributionBar from './PartyDistributionBar';
 
 
 export default function StateDataSummary(props) {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState(true);
 
 	return (
 		<Container className='data-container'>
@@ -25,10 +25,10 @@ export default function StateDataSummary(props) {
 				<Typography variant='h4' style={{flex:1, fontWeight: 'bold', textAlign: 'center'}}>State Data Summary</Typography>
 			</Box>
 			
-			<Collapse in={open} timeout='auto' unmountOnExit style={{maxHeight: '60vh', overflowY: 'auto'}}>
+			<Collapse in={open} timeout='auto' unmountOnExit style={{maxHeight: '68vh', overflowY: 'auto'}}>
 				{
 					props.state === ''? (
-						<p>No state selected</p> 
+						<p>Select a state</p> 
 					):(
 						<Grid container spacing={2} justifyContent='space-around'>
                             <Grid item xs={4}>  

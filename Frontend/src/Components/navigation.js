@@ -33,7 +33,12 @@ export default function Navigation(props) {
 				aria-expanded={open ? 'true' : undefined}
 				onClick={handleClick}
 			>
-				Dashboard
+				{props.page === 'stateSummary' ? "DASHBOARD" :
+					props.page === 'ei' ? "Ecological Inference" :
+					props.page === 'ginglesTests' ? "Gingles Tests" :
+					props.page === 'ensemble' ? "Ensemble" :
+					props.page === 'compare' ? "Compare States" :
+									"DASHBOARD"}
 			</Button>
 			<Menu
 				id="menu"

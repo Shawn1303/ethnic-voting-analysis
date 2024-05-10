@@ -142,7 +142,7 @@ export default function StateAssemblyTable(props) {
 			<Collapse in={open} timeout='auto' unmountOnExit>
 				{stateAssemblyData ? (
 					<Paper sx={{ width: '100%', overflow: 'hidden' }}>
-						<TableContainer sx={{ maxHeight: 300 }}>
+						<TableContainer sx={{ maxHeight: '60vh' }}>
 							<Table stickyHeader aria-label="sticky table">
 								<TableHead>
 									<TableRow>
