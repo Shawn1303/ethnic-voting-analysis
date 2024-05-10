@@ -6,6 +6,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: rgba(0, 43, 98, 0.1); */
+  /* background-color: rgba(244, 145, 30, 0.1); */
 }
 
 code {
@@ -37,7 +39,7 @@ code {
 
 #menu-button {
 	margin: 6.75px 0;
-	color: aliceblue;
+	color: #F4911E ;
 	font-size: 20px;
 }
 

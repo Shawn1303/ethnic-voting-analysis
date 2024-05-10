@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useMap } from "react-leaflet";
 import L from "leaflet";
-import "../../../index.css";
+// import "../../../../index.css";
 
 const popPerc = [0, 5, 10, 20, 30, 40];
 

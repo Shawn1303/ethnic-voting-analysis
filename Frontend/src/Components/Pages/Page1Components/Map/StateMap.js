@@ -12,7 +12,7 @@ export default function StateMap(props) {
 		<MapContainer 
 			center={center} 
 			zoom={3} 
-			style={{ width: '100%', height: '85vh'}}>
+			style={{ width: '100%', height: props.height}}>
 			<TileLayer
 				url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 			>

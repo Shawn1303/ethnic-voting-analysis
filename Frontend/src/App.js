@@ -3,6 +3,9 @@ import axios from 'axios';
 import Navigation from "./Components/navigation";
 import StateSummary from './Components/Pages/StateSummary';
 import Gingles from "./Components/Pages/Gingles"
+import Ei from './Components/Pages/Ei';
+import Ensemble from './Components/Pages/Esemble'
+
 import va_precinct from "./Components/Pages/Page1Components/va_precinct_data.json"
 import va_State from "./Data/District_Boundaries/va_finalized.json"
 
@@ -12,7 +15,7 @@ function App() {
 	const [state, setState] = useState('');
 	const [mapOutline, setMapOutline] = useState('districtPlan');
 	const [districtplan, setDistrictplan] = useState(null);
-	const [race, setRace] = useState('registered_voters_european');
+	const [race, setRace] = useState('');
 
 	async function loadDistrictPlan(state) {
 		try {
@@ -41,13 +44,13 @@ function App() {
 			pageHTML = <StateSummary state={state} districtplan={districtplan} mapOutline={mapOutline} race={race} page={page}/>
 			break;
 		case "ginglesTests":
-			pageHTML = <Gingles />
+			pageHTML = <Gingles state={state} race={race}/>
 			break;
 		case "ei":
-			pageHTML = <></>
+			pageHTML = <Ei state={state} race={race}/>
 			break;
 		case "ensemble":
-			pageHTML = <></>
+			pageHTML = <Ensemble state={state} districtplan={districtplan} mapOutline={mapOutline}/>
 			break;
 		case "compare":
 			pageHTML = <></>
@@ -56,7 +59,7 @@ function App() {
 
 	return (
 		<div className="App">
-			<Navigation setPage={setPage} state={state} setState={setState} mapOutline={mapOutline} setMapOutline={setMapOutline} race={race} setRace={setRace}/>
+			<Navigation page={page} setPage={setPage} state={state} setState={setState} mapOutline={mapOutline} setMapOutline={setMapOutline} race={race} setRace={setRace}/>
 			{pageHTML}
 		</div>
 	);

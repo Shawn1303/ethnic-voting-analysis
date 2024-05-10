@@ -20,6 +20,7 @@ export default function Navigation(props) {
 		setAnchorEl(null);
 		if(page){
 			props.setPage(page);
+			props.setRace('')
 		}
 	};
   
@@ -42,6 +43,7 @@ export default function Navigation(props) {
 				MenuListProps={{
 					'aria-labelledby': 'menu-button',
 				}}
+				style={{border:'10px solid #002D62'}}
 			>
 				<MenuItem onClick={() => handleClose("stateSummary")}>State Summary</MenuItem>
 				<MenuItem onClick={() => handleClose("ei")}>Ecological Inference</MenuItem>
@@ -51,10 +53,19 @@ export default function Navigation(props) {
 			</Menu>
 			<SelectState state = {props.state} setState = {props.setState} setMapOutline = {props.setMapOutline}/>
 			{
-				props.state && <SelectOutline mapOutline = {props.mapOutline} setMapOutline = {props.setMapOutline} setRace = {props.setRace}/>
+				props.page === 'stateSummary' && 
+				props.state && <SelectOutline 
+					mapOutline = {props.mapOutline} 
+					setMapOutline = {props.setMapOutline} 
+					setRace = {props.setRace}
+				/>
 			}
 			{
+				props.page === 'stateSummary' && 
 				props.mapOutline !== 'districtPlan' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+			}
+			{
+				props.page === 'ginglesTests' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
 			}
 			
 		</div>
