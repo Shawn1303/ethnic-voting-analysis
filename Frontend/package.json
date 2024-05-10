@@ -26,6 +26,7 @@
     "react-scripts": "5.0.1",
     "react-transition-group": "^4.4.5",
     "recharts": "^2.12.1",
+    "regression": "^2.0.1",
     "styled-components": "^6.1.8",
     "victory": "^36.9.1",
     "victory-core": "^36.9.1",

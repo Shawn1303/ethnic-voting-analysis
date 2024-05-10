@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios';
 import Navigation from "./Components/navigation";
 import StateSummary from './Components/Pages/StateSummary';
+import Gingles from "./Components/Pages/Gingles"
 import va_precinct from "./Components/Pages/Page1Components/va_precinct_data.json"
 import va_State from "./Data/District_Boundaries/va_finalized.json"
 
@@ -40,7 +41,7 @@ function App() {
 			pageHTML = <StateSummary state={state} districtplan={districtplan} mapOutline={mapOutline} race={race} page={page}/>
 			break;
 		case "ginglesTests":
-			pageHTML = <></>
+			pageHTML = <Gingles />
 			break;
 		case "ei":
 			pageHTML = <></>
