@@ -44,8 +44,8 @@ export default function Navigation(props) {
 				}}
 			>
 				<MenuItem onClick={() => handleClose("stateSummary")}>State Summary</MenuItem>
-				<MenuItem onClick={() => handleClose("ginglesTests")}>Gingles Tests</MenuItem>
 				<MenuItem onClick={() => handleClose("ei")}>Ecological Inference</MenuItem>
+				<MenuItem onClick={() => handleClose("ginglesTests")}>Gingles Tests</MenuItem>
 				<MenuItem onClick={() => handleClose("ensemble")}>Ensemble </MenuItem>
 				<MenuItem onClick={() => handleClose("compare")}>Compare States</MenuItem>
 			</Menu>
