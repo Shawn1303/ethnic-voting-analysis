@@ -23,6 +23,12 @@ export default function Navigation(props) {
 			props.setRace('')
 		}
 	};
+	const handleClickReset = () => {
+		props.setState('')
+		props.setPage('stateSummary')
+		props.setRace('registered_voters_european')
+		props.setMapOutline('districtPlan')
+	}
   
 	return (
 		<div className='navbar'>
@@ -70,9 +76,16 @@ export default function Navigation(props) {
 				props.mapOutline !== 'districtPlan' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
 			}
 			{
-				props.page === 'ginglesTests' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+				props.page === 'ginglesTests' || 
+				props.page === 'ei' || 
+				props.page === 'ensemble' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
 			}
-			
+			<Button
+				id="reset-button"
+				onClick={handleClickReset}
+			>
+				RESET
+			</Button>
 		</div>
 	);
   }
