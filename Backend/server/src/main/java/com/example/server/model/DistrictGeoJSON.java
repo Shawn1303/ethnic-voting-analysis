@@ -26,7 +26,7 @@ public class DistrictGeoJSON { //This is the GeoJSON format for ONE district
     public void setGeometry(Object geometry) {
         this.geometry = geometry;
     }
-    public Object getProperties() {
+    public Properties getProperties() {
         return properties;
     }
     public void setProperties(Properties properties) {
