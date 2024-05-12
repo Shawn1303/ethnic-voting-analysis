@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, Grid } from '@mui/material';
 import StateMap from './Page1Components/Map/StateMap';
-import EnsembleSummary from './Page4Components/EnsembleSummary';
+// import EnsembleSummary from './Page4Components/EnsembleSummary';
 import { data } from './Page4Components/data';
 import { Boxplot } from './Page4Components/Boxplot';
 export default function Ensemble(props) {
@@ -18,8 +18,8 @@ export default function Ensemble(props) {
                     />
 				</Grid>
 				<Grid item xs={6} style={{height: '40vh', overflowY: 'auto'}}>
-                    <EnsembleSummary state = {props.state}/>
-                    <EnsembleSummary state = {props.state}/>
+                    {/* <EnsembleSummary state = {props.state}/>
+                    <EnsembleSummary state = {props.state}/> */}
 				</Grid>	
                 <Grid item xs={12} style={{height: '40vh', overflowY: 'auto'}}>
                     <Boxplot data={data} width={1500} height={300} />
