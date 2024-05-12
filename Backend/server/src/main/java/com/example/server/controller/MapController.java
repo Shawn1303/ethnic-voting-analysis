@@ -17,17 +17,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class StateDistrictPlanController {
+public class MapController {
     @Autowired
     GeoJSONDocRepository geoJsonRepo;
 
     @GetMapping("/districtPlan")
-    @Cacheable("stateDistrictPlan")
+    @Cacheable("stateDistrictPlan") //TODO aggregate then add precinct population data
     public ResponseEntity<String> getStateDistrictPlanTest(@RequestParam String state) 
     {
         try {
             List<DistrictGeoJSON> districts = geoJsonRepo.findByState(state); 
-            //List<DistrictGeoJSON> districts = geoJsonRepo.findByPropertiesDistrictN(43);
 
             GeoJSONDoc geoJsonDoc = new GeoJSONDoc();
             geoJsonDoc.setType("FeatureCollection");
@@ -42,5 +41,15 @@ public class StateDistrictPlanController {
         catch (Exception e) {
             return ResponseEntity.status(400).body("Failed to generate GeoJSON: " + e.getMessage());
         }
+    }
+
+
+    @Autowired
+    PrecinctGeoJSONRespository precinctGeoJson;
+
+    @GetMapping("/heatMapP") 
+    @Cacheable("precinctPlan") //this already has the population data in properties
+    public PrecinctGeoJSON getPrecinctPlan(@RequestParam String state) {
+        return precinctGeoJson.findByState(state);
     }
 }
