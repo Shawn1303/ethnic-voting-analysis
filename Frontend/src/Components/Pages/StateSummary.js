@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import StateMap from './Page1Components/Map/StateMap';
 import StateAssemblyTable from './Page1Components/StateAssemblyTable';
 import StateDataSummary from './Page1Components/StateSummary/StateDataSummary';
+import EnsembleSummary from './Page1Components/EnsembleSummary';
 import { Box, Grid } from '@mui/material';
 
 
@@ -25,7 +26,7 @@ export default function StateSummary(props) {
 				<Grid item xs={6} style={{maxHeight: '85vh', overflowY: 'auto'}}>
 					<StateDataSummary state = {props.state}></StateDataSummary>
 					<StateAssemblyTable state = {props.state} district={district} setDistrict={setDistrict}/>
-					{/* <EnsembleSummary state = {props.state}></EnsembleSummary> */}
+					<EnsembleSummary state = {props.state}></EnsembleSummary>
 				</Grid>	
 			</Grid>
 		</Box>

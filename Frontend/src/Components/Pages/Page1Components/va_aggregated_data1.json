@@ -1,0 +1,60 @@
+[
+    [ 
+        {
+            "registered_voters_european": 3611080,
+            "registered_voters_hispanic": 329751,
+            "registered_voters_african_american": 835456,
+            "registered_voters_south_east_asian": 232878,
+            "registered_voters_other": 179434,
+            "registered_voters_unknown": 413937,
+            "registered_voters_total": 5602536
+        } 
+    ],
+    [ 
+        {
+           "race": "White",
+           "Representative": 70,
+           "Population": 3611080
+        }, 
+        {
+            "race": "Black/African American",
+            "Representative": 25,
+            "Population": 3611080
+        },
+        {
+            "race": "Hispanic/Latino",
+            "Representative": 2,
+            "Population": 329751
+        },
+        {
+            "race": "Asian",
+            "Representative": 3,
+            "Population": 232878
+        }
+    ],
+    [
+        {
+            "party": "republican",
+            "representatives": 49
+        },
+        {
+            "party": "democratic",
+            "representatives": 51
+        }
+    ],
+    [
+        {
+            "party": "Republican",
+            "votes": 1663158
+        },
+        {
+            "party": "Democratic",
+            "votes": 1599470
+        },
+        {
+            "party": "Liberation",
+            "votes": 23107
+        } 
+    ]
+]
+
