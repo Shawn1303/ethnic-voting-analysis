@@ -39,18 +39,33 @@ import bw2 from './Page4Components/boxplot/10000planspostpro/box_whiskers_europe
 import bw3 from './Page4Components/boxplot/10000planspostpro/box_whiskers_hisppop.json'
 import bw4 from './Page4Components/boxplot/10000planspostpro/box_whiskers_seasianpop.json'
 
+import map1 from './Page4Components/boxplot/10000planspostpro/oppMapAsianMax.json'
+import map2 from './Page4Components/boxplot/10000planspostpro/oppMapAsianMin.json'
+import map3 from './Page4Components/boxplot/10000planspostpro/oppMapBlackMax.json'
+import map4 from './Page4Components/boxplot/10000planspostpro/oppMapBlackMin.json'
+import map5 from './Page4Components/boxplot/10000planspostpro/oppMapHLMax.json'
+import map6 from './Page4Components/boxplot/10000planspostpro/oppMapHLMin.json'
+
 
 export default function Ensemble(props) {
 	const [open1, setOpen1] = useState(false);
 	const [open2, setOpen2] = useState(false);
 	const [features, setFeatures] = useState(null);
-
+	
 	useEffect(() => {
 		if(props.districtplan) {
+			// console.log(props.districtplan)
 			setFeatures(props.districtplan.features);
-			// console.log(props.districtplan.features)
 		}
 	}, [props.districtplan])
+
+	// useEffect(() => {
+	// 	props.setMapOutline('AsianMax')
+	// }, [])
+
+	// useEffect(() => {
+	// 	setMap(maps[props.mapOutline])
+	// }, [props.mapOutline])
 
 	const barcharts = {
 		'demographicWhite': barchartdata4,
@@ -58,7 +73,7 @@ export default function Ensemble(props) {
 		'demographicAsian': barchartdata3,
 		'demographicHispanicLatino': barchartdata1
 	}
-
+	
 	const boxandwhiskers = {
 		'demographicWhite': bw2,
 		'demographicBlack': bw1,
@@ -66,8 +81,23 @@ export default function Ensemble(props) {
 		'demographicHispanicLatino': bw3
 	}
 
-	console.log(data.race)
-	console.log(props.race)
+	const maps = {
+		'AsianMax': map1,
+		'AsianMin': map2,
+		'AfricanAmericanMax': map3,
+		'AfricanAmericanMin': map4,
+		'HispanicMax': map5,
+		'HispanicMin': map6
+	}
+	// const [map, setMap] = useState(maps['AsianMax']);
+
+	// map = null;
+	// if(props.mapOutline && props.mapOutline in maps) {
+	// 	setMap(maps[props.mapOutline])
+	// }
+	// console.log()
+	// console.log(data.race)
+	// console.log(props.race)
 
 	
 	const rowsSplit = [
@@ -121,6 +151,7 @@ export default function Ensemble(props) {
                         height='39vh'
                         state = {props.state} 
 						ensemblePlan={props.ensemblePlan} 
+						// ensemblePlan={map} 
 						mapOutline="ensemble"
                     />
 				</Grid>

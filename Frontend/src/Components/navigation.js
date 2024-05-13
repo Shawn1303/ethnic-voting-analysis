@@ -32,7 +32,7 @@ export default function Navigation(props) {
 		// props.setDistrictPlan(null)
 		// props.setPrecinct(null)
 	}
-    console.log(props.threshold)
+    // console.log(props.threshold)
 	return (
 		<div className='navbar'>
 			<Button
@@ -67,7 +67,7 @@ export default function Navigation(props) {
 			</Menu>
 			<SelectState state = {props.state} setState = {props.setState} setMapOutline = {props.setMapOutline}/>
 			{
-				props.page === 'stateSummary' && 
+				(props.page === 'stateSummary') && 
 				props.state && <SelectOutline 
 					mapOutline = {props.mapOutline} 
 					setMapOutline = {props.setMapOutline} 
@@ -83,9 +83,9 @@ export default function Navigation(props) {
 				props.page === 'ei' || 
 				props.page === 'ensemble' ? <SelectRace state={props.state} race = {props.race} setRace = {props.setRace}/> : null
 			}
-			{
-				// props.page === 'ensemble' ? <SelectThreshold threshold={props.threshold} setThreshold={props.setThreshold}/> : null
-			}
+			{/* {
+				props.page === 'ensemble' ? <SelectThreshold state={props.state} threshold={props.threshold} setThreshold={props.setThreshold}/> : null
+			} */}
 			<Button
 				id="reset-button"
 				onClick={handleClickReset}

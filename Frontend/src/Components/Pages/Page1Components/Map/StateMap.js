@@ -137,8 +137,8 @@ function StateFeature(props) {
 			return () => {
                 map.removeLayer(geoJsonLayer);
             };
-		} else if (props.mapOutline === 'ensemble'){
-			console.log(props.ensemblePlan)
+		} else if(props.mapOutline === 'ensemble'){
+			// console.log(props.ensemblePlan)
 			const geoJsonLayer = L.geoJSON(props.ensemblePlan.features, {
             	onEachFeature: onEachArea,
 				style: (feature) => {
@@ -150,7 +150,7 @@ function StateFeature(props) {
 						return colors[index];
 					};
 
-					console.log(feature)
+					// console.log(feature)
 					
 					let style = {
 						color: getColor(feature.properties.district_id), // Base color from heatmap

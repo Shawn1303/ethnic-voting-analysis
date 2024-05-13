@@ -17,9 +17,19 @@ export default function SelectOutline(props) {
         onChange={handleChange}
         sx={{ backgroundColor:'white' }}
       >
-        <MenuItem value={'districtPlan'}>Default District Plan</MenuItem>
-        <MenuItem value={'heatMapD'}>Heatmap (by District)</MenuItem>
-        <MenuItem value={'heatMapP'}>Heatmap (by Precinct)</MenuItem>
+		{/* {props.page === 'stateSummary' ? ( <> */}
+		<MenuItem value={'districtPlan'}>Default District Plan</MenuItem>
+		<MenuItem value={'heatMapD'}>Heatmap (by District)</MenuItem>
+		<MenuItem value={'heatMapP'}>Heatmap (by Precinct)</MenuItem>
+		{/* </>) : ( <>
+			<MenuItem value={'AsianMax'}>Asian Opp Dist Max</MenuItem>
+			<MenuItem value={'AsianMin'}>Asian Opp Dist Min</MenuItem>
+			<MenuItem value={'AfricanAmericanMax'}>African American Max</MenuItem>
+			<MenuItem value={'AfricanAmericanMin'}>African American Max</MenuItem>
+			<MenuItem value={'HispanicMax'}>Hispanic Max</MenuItem>
+			<MenuItem value={'HispanicMin'}>Hispanic Min</MenuItem>
+		</>)
+	} */}
       </Select>
     </FormControl>
   )
