@@ -24,6 +24,7 @@ public class StatsControllers {
         return repRepo.findByState(state);
     }
 
+
     @Autowired
     StateSummaryRepository stateSumRepo;
 
@@ -31,5 +32,15 @@ public class StatsControllers {
     @Cacheable("stateSummary")
     public StateSummary getStateSummary(@RequestParam String state) {
         return stateSumRepo.findByState(state);
+    }
+
+
+    @Autowired
+    GinglesRepository ginglesRepo;
+
+    @GetMapping("/gingles")
+    @Cacheable("gingles")
+    public Gingles getGingles(@RequestParam String state) {
+        return ginglesRepo.findByState(state);
     }
 }
