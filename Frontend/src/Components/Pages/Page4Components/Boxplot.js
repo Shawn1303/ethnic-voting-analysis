@@ -4,9 +4,9 @@ import { AxisLeft } from './AxisLeft';
 import { AxisBottom } from './AxisBottom';
 import { VerticalBox } from './VerticalBox';
 
-const MARGIN = { top: 30, right: 30, bottom: 30, left: 50 };
+const MARGIN = { top: 30, right: 30, bottom: 50, left: 50 };
 
-export const Boxplot = ({ width, height, data }) => {
+export const Boxplot = ({ width, height, data, race, features }) => {
   // The bounds (= area inside the axis) is calculated by subtracting the margins from total width / height
   const boundsWidth = width - MARGIN.right - MARGIN.left;
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
@@ -16,10 +16,11 @@ export const Boxplot = ({ width, height, data }) => {
     const values = data.flatMap(bucket => [bucket.min, bucket.q1, bucket.median, bucket.q3, bucket.max]);
     const chartMin = Math.min(...values);
     const chartMax = Math.max(...values);
-    const buckets = data.map(bucket => ({
+    const buckets = data.map((bucket, index) => ({
       ...bucket,
-      district: bucket.district.toString() // Ensure district is treated as a categorical variable
-    }));
+    //   district: bucket.district.toString() // Ensure district is treated as a categorical variable
+	  district: index
+}));
 
     return { chartMin, chartMax, buckets };
   }, [data]);
@@ -36,9 +37,16 @@ export const Boxplot = ({ width, height, data }) => {
     .domain(buckets.map(d => d.district))
     .padding(0.25);
 
+  const raceToName = {
+	'seasianpop': 'demographicAsian',
+	'hisppop': 'demographicHispanicLatino',
+	'afampop': 'demographicBlack'
+  }
+
   // Build the box shapes
   const allShapes = buckets.map((bucket, i) => {
     const { min, q1, median, q3, max, district } = bucket;
+	console.log(features[district])
 
     return (
       <g key={i} transform={`translate(${xScale(district)},0)`}>
@@ -52,6 +60,9 @@ export const Boxplot = ({ width, height, data }) => {
           stroke="black"
           fill={"#ead4f5"}
         />
+		<circle cx={xScale.bandwidth() / 2} 
+		cy={yScale((features[district].properties[raceToName[race]] / features[district].properties.demographicTotal).toFixed(1))} 
+		r={4} fill="red" />
       </g>
     );
   });
@@ -66,6 +77,22 @@ export const Boxplot = ({ width, height, data }) => {
           <g transform={`translate(0, ${boundsHeight})`}>
             <AxisBottom xScale={xScale} />
           </g>
+		  <text
+            x={width / 2}
+            // y={height + MARGIN.bottom / 3}
+			y={height - MARGIN.bottom}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Buckets
+          </text>
+		  <text
+            transform={`translate(-${MARGIN.left / 1.5}, ${height / 2}) rotate(-90)`}
+            textAnchor="middle"
+            dominantBaseline="middle"
+          >
+            Population Percent
+          </text>
         </g>
       </svg>
     </div>
