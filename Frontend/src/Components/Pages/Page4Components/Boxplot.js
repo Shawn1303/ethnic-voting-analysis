@@ -1,9 +1,8 @@
-import { useMemo } from "react";
-import * as d3 from "d3";
-import { getSummaryStats } from "./summary-stats";
-import { AxisLeft } from "./AxisLeft";
-import { AxisBottom } from "./AxisBottom";
-import { VerticalBox } from "./VerticalBox";
+import React, { useMemo } from 'react';
+import * as d3 from 'd3';
+import { AxisLeft } from './AxisLeft';
+import { AxisBottom } from './AxisBottom';
+import { VerticalBox } from './VerticalBox';
 
 const MARGIN = { top: 30, right: 30, bottom: 30, left: 50 };
 
@@ -13,10 +12,16 @@ export const Boxplot = ({ width, height, data }) => {
   const boundsHeight = height - MARGIN.top - MARGIN.bottom;
 
   // Compute everything derived from the dataset:
-  const { chartMin, chartMax, groups } = useMemo(() => {
-    const [chartMin, chartMax] = d3.extent(data.map((d) => d.value));
-    const groups = [...new Set(data.map((d) => d.name))];
-    return { chartMin, chartMax, groups };
+  const { chartMin, chartMax, buckets } = useMemo(() => {
+    const values = data.flatMap(bucket => [bucket.min, bucket.q1, bucket.median, bucket.q3, bucket.max]);
+    const chartMin = Math.min(...values);
+    const chartMax = Math.max(...values);
+    const buckets = data.map(bucket => ({
+      ...bucket,
+      district: bucket.district.toString() // Ensure district is treated as a categorical variable
+    }));
+
+    return { chartMin, chartMax, buckets };
   }, [data]);
 
   // Compute scales
@@ -24,25 +29,19 @@ export const Boxplot = ({ width, height, data }) => {
     .scaleLinear()
     .domain([chartMin, chartMax])
     .range([boundsHeight, 0]);
+
   const xScale = d3
     .scaleBand()
     .range([0, boundsWidth])
-    .domain(groups)
+    .domain(buckets.map(d => d.district))
     .padding(0.25);
 
   // Build the box shapes
-  const allShapes = groups.map((group, i) => {
-    const groupData = data.filter((d) => d.name === group).map((d) => d.value);
-    const sumStats = getSummaryStats(groupData);
-
-    if (!sumStats) {
-      return null;
-    }
-
-    const { min, q1, median, q3, max } = sumStats;
+  const allShapes = buckets.map((bucket, i) => {
+    const { min, q1, median, q3, max, district } = bucket;
 
     return (
-      <g key={i} transform={`translate(${xScale(group)},0)`}>
+      <g key={i} transform={`translate(${xScale(district)},0)`}>
         <VerticalBox
           width={xScale.bandwidth()}
           q1={yScale(q1)}
@@ -60,9 +59,7 @@ export const Boxplot = ({ width, height, data }) => {
   return (
     <div>
       <svg width={width} height={height}>
-        <g
-          transform={`translate(${[MARGIN.left, MARGIN.top].join(",")})`}
-        >
+        <g transform={`translate(${MARGIN.left},${MARGIN.top})`}>
           {allShapes}
           <AxisLeft yScale={yScale} pixelsPerTick={30} />
           {/* X axis uses an additional translation to appear at the bottom */}

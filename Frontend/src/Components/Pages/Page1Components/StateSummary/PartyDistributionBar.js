@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 export default function PartyDistributionBar(props){
   const barColors = ["#dc3545", "#007bff", "#fd7e14", "grey"]
@@ -16,7 +16,6 @@ export default function PartyDistributionBar(props){
         <XAxis dataKey="party" />
         <YAxis stroke="#black" tickFormatter={(value)=> Intl.NumberFormat('en-US', { style: 'decimal' }).format(value)}/>
         <Tooltip />
-        <Legend />
         <Bar dataKey="votes"> 
         {
           props.stateSummary[3].map((entry, index) => (

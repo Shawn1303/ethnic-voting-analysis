@@ -15,17 +15,18 @@ export default function StateDataSummary(props) {
 	const [open, setOpen] = useState(true);
 	const [stateSummary, setStateSummary] = useState("null");
 
-	async function getStateSummaryData(state) {
-		try {
-			const result = await axios.get(`http://localhost:8080/stateSummary?state=${state}`);
-			setStateSummary(result.data);
-		} catch(error) {
-			alert(`Error fetching GeoJSON:${error}`);
-		}
-	}
+	// async function getStateSummaryData(state) {
+	// 	try {
+	// 		const result = await axios.get(`http://localhost:8080/stateSummary?state=${state}`);
+	// 		setStateSummary(result.data);
+	// 	} catch(error) {
+	// 		alert(`Error fetching GeoJSON:${error}`);
+	// 	}
+	// }
 	useEffect(() => {
 		if(props.state) {
-			(async () => await getStateSummaryData(props.state))();
+			// (async () => await getStateSummaryData(props.state))();
+			setStateSummary(stateSum)
 		} else {
 			setStateSummary(stateSum)
 		}
