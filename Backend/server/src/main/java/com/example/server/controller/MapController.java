@@ -104,11 +104,31 @@ public class MapController {
     @Autowired
     OppMapRepository oppMapRepo;
 
-    @GetMapping("oppMap")
+    @GetMapping("/oppMap")
     @Cacheable("oppMap")
     public OppMap getOppMap(@RequestParam String state, 
                             @RequestParam String race, 
                             @RequestParam String mode) {
         return oppMapRepo.findByStateAndRaceAndMode(state, race, mode);
+    }
+
+    
+    @Autowired
+    BoxWhiskerRepository boxWhiskRepo;
+
+    @GetMapping("/boxWhisker")
+    @Cacheable("boxWhisker")
+    public List<BoxWhisker> getBoxWhiskers(@RequestParam String state, @RequestParam String race) {
+        return boxWhiskRepo.findByState(state);
+    }
+
+
+    @Autowired
+    OppBarChartRepository oppBarCharRepo;
+
+    @GetMapping("/oppBarChart")
+    @Cacheable("oppBarChart")
+    public List<OppBarChart> getOppBarCharts(@RequestParam String state, @RequestParam int threshold) {
+        return oppBarCharRepo.findByStateAndThreshold(state, threshold);
     }
 }
