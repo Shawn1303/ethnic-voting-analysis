@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import SelectState from './Selection/SelectState';
 import SelectOutline from './Selection/SelectOutline';
 import SelectRace from './Selection/SelectRace';
+import SelectThreshold from './Selection/SelectThreshold';
 
 export default function Navigation(props) {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -31,7 +32,7 @@ export default function Navigation(props) {
 		// props.setDistrictPlan(null)
 		// props.setPrecinct(null)
 	}
-  
+    console.log(props.threshold)
 	return (
 		<div className='navbar'>
 			<Button
@@ -83,7 +84,7 @@ export default function Navigation(props) {
 				props.page === 'ensemble' ? <SelectRace state={props.state} race = {props.race} setRace = {props.setRace}/> : null
 			}
 			{
-				
+				// props.page === 'ensemble' ? <SelectThreshold threshold={props.threshold} setThreshold={props.setThreshold}/> : null
 			}
 			<Button
 				id="reset-button"

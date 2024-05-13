@@ -37,16 +37,17 @@ export const Boxplot = ({ width, height, data, race, features }) => {
     .domain(buckets.map(d => d.district))
     .padding(0.25);
 
-  const raceToName = {
-	'seasianpop': 'demographicAsian',
-	'hisppop': 'demographicHispanicLatino',
-	'afampop': 'demographicBlack'
-  }
+//   const raceToName = {
+// 	'seasianpop': 'demographicAsian',
+// 	'hisppop': 'demographicHispanicLatino',
+// 	'afampop': 'demographicBlack',
+// 	'europeanpop': 'demographicWhite'
+//   }
 
   // Build the box shapes
   const allShapes = buckets.map((bucket, i) => {
     const { min, q1, median, q3, max, district } = bucket;
-	console.log(features[district])
+	// console.log(features[district])
 
     return (
       <g key={i} transform={`translate(${xScale(district)},0)`}>
@@ -61,7 +62,7 @@ export const Boxplot = ({ width, height, data, race, features }) => {
           fill={"#ead4f5"}
         />
 		<circle cx={xScale.bandwidth() / 2} 
-		cy={yScale((features[district].properties[raceToName[race]] / features[district].properties.demographicTotal).toFixed(1))} 
+		cy={yScale((features[district].properties[race] / features[district].properties.demographicTotal).toFixed(1))} 
 		r={4} fill="red" />
       </g>
     );

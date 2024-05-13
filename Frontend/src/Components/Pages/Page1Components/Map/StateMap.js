@@ -73,7 +73,7 @@ function StateFeature(props) {
         map.setView(center, zoom);
 
         if (props.precinct && props.mapOutline === 'heatMapP') {
-			console.log(props.precinct.features)
+			// console.log(props.precinct.features)
             const geoJsonLayer = L.geoJSON(props.precinct.features, {
             	onEachFeature: onEachArea,
 				style: (feature) => {
