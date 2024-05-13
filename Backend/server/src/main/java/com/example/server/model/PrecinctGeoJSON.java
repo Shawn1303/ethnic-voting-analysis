@@ -3,7 +3,7 @@ package com.example.server.model;
 import java.util.List;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "PrecinctGeoJSON")
+@Document(collection = "PrecinctGeoJSON2")
 public class PrecinctGeoJSON {
     private String type;
     private String state;

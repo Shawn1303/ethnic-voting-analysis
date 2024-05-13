@@ -2,7 +2,7 @@ package com.example.server.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "PrecinctGeoJSON")
+@Document(collection = "PrecinctGeoJSON2")
 public class Properties {
     private String districtN;
     private String precinctName;
