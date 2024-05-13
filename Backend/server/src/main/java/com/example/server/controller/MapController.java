@@ -99,4 +99,16 @@ public class MapController {
     public PrecinctGeoJSON getPrecinctPlan(@RequestParam String state) {
         return precinctGeoJson.findByState(state);
     }
+
+
+    @Autowired
+    OppMapRepository oppMapRepo;
+
+    @GetMapping("oppMap")
+    @Cacheable("oppMap")
+    public OppMap getOppMap(@RequestParam String state, 
+                            @RequestParam String race, 
+                            @RequestParam String mode) {
+        return oppMapRepo.findByStateAndRaceAndMode(state, race, mode);
+    }
 }
