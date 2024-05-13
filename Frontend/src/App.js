@@ -15,7 +15,7 @@ function App() {
 	const [precinct, setPrecinct] = useState(null);
 	const [race, setRace] = useState('');
 	const [ep, setEp] = useState(0);
-	const [threshold, setThreshold] = useState('50');
+	const [threshold, setThreshold] = useState(50);
 	const [ensemblePlan, setEnsemblePlan] = useState(ensembleMap);
 
 
@@ -52,7 +52,7 @@ function App() {
 			pageHTML = <Ei state={state} race={race}/>
 			break;
 		case "ensemble":
-			pageHTML = <Ensemble state={state} districtplan={districtplan} mapOutline={mapOutline} threshold={threshold} race={race} ensemblePlan={ensemblePlan} setEnsemblePlan={setEnsemblePlan}/>
+			pageHTML = <Ensemble state={state} districtplan={districtplan} setMapOutline={setMapOutline} mapOutline={mapOutline} threshold={threshold} race={race} ensemblePlan={ensemblePlan} setEnsemblePlan={setEnsemblePlan}/>
 			break;
 		case "compare":
 			pageHTML = <></>
