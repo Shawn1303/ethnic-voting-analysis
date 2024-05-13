@@ -26,18 +26,21 @@ public class MapController {
     PrecinctGeoJSONRespository precinctGeoJson;
 
     @GetMapping("/districtPlan")
-    @Cacheable("stateDistrictPlan") //TODO aggregate then add precinct population data
+    @Cacheable("stateDistrictPlan")
     public ResponseEntity<String> getStateDistrictPlanTest(@RequestParam String state) 
     {
         try {
+            System.out.println("Getting districts");
             List<DistrictGeoJSON> districts = geoJsonRepo.findByState(state); 
+            System.out.println("Districts gotten");
+
+                System.out.println("Getting precincts");
+                List<PrecinctFeature> districtPrecincts = precinctGeoJson.findByState(state).getFeatures();
+                System.out.println("Precincts gotten");
+
             for (DistrictGeoJSON district : districts) {
                 String districtID = district.getProperties().getDistrictN();
                 System.out.println(districtID);
-
-                PrecinctGeoJSON statePrecincts = precinctGeoJson.findByState(state);
-                List<PrecinctFeature> dP = statePrecincts.getFeatures();
-                List<PrecinctFeature> districtPrecincts = new ArrayList<>(dP);
 
                 Properties stats = new Properties();
                 int democraticVotes = 0;
