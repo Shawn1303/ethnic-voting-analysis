@@ -6,24 +6,13 @@ import L from "leaflet";
 const popPerc = [0, 5, 10, 20, 30, 40];
 
 function getColor(d) {
-    return  d > 40 ? "#000094" : 
-            d > 30 ? "#11349e" : 
-            d > 20 ? "#33559e" : 
-            d > 10 ? "#5977aa" : 
-            d > 5 ? "#7799be" : 
-					"#9dbad4";
+    return  d > 40 ? "#e93e3a" : 
+            d > 30 ? "#ed683c" : 
+            d > 20 ? "#f3903f" : 
+            d > 10 ? "#fdc70c" : 
+            d > 5 ? "#fff33b" : 
+					"#ffffa0";
 };
-// #0b5394
-// #23649e
-// #3b75a9
-// #5486b4
-// #6c97be
-// #85a9c9
-// #9dbad4
-// #b5cbde
-// #cedce9
-// #e6edf4
-// #ffffff
 
 function Legend() {
   const map = useMap();  

@@ -6,7 +6,7 @@ import Select from '@mui/material/Select';
 export default function SelectOutline(props) {
   const handleChange = (event) => {
     props.setMapOutline(event.target.value);
-    props.setRace('registered_voters_european');
+    props.setRace('demographicWhite');
   };
   return(
     <FormControl fullWidth style={{ width: '12%', margin: '10px 10px', borderRadius: '5px'}}>

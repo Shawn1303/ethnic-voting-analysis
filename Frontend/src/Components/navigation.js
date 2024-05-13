@@ -20,13 +20,13 @@ export default function Navigation(props) {
 		setAnchorEl(null);
 		if(page){
 			props.setPage(page);
-			props.setRace('')
+			props.setRace('demographicWhite')
 		}
 	};
 	const handleClickReset = () => {
 		props.setState('')
 		props.setPage('stateSummary')
-		props.setRace('registered_voters_european')
+		props.setRace('demographicWhite')
 		props.setMapOutline('districtPlan')
 	}
   
@@ -73,12 +73,12 @@ export default function Navigation(props) {
 			}
 			{
 				props.page === 'stateSummary' && 
-				props.mapOutline !== 'districtPlan' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+				props.mapOutline !== 'districtPlan' ? <SelectRace state={props.state} race = {props.race} setRace = {props.setRace}/> : null
 			}
 			{
 				props.page === 'ginglesTests' || 
 				props.page === 'ei' || 
-				props.page === 'ensemble' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+				props.page === 'ensemble' ? <SelectRace state={props.state} race = {props.race} setRace = {props.setRace}/> : null
 			}
 			{
 				

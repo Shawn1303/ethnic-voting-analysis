@@ -11,7 +11,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
-import data from "./gingles.json";
+// import data from "./gingles.json";
 
 export default function StateAssemblyTable(props) {
    

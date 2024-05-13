@@ -20,6 +20,7 @@ export default function StateMap(props) {
 			<StateFeature 
 				state={props.state} 
 				districtplan={props.districtplan} 
+				precinct={props.precinct}
 				mapOutline={props.mapOutline} 
 				race={props.race}	
 				district={props.district}
@@ -31,12 +32,12 @@ export default function StateMap(props) {
 }
 
 function getColor(d) {
-    return  d > 40 ? "#000094" : 
-            d > 30 ? "#11349e" : 
-            d > 20 ? "#33559e" : 
-            d > 10 ? "#5977aa" : 
-            d > 5 ? "#7799be" : 
-					"#9dbad4";
+    return  d > 40 ? "#e93e3a" : 
+            d > 30 ? "#ed683c" : 
+            d > 20 ? "#f3903f" : 
+            d > 10 ? "#fdc70c" : 
+            d > 5 ? "#fff33b" : 
+					"#ffffa0";
 };
 
 function StateFeature(props) {
@@ -70,14 +71,14 @@ function StateFeature(props) {
         }
         map.setView(center, zoom);
 
-        if (props.districtplan && props.mapOutline !== 'districtPlan') {
-            const geoJsonLayer = L.geoJSON(props.districtplan.features, {
+        if (props.precinct && props.mapOutline === 'heatMapP') {
+			console.log(props.precinct.features)
+            const geoJsonLayer = L.geoJSON(props.precinct.features, {
             	onEachFeature: onEachArea,
 				style: (feature) => {
-					// let style = { color: "#002147", weight: 1}
 					let percentage = 0;
-					if (props.mapOutline === 'heatMap' || props.mapOutline === 'heatMapD') {
-						percentage = feature.properties[props.race]/feature.properties[`registered_voters_total`] * 100; 
+					if (props.mapOutline === 'heatMapP') {
+						percentage = feature.properties[props.race]/feature.properties[`demographicTotal`] * 100; 
 					}
 					let style = {
 						color: getColor(percentage), // Base color from heatmap
@@ -112,8 +113,31 @@ function StateFeature(props) {
             return () => {
                 map.removeLayer(geoJsonLayer);
             };
-        }
-    }, [props.districtplan, props.mapOutline, props.race, props.state, props.district, map, onEachArea]);
+        } else if (props.districtplan && props.mapOutline === 'heatMapD'){
+			const geoJsonLayer = L.geoJSON(props.districtplan.features, {
+            	onEachFeature: onEachArea,
+				style: (feature) => {
+					let percentage = 0;
+					
+					percentage = feature.properties[props.race]/feature.properties[`demographicTotal`] * 100; 
+					
+					let style = {
+						color: getColor(percentage), // Base color from heatmap
+						weight: percentage < 20 ? 3 : 2
+					};
+
+					if(feature.properties.DISTRICTN == props.district){
+						style = { color: "#E57200", weight: 5 };
+					} 
+
+					return style;
+				}
+            }).addTo(map);
+			return () => {
+                map.removeLayer(geoJsonLayer);
+            };
+		}
+    }, [props.districtplan, props.mapOutline, props.race, props.state, props.district, props.precinct, map, onEachArea]);
 
 	return null;
 }

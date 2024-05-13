@@ -11,6 +11,7 @@ function App() {
 	const [state, setState] = useState('');
 	const [mapOutline, setMapOutline] = useState('districtPlan');
 	const [districtplan, setDistrictplan] = useState(null);
+	const [precinct, setPrecinct] = useState(null);
 	const [race, setRace] = useState('');
 	const [ep, setEp] = useState(0);
 	const [EnsemblePlan, setEnsemblePlan] = useState(null);
@@ -18,27 +19,31 @@ function App() {
 	async function loadDistrictPlan(state) {
 		try {
 			const result = await axios.get(`http://localhost:8080/${mapOutline}?state=${state}`);
-			setDistrictplan(result.data);
+			if (mapOutline === "heatMapP") {
+				setPrecinct(result.data);
+			} else {
+				setDistrictplan(result.data);
+			}
 		} catch(error) {
 			alert(`Error fetching GeoJSON:${error}`);
 		}
 	}
 
 	useEffect(() => {
-		if(state && mapOutline) {
-			if(mapOutline !== "heatMapD") (async () => await loadDistrictPlan(state))();
-		} else {
-			setDistrictplan(null)
+        if (districtplan && districtplan.features[0].state !== state) {
+            loadDistrictPlan(state);
+        } else if (state && mapOutline !== "heatMapD"){
+			loadDistrictPlan(state);
 		}
-	}, [state, mapOutline]);
+    }, [state, mapOutline]);
 
 	let pageHTML;
 	switch(page) {
 		case "stateSummary":
-			pageHTML = <StateSummary state={state} districtplan={districtplan} mapOutline={mapOutline} race={race} page={page}/>
+			pageHTML = <StateSummary state={state} districtplan={districtplan} precinct={precinct} mapOutline={mapOutline} race={race} page={page}/>
 			break;
 		case "ginglesTests":
-			pageHTML = <Gingles state={state} race={race}/>
+			pageHTML = <Gingles state={state} race={race} precinct={precinct.features}/>
 			break;
 		case "ei":
 			pageHTML = <Ei state={state} race={race}/>

@@ -19,10 +19,10 @@ export default function SelectRace(props) {
         onChange={handleChange}
         sx={{ backgroundColor:'white' }}
       >
-        <MenuItem value={'registered_voters_european'}>White</MenuItem>
-        <MenuItem value={'registered_voters_african_american'}>Black/African American</MenuItem>
-        <MenuItem value={'registered_voters_south_east_asian'}>Asian</MenuItem>
-        <MenuItem value={'registered_voters_hispanic'}>Hispanic/Latino</MenuItem>
+        <MenuItem value={'demographicWhite'}>White</MenuItem>
+        <MenuItem value={'demographicBlack'}>Black/African American</MenuItem>
+        <MenuItem value={'demographicAsian'}>Asian</MenuItem>
+        {props.state !== 'md' && <MenuItem value={'demographicHispanicLatino'}>Hispanic/Latino</MenuItem>}
       </Select>
     </FormControl>
   )

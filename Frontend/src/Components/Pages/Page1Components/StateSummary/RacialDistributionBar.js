@@ -1,37 +1,14 @@
 import React from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
-// const data = [
-//   {
-//     name: 'White',
-//     Representative: 70,
-//     Population: 2279,
-//   },
-//   {
-//     name: 'Black/African American',
-//     Representative: 25,
-//     Population: 2,
-//   },
-//   {
-//     name: 'Asian',
-//     Representative: 3,
-//     Population: 10,
-//   },
-//   {
-//     name: 'Hispanic/Latino',
-//     Representative: 2,
-//     Population: 42,
-//   }
-// ];
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 export default function RacialDistributionBar(props){
-
+  const filteredData = props.stateSummary[1].filter(item => item.Representative !== 0 && item.Population !== 0);
     return (
       <ResponsiveContainer width="100%" height="93%">
         <BarChart
           width={50}
           height={100}
-          data={props.stateSummary[1]}
+          data={filteredData}
           margin={{top: 5, bottom: 5}} 
         >
           <CartesianGrid strokeDasharray="3 3" />

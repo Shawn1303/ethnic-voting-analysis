@@ -5,13 +5,12 @@ export default function RacialDistributionTable(props) {
 
 const raceFormatter = (key) => {
   const raceMap = {
-      registered_voters_european: 'White',
-      registered_voters_south_east_asian: 'Asian',
-      registered_voters_african_american: 'Black/African American',
-      registered_voters_hispanic: 'Hispanic/Latino',
-      registered_voters_other: 'Other',
-      registered_voters_unknown: 'Unknown',
-      registered_voters_total: 'Total'
+    registered_voters_european: 'White',
+    registered_voters_south_east_asian: 'Asian',
+    registered_voters_african_american: 'Black/African American',
+    registered_voters_hispanic: 'Hispanic/Latino',
+    registered_voters_other: 'Other',
+    registered_voters_total: 'Total'
   };
   return raceMap[key];
 };
@@ -39,13 +38,14 @@ const columns = [
         <tbody>
             {Object.entries(props.stateSummary[0][0]).map(([key, value]) => {
                 return (
+                  value > 0 && (
                   <TableRow key={key}>
                     <TableCell>{raceFormatter(key)}</TableCell>
                     <TableCell align='right'>
                       {columns.find(col => col.id === 'population').format(value)}
                     </TableCell>
                   </TableRow>
-                );
+                ));
             })}
         </tbody>
       </table>

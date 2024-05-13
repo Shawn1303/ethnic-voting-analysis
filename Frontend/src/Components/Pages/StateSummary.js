@@ -16,7 +16,8 @@ export default function StateSummary(props) {
 					<StateMap 
 						height = '85vh'
 						state = {props.state} 
-						districtplan={props.districtplan} 
+						districtplan={props.districtplan}
+						precinct={props.precinct} 
 						mapOutline={props.mapOutline} 
 						race={props.race} 
 						district={district} 
@@ -26,7 +27,7 @@ export default function StateSummary(props) {
 				<Grid item xs={6} style={{maxHeight: '85vh', overflowY: 'auto'}}>
 					<StateDataSummary state = {props.state}></StateDataSummary>
 					<StateAssemblyTable state = {props.state} district={district} setDistrict={setDistrict}/>
-					<EnsembleSummary state = {props.state}></EnsembleSummary>
+					{/* <EnsembleSummary state = {props.state}></EnsembleSummary> */}
 				</Grid>	
 			</Grid>
 		</Box>
