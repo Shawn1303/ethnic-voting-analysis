@@ -1,0 +1,17 @@
+{
+  "district_plans": 2052,
+  "race_opp_dist": {
+    "europeanpop_opp_dist": 165311,
+    "afampop_opp_dist": 8436,
+    "seasianpop_opp_dist": 0,
+    "hisppop_opp_dist": 0
+  },
+  "splits": {
+    "48-52": 905,
+    "49-51": 563,
+    "50-50": 269,
+    "47-53": 261,
+    "51-49": 44,
+    "46-54": 10
+  }
+}
