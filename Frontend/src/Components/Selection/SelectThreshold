@@ -1,0 +1,28 @@
+import * as React from 'react';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { InputLabel } from '@mui/material';
+
+export default function SelectThreshold(props) {
+  const handleChange = (event) => {
+    props.setThreshold(event.target.value)
+  };
+  return(
+    <FormControl fullWidth style={{ width: '15%', margin: '10px 10px', borderRadius: '5px'}}>
+      <InputLabel style={{color: 'gray'}}>Select threshold</InputLabel>
+      <Select
+        labelId='select-threshold'
+        id='select-threshold-dropdown'
+        label="Select threshold"
+        value={props.threshold}
+        onChange={handleChange}
+        sx={{ backgroundColor:'white' }}
+      >
+        <MenuItem value={'50'}>50%</MenuItem>
+        <MenuItem value={'44'}>44%</MenuItem>
+        <MenuItem value={'37'}>37%</MenuItem>
+      </Select>
+    </FormControl>
+  )
+}

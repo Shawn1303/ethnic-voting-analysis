@@ -21,7 +21,23 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 import OppBarChart from './Page4Components/Opp_BarChart';
-import barchartdata from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_hisppop_50.json'
+import barchartdata1 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_hisppop_50.json'
+import barchartdata2 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_afampop_50.json'
+import barchartdata3 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_seasianpop_50.json'
+import barchartdata4 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_europeanpop_50.json'
+import barchartdata5 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_hisppop_44.json'
+import barchartdata6 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_afampop_44.json'
+import barchartdata7 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_seasianpop_44.json'
+import barchartdata8 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_europeanpop_44.json'
+import barchartdata9 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_hisppop_37.json'
+import barchartdata10 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_afampop_37.json'
+import barchartdata11 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_seasianpop_37.json'
+import barchartdata12 from './Page4Components/boxplot/10000planspostpro/oppdist_barchart_datas_europeanpop_37.json'
+
+import bw1 from './Page4Components/boxplot/10000planspostpro/box_whiskers_afampop.json'
+import bw2 from './Page4Components/boxplot/10000planspostpro/box_whiskers_europeanpop.json'
+import bw3 from './Page4Components/boxplot/10000planspostpro/box_whiskers_hisppop.json'
+import bw4 from './Page4Components/boxplot/10000planspostpro/box_whiskers_seasianpop.json'
 
 
 export default function Ensemble(props) {
@@ -32,9 +48,26 @@ export default function Ensemble(props) {
 	useEffect(() => {
 		if(props.districtplan) {
 			setFeatures(props.districtplan.features);
-			console.log(props.districtplan.features)
+			// console.log(props.districtplan.features)
 		}
 	}, [props.districtplan])
+
+	const barcharts = {
+		'demographicWhite': barchartdata4,
+		'demographicBlack': barchartdata2,
+		'demographicAsian': barchartdata3,
+		'demographicHispanicLatino': barchartdata1
+	}
+
+	const boxandwhiskers = {
+		'demographicWhite': bw2,
+		'demographicBlack': bw1,
+		'demographicAsian': bw4,
+		'demographicHispanicLatino': bw3
+	}
+
+	console.log(data.race)
+	console.log(props.race)
 
 	
 	const rowsSplit = [
@@ -205,7 +238,7 @@ export default function Ensemble(props) {
 							{props.state !== 'va' ? (
 								<p>Select a state</p> 
 							): <OppBarChart
-								data={barchartdata}
+								data={barcharts[props.race]}
 								>
 								</OppBarChart>}
 						</Collapse>
@@ -213,7 +246,7 @@ export default function Ensemble(props) {
 				</Grid>	
                 <Grid item xs={12} style={{height: '45vh', overflowY: 'auto'}}>
                     {props.state === 'va' && features ? (
-					<Boxplot race={data.race} data={data.buckets} features={features} width={1500} height={300} />
+					<Boxplot race={props.race} data={boxandwhiskers[props.race].buckets} features={features} width={1500} height={300} />
 					): <></>}
 				</Grid>
 			</Grid>

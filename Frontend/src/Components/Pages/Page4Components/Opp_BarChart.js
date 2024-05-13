@@ -13,7 +13,8 @@ export default function OppBarChart(props){
   const race_names = {
 	'afampop': 'African American',
 	'hisppop': 'Hispanic',
-	'seasianpop': 'Asian'
+	'seasianpop': 'Asian',
+	'europeanpop': 'White'
   }
 //   console.log(data)
 // race_names[props.data.race]
