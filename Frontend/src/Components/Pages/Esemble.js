@@ -87,8 +87,8 @@ export default function Ensemble(props) {
 					<StateMap 
                         height='39vh'
                         state = {props.state} 
-						districtplan={props.districtplan} 
-						mapOutline={props.mapOutline} 
+						ensemblePlan={props.ensemblePlan} 
+						mapOutline="ensemble"
                     />
 				</Grid>
 				<Grid item xs={6} style={{height: '40vh', overflowY: 'auto'}}>
