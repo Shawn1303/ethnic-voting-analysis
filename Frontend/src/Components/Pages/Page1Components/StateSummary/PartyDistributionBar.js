@@ -3,14 +3,14 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 
 export default function PartyDistributionBar(props){
   const barColors = ["#dc3545", "#007bff", "#fd7e14", "grey"]
-
+//   console.log(props.stateSummary[3])
   return (
     <ResponsiveContainer width="100%" height="93%">
       <BarChart
         width={300}
         height={300}
         data={props.stateSummary[3]}
-        margin={{top: 5, right: 30, left: 30, bottom: 5}} 
+        margin={{top: 5, right: 30, left: 30, bottom: 5}}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="party" />
