@@ -14,7 +14,7 @@ import com.example.server.model.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
-public class RepresentativeController {
+public class StatsControllers {
     @Autowired
     RepresentativeRepository repRepo;
 
@@ -22,5 +22,14 @@ public class RepresentativeController {
     @Cacheable("stateAssemblyTable")
     public Set<Representative> getStateAssemblyTableList(@RequestParam String state) {
         return repRepo.findByState(state);
+    }
+
+    @Autowired
+    StateSummaryRepository stateSumRepo;
+
+    @GetMapping("/stateSummary")
+    @Cacheable("stateSummary")
+    public StateSummary getStateSummary(@RequestParam String state) {
+        return stateSumRepo.findByState(state);
     }
 }

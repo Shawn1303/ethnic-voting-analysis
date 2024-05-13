@@ -30,17 +30,17 @@ public class MapController {
     public ResponseEntity<String> getStateDistrictPlanTest(@RequestParam String state) 
     {
         try {
-            System.out.println("Getting districts");
+            // System.out.println("Getting districts");
             List<DistrictGeoJSON> districts = geoJsonRepo.findByState(state); 
-            System.out.println("Districts gotten");
+            // System.out.println("Districts gotten");
 
-                System.out.println("Getting precincts");
+                // System.out.println("Getting precincts");
                 List<PrecinctFeature> districtPrecincts = precinctGeoJson.findByState(state).getFeatures();
-                System.out.println("Precincts gotten");
+                // System.out.println("Precincts gotten");
 
             for (DistrictGeoJSON district : districts) {
                 String districtID = district.getProperties().getDistrictN();
-                System.out.println(districtID);
+                // System.out.println(districtID);
 
                 Properties stats = new Properties();
                 int democraticVotes = 0;
