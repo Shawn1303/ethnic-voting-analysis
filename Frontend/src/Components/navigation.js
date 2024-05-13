@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import SelectState from './Pages/Page1Components/Selection/SelectState';
-import SelectOutline from './Pages/Page1Components/Selection/SelectOutline';
-import SelectRace from './Pages/Page1Components/Selection/SelectRace';
+import SelectState from './Selection/SelectState';
+import SelectOutline from './Selection/SelectOutline';
+import SelectRace from './Selection/SelectRace';
 
 export default function Navigation(props) {
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -79,6 +79,9 @@ export default function Navigation(props) {
 				props.page === 'ginglesTests' || 
 				props.page === 'ei' || 
 				props.page === 'ensemble' ? <SelectRace race = {props.race} setRace = {props.setRace}/> : null
+			}
+			{
+				
 			}
 			<Button
 				id="reset-button"

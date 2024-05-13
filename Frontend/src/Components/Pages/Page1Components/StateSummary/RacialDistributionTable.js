@@ -38,7 +38,6 @@ const columns = [
         </thead>
         <tbody>
             {Object.entries(props.stateSummary[0][0]).map(([key, value]) => {
-              console.log(value)
                 return (
                   <TableRow key={key}>
                     <TableCell>{raceFormatter(key)}</TableCell>

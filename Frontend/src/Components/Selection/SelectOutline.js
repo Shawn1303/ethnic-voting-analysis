@@ -19,7 +19,7 @@ export default function SelectOutline(props) {
       >
         <MenuItem value={'districtPlan'}>Default District Plan</MenuItem>
         <MenuItem value={'heatMapD'}>Heatmap (by District)</MenuItem>
-        <MenuItem value={'heatMap'}>Heatmap (by Precinct)</MenuItem>
+        <MenuItem value={'heatMapP'}>Heatmap (by Precinct)</MenuItem>
       </Select>
     </FormControl>
   )

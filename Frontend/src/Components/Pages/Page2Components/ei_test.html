@@ -1,0 +1,52 @@
+<script>
+        // Generate data points for the bell curve
+        function generateData(mean, stddev, size) {
+            let data = [];
+            for (let i = 0; i < size; i++) {
+                let x = i - size / 2;
+                let y = (1 / (stddev * Math.sqrt(2 * Math.PI))) * Math.exp(-Math.pow(x - mean, 2) / (2 * Math.pow(stddev, 2)));
+                data.push({x: x, y: y});
+            }
+            return data;
+        }
+
+        // Plot the bell curve
+        function plotBellCurve(mean, confidenceInterval) {
+            let ctx = document.getElementById('myChart').getContext('2d');
+            let size = 1000; // Adjust as needed
+            let data = generateData(mean, confidenceInterval / 2, size);
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Bell Curve',
+                        borderColor: 'blue',
+                        borderWidth: 2,
+                        data: data
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'X'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Probability Density'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Example usage
+        let mean = 0;
+        let confidenceInterval = 1;
+        plotBellCurve(mean, confidenceInterval);
+    </script>
