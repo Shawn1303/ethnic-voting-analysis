@@ -43,7 +43,7 @@ function App() {
 			pageHTML = <StateSummary state={state} districtplan={districtplan} precinct={precinct} mapOutline={mapOutline} race={race} page={page}/>
 			break;
 		case "ginglesTests":
-			pageHTML = <Gingles state={state} race={race} precinct={precinct.features}/>
+			pageHTML = <Gingles state={state} race={race} precinct={precinct} setPrecinct={setPrecinct} page={page}/>
 			break;
 		case "ei":
 			pageHTML = <Ei state={state} race={race}/>

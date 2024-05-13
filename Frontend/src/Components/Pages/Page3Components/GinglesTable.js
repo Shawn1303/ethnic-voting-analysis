@@ -13,65 +13,68 @@ import Paper from '@mui/material/Paper';
 import { Container } from '@mui/material';
 // import data from "./gingles.json";
 
-export default function StateAssemblyTable(props) {
-   
+export default function PrecinctAnalysisTable(props) {
+
+	async function loadDistrictPlan(state, mapOutline) {
+		try {
+			const result = await axios.get(`http://localhost:8080/${mapOutline}?state=${state}`);
+			props.setPrecinct(result.data);
+			
+		} catch(error) {
+			alert(`Error fetching GeoJSON:${error}`);
+		}
+	}
+
+	useEffect(() => {
+        if (!props.precinct && props.page === "ginglesTests") {
+            loadDistrictPlan(props.state, "heatMapP");
+        }
+    }, [props.page, props.precinct, props.state, props.setPrecinct]);
+
+	
+
 	const raceFormatter = (value) => {
 		const raceMap = {
-		  WHITE: 'White',
-		  ASIAN: 'Asian',
-		  BLACK: 'Black/African American',
-		  HISPANICLATINO: 'Hispanic/Latino'
+			demographicWhite: 'White',
+			demographicAsian: 'Asian',
+			demographicBlack: 'Black/African American',
+			demographicHispanicLatino: 'Hispanic/Latino'
 		};
-		return raceMap[value] || value;
+		return raceMap[value];
 	};
 
 	const columns = [
 		{ id: 'precinctID', label: 'Precinct ID', minWidth: 40 },
 		{ 
-			id: 'race', 
-			label: 'Race', 
+			id: 'demographicTotal', 
+			label: 'Total Population', 
+			align: 'right',
 			minWidth: 80,
-			format: raceFormatter
+			format: (value)=> Intl.NumberFormat('en-US', { style: 'decimal' }).format(value)
 		},
         { 
-			id: 'popPerc', 
-			label: 'Percentage', 
+			id: [props.race], 
+			label: 'Minority Population', 
+			align: 'right',
 			minWidth: 80,
-			format: (value) => `${value}%`,
+			format:(value)=> Intl.NumberFormat('en-US', { style: 'decimal' }).format(value)
 		},
 		{
-			id: 'trump',
-			label: 'Trump',
+			id: 'republicanVotes',
+			label: 'Republican Votes',
 			minWidth: 80,
 			align: 'right',
-			format: (value) => `${value}%`,
+			format: (value) => Intl.NumberFormat('en-US', { style: 'decimal' }).format(value),
 		},
 		{
-			id: 'biden',
-			label: 'Biden',
+			id: 'democraticVotes',
+			label: 'Democratic Votes',
 			minWidth: 80,
 			align: 'right',
-			format: (value) => `${value}%`,
+			format: (value) => Intl.NumberFormat('en-US', { style: 'decimal' }).format(value),
 		}
 	];
 
-	// async function getStateAssemblyData(state) {
-	// 	try {
-	// 		const result = await axios.get(`http://localhost:8080/stateAssemblyTable?state=${state}`);
-	// 		// console.log(result.data)
-	// 		setStateAssemblyData(result.data);
-	// 	} catch(error) {
-	// 		alert(`Error fetching GeoJSON:${error}`);
-	// 	}
-	// }
-
-	// useEffect(() => {
-	// 	if(props.state) {
-	// 		(async () => await getStateAssemblyData(props.state))();
-	// 	} else {
-	// 		setStateAssemblyData(null)
-	// 	}
-	// }, [props.state]);
     const StyledTableCell = styled(TableCell)(({ theme }) => ({
         [`&.${tableCellClasses.head}`]: {
             backgroundColor: theme.palette.common.black,
@@ -113,23 +116,15 @@ export default function StateAssemblyTable(props) {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {data.map((precinct) => {
-                                return (
-                                    <StyledTableRow 
-                                        key={precinct.precinctID} 
-                                        tabIndex={-1}
-                                        >
-                                        {columns.map((column) => {
-                                            const value = precinct[column.id];
-                                            return (
-                                                <StyledTableCell key={column.id} align={column.align}>
-                                                    {column.format ? column.format(precinct[column.id], precinct) : precinct[column.id]}
-                                                </StyledTableCell>
-                                            );
-                                        })}
-                                    </StyledTableRow>
-                                );
-                            })}
+							{props.precinct?.features.map((feature) => (
+                                <StyledTableRow key={feature.properties.precinctID}>
+                                    {columns.map((column) => (
+                                        <StyledTableCell key={column.id} align={column.align}>
+                                            {column.format ? column.format(feature.properties[column.id]) : feature.properties[column.id]}
+                                        </StyledTableCell>
+                                    ))}
+                                </StyledTableRow>
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>

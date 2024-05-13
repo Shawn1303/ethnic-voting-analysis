@@ -1,4 +1,5 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, useState, useEffect } from 'react';
+import axios from 'axios';
 import {
   ComposedChart,
   Line,
@@ -11,7 +12,8 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import regression from "regression";
-import data from "./merged_precinct_data_scatter_plot_maryland.json";
+import md from "./merged_precinct_data_scatter_plot_maryland.json";
+import va from "./va_precinct_scatter_plot_data.json"
 
 const raceMapping = {
     "demographicWhite": "eur",
@@ -20,20 +22,19 @@ const raceMapping = {
     "demographicAsian": "esa",
 };
 
-function calculateRegressionData(race) {
+function calculateRegressionData(race, data) {
         const r = raceMapping[race];
         const transformedDataR = data.map(item => [
             item[0][r], 
-            item[1].Dan_Cox
+            item[1].Glenn_Youngkin_Republican
         ]);
     const transformedDataD = data.map(item => [
         item[0][r], 
-        item[1].Wes_Moore
+        item[1].Terry_McAuliffe_Democratic
     ]);
 
     const resultR = regression.polynomial(transformedDataR);
     const resultD = regression.polynomial(transformedDataD);
-    console.log(resultR)
     const regressionData = Array.from({ length: 100 }, (_, index) => {
         const x = index * 0.01;
         return {
@@ -43,35 +44,55 @@ function calculateRegressionData(race) {
         }
     });
     const filteredRegressionData = regressionData.filter(n => (n.redY >= 0 && n.redY <= 1) && (n.blueY >= 0 && n.blueY <= 1))
-    // console.log(filteredRegressionData)
     return filteredRegressionData;
 }
 
 export default function PrecinctAnalysis(props) {
+    const [pData, setPData] = useState([]);
+    
+    // useEffect
+    // if(props.state === 'md'){
+    //     setPData(md);
+    // }else if(props.state === 'va'){
+    //     setPData(va)
+    // }
+    
+    useEffect(() => {
+        if(props.state === 'md'){
+            setPData(md);
+        }else if(props.state === 'va'){
+            setPData(va)
+        }
+        }, [props.state, pData]);
+    // const [newData, setNewData] = useState([]);
+
     // async function loadPrecinct(state) {
 	// 	try {
-	// 		const result = await axios.get(`http://localhost:8080/${mapOutline}?state=${state}`);
-	// 		setDistrictplan(result.data);
+	// 		const result = await axios.get(`http://localhost:8080/gingles?state=${state}`);
+	// 		setPData(result.data);           
 	// 	} catch(error) {
 	// 		alert(`Error fetching GeoJSON:${error}`);
 	// 	}
 	// }
 
 	// useEffect(() => {
-	// 	if(state && mapOutline) {
-	// 		if(mapOutline !== "heatMapD") (async () => await loadDistrictPlan(state))();
-	// 	} else {
-	// 		setDistrictplan(null)
-	// 	}
-	// }, [state, mapOutline]);
-    const regressionData = calculateRegressionData(props.race);
-    const flattenedData = data.map(entry => ({
-        ...entry[0], // Spread the demographic data
-        ...entry[1] // Spread the voting data
-    }));
+	// 	if(!pData) {
+	// 		loadPrecinct(props.state)();
+	// 	} 
+	// }, [props.state, pData]);
     
-    const newData = [...regressionData, ...flattenedData];
     const race = raceMapping[props.race];
+    // if (pData) {
+        const regressionData = calculateRegressionData(props.race, pData);
+        const flattenedData = pData.map(entry => ({
+            ...entry[0], // Check that each entry has at least two indices
+            ...entry[1]
+        }));
+        const newData = [...regressionData, ...flattenedData];
+    // }
+    
+    
+    
     return (
         <ResponsiveContainer width="95%" height="90%">
             <ComposedChart
@@ -87,8 +108,8 @@ export default function PrecinctAnalysis(props) {
                 <XAxis dataKey={race} type="number" label={{ value: "Percent", position: 'bottom', offset: 0 }} tickFormatter={(tick)=> `${tick*100}%`} />
                 <YAxis type="number" label={{ value: 'Vote Share', angle: -90, position: 'insideLeft' }} 
                         ticks={[0, 0.25, 0.50, 0.75, 1]} domain={[0, 1]} scale={"auto"} tickFormatter={(tick)=> `${tick*100}%`}/>
-                <Scatter name="Dan Cox" dataKey="Dan_Cox" fill="red" fillOpacity='0.1' isAnimationActive={false}/>
-                <Scatter name="Wes Moore" dataKey="Wes_Moore" fill="blue" fillOpacity='0.1' isAnimationActive={false}/>
+                <Scatter name="Glenn Youngkin" dataKey="Glenn_Youngkin_Republican" fill="red" fillOpacity='0.1' isAnimationActive={false}/>
+                <Scatter name="Terry McAuliffe" dataKey="Terry_McAuliffe_Democratic" fill="blue" fillOpacity='0.1' isAnimationActive={false}/>
                 <Line strokeWidth="5" type="monotone" dataKey="redY" stroke="red" dot={false} isAnimationActive={false}/>
                 <Line strokeWidth="5" type="monotone" dataKey="blueY" stroke="blue" dot={false} isAnimationActive={false}/>
             </ComposedChart>
