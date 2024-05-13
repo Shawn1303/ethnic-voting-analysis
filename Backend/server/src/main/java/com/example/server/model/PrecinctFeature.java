@@ -7,7 +7,7 @@ package com.example.server.model;
 //TLDR: This exists ONLY to get the properties field to aggregate for districts
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "PrecinctGeoJSON2")
+@Document(collection = "PrecinctGeoJSON")
 public class PrecinctFeature { 
     private String type;
     private Object geometry;
