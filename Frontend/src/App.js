@@ -34,7 +34,7 @@ function App() {
             loadDistrictPlan(state);
         } else if (state && mapOutline !== "heatMapD"){
 			loadDistrictPlan(state);
-		}
+		} 
     }, [state, mapOutline]);
 
 	let pageHTML;
@@ -62,6 +62,8 @@ function App() {
 				page={page} setPage={setPage} 
 				state={state} setState={setState} 
 				mapOutline={mapOutline} setMapOutline={setMapOutline} 
+				districtplan={districtplan} setDistrictplan={setDistrictplan} 
+				precinct={precinct} setPrecinct={setPrecinct} 
 				race={race} setRace={setRace}
 				ep={ep} setEp={setEp}/>
 			{pageHTML}

@@ -27,7 +27,9 @@ export default function Navigation(props) {
 		props.setState('')
 		props.setPage('stateSummary')
 		props.setRace('demographicWhite')
-		props.setMapOutline('districtPlan')
+		props.setMapOutline('')
+		// props.setDistrictPlan(null)
+		// props.setPrecinct(null)
 	}
   
 	return (

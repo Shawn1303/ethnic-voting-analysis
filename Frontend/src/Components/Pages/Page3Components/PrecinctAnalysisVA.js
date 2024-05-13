@@ -95,6 +95,7 @@ export default function PrecinctAnalysis(props) {
     
     return (
         <ResponsiveContainer width="95%" height="90%">
+            <h2>Virginia Governor's Race: 2021 Election</h2>
             <ComposedChart
                 width={500}
                 height={400}
