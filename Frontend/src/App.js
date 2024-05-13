@@ -30,7 +30,7 @@ function App() {
 	}
 
 	useEffect(() => {
-        if (districtplan && districtplan.features[0].state !== state) {
+        if (districtplan && districtplan.features[0].state !== state && state != '') {
             loadDistrictPlan(state);
         } else if (state && mapOutline !== "heatMapD"){
 			loadDistrictPlan(state);
