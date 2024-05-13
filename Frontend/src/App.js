@@ -5,6 +5,7 @@ import StateSummary from './Components/Pages/StateSummary';
 import Gingles from "./Components/Pages/Gingles"
 import Ei from './Components/Pages/Ei';
 import Ensemble from './Components/Pages/Esemble'
+import ensembleMap from './Components/Pages/Page4Components/oppMapAsianMax.json'
 
 function App() {
 	const [page, setPage] = useState("stateSummary");
@@ -15,7 +16,8 @@ function App() {
 	const [race, setRace] = useState('');
 	const [ep, setEp] = useState(0);
 	const [threshold, setThreshold] = useState('50');
-	// const [EnsemblePlan, setEnsemblePlan] = useState(null);
+	const [ensemblePlan, setEnsemblePlan] = useState(ensembleMap);
+
 
 	async function loadDistrictPlan(state) {
 		try {
@@ -31,7 +33,7 @@ function App() {
 	}
 
 	useEffect(() => {
-        if (districtplan && districtplan.features[0].state !== state) {
+        if (districtplan && districtplan.features[0].state !== state && state != '') {
             loadDistrictPlan(state);
         } else if (state && mapOutline !== "heatMapD"){
 			loadDistrictPlan(state);
@@ -50,7 +52,7 @@ function App() {
 			pageHTML = <Ei state={state} race={race}/>
 			break;
 		case "ensemble":
-			pageHTML = <Ensemble state={state} districtplan={districtplan} mapOutline={mapOutline} threshold={threshold} race={race}/>
+			pageHTML = <Ensemble state={state} districtplan={districtplan} mapOutline={mapOutline} threshold={threshold} race={race} ensemblePlan={ensemblePlan} setEnsemblePlan={setEnsemblePlan}/>
 			break;
 		case "compare":
 			pageHTML = <></>

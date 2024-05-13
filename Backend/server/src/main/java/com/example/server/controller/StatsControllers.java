@@ -43,4 +43,13 @@ public class StatsControllers {
     public Gingles getGingles(@RequestParam String state) {
         return ginglesRepo.findByState(state);
     }
+
+    @Autowired
+    EnsembleSummaryRepository ensembleSumRepo;
+
+    @GetMapping("/ensembleSummary")
+    @Cacheable("ensembleSummary")
+    public EnsembleSummary getEnsembleSummary(@RequestParam String state) {
+        return ensembleSumRepo.findByState(state);
+    }
 }

@@ -25,8 +25,9 @@ export default function StateMap(props) {
 				race={props.race}	
 				district={props.district}
 				setDistrict={props.setDistrict}
+				ensemblePlan={props.ensemblePlan}
 			/>
-			{ props.mapOutline !== 'districtPlan' ? <Legend /> : null}
+			{ props.mapOutline !== 'districtPlan' && props.mapOutline !== 'ensemble'? <Legend /> : null}
 		</MapContainer>
 	)
 }
@@ -129,6 +130,31 @@ function StateFeature(props) {
 					if(feature.properties.DISTRICTN == props.district){
 						style = { color: "#E57200", weight: 5 };
 					} 
+
+					return style;
+				}
+            }).addTo(map);
+			return () => {
+                map.removeLayer(geoJsonLayer);
+            };
+		} else if (props.mapOutline === 'ensemble'){
+			console.log(props.ensemblePlan)
+			const geoJsonLayer = L.geoJSON(props.ensemblePlan.features, {
+            	onEachFeature: onEachArea,
+				style: (feature) => {
+					
+					const getColor = (id) => {
+						const colors = ['#f00', '#0f0', '#00f', '#ff0', '#f0f']; // Example colors
+						// Simple hash function to keep color consistent between renders
+						const index = id % colors.length;
+						return colors[index];
+					};
+
+					console.log(feature)
+					
+					let style = {
+						color: getColor(feature.properties.district_id), // Base color from heatmap
+					};
 
 					return style;
 				}
